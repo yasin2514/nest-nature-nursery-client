@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { RiCloseLine, RiMenu4Line } from "react-icons/ri";
 import logo from "../../assets/logo.png";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 130) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -20,7 +37,11 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-[#01352c]">
+    <nav
+      className={`fixed top-0 z-[999] w-full bg-[#01352c] bg-opacity-${
+        scrolling ? "0" : "50"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between h-[75px] items-center">
           <div className="flex items-center">

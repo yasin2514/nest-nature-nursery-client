@@ -45,23 +45,20 @@ const HeroSection = () => {
 
   return (
     <div className="relative bg-black w-full">
-      <div ref={sliderRef} className="keen-slider h-[90vh]">
+      <div ref={sliderRef} className="keen-slider h-[100vh]">
         {/* slider-1 */}
         <div className="keen-slider__slide number-slide1">
           <div
             className="flex flex-col w-10/12 items-center  text-center space-y-5"
             data-aos="zoom-in"
           >
-            <h2 className="text-5xl font-bold">
-              To have another
-              <br />
-              language is to possess
-              <br />a second soul.
+            <h2 className="text-5xl font-bold ">
+              Welcome to NatureNest Nursery
             </h2>
-            <p className="text-sm">
-              Global Tongues is a Language School Courses & Learning Management
-              System Education , <br /> Work with us. Learn with us. Improve
-              with us.
+            <h3 className="text-4xl font-bold">Trees our best friends</h3>
+            <p className="text-sm max-w-[64ch]">
+              This is not a nursery , this is a green heaven for us. Where
+              nature flourishes! Discover your perfect nursery today.
             </p>
 
             <button className="btn btn-sm">Learn More</button>
@@ -73,19 +70,15 @@ const HeroSection = () => {
             className="flex flex-col w-10/12 items-center  text-center space-y-5"
             data-aos="zoom-in"
           >
-            <h2 className="text-5xl font-bold">
-              Every student matters,
-              <br />
-              every moment counts
-              <br />
-              Success In Life
+            <h2 className="text-5xl font-bold ">
+              Welcome to NatureNest Nursery
             </h2>
-            <p className="text-sm">
-              Global Tongues is a Language School Courses & Learning Management
-              System Education , <br /> Work with us. Learn with us. Improve
-              with us.
+            <h3 className="text-4xl font-bold">Trees our best friends</h3>
+            <p className="text-sm max-w-[64ch] mb-10">
+              This is not a nursery , this is a green heaven for us. Where
+              nature flourishes! Discover your perfect nursery today.
             </p>
-            <button className="btn btn-sm">Learn More</button>
+              <button className="btn btn-sm">Learn More</button>
           </div>
         </div>
         {/* slider-3 */}
@@ -94,20 +87,17 @@ const HeroSection = () => {
             className="flex flex-col w-10/12 items-center  text-center space-y-5"
             data-aos="zoom-in"
           >
-            <h2 className="text-5xl font-bold">
-              Putting Children First
-              <br />
-              Preparing Children For
-              <br />
-              Success In Life
+            <h2 className="text-5xl font-bold ">
+              Welcome to NatureNest Nursery
             </h2>
-            <p className="text-sm">
-              Global Tongues is a Language School Courses & Learning Management
-              System Education , <br /> Work with us. Learn with us. Improve
-              with us.
+            <h3 className="text-4xl font-bold">Trees our best friends</h3>
+            <p className="text-sm max-w-[64ch] mb-10">
+              This is not a nursery , this is a green heaven for us. Where
+              nature flourishes! Discover your perfect nursery today.
             </p>
 
-            <button className="btn btn-sm">Learn More</button>
+              <button className="btn btn-sm">Learn More</button>
+     
           </div>
         </div>
       </div>
