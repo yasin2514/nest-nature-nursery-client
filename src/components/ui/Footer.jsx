@@ -81,12 +81,12 @@ const Footer = () => {
         <div className="text-center mt-10 lg:flex justify-between ">
           <small>
             &copy; {currentYear} The
-            <span className="text-[#33ff5f]"> Global Tongues</span> All Rights
-            Reserved
+            <span className="text-[#3fdd61]"> NatureNest Nursery</span> All
+            Rights Reserved
           </small>
           <br />
           <small>
-            Develop By <span className="text-[#33ff5f]">Yasin Khan Rabbi</span>
+            Develop By <span className="text-[#3fdd61]">Yasin Khan Rabbi</span>
           </small>
         </div>
       </div>

@@ -1,4 +1,5 @@
 @import url('./styles/btn.css');
+@import url('./styles/banner.css');
 
 @tailwind base;
 @tailwind components;

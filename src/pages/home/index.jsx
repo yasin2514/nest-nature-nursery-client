@@ -1,9 +1,12 @@
+import Container from "../../components/ui/Container";
+import HeroSection from "./HeroSection";
 
 const Home = () => {
     return (
-        <div>
-            home page
-        </div>
+      <>
+        <HeroSection />
+        <Container className="border ">home page</Container>
+      </>
     );
 };
 
