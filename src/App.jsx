@@ -1,7 +1,13 @@
-import React from "react";
+import Navbar from "./components/ui/Navbar";
+import MainLayout from "./layout/MainLayout";
 
 const App = () => {
-  return <div>app is running</div>;
+  return (
+    <>
+      <Navbar />
+      <MainLayout />
+    </>
+  );
 };
 
 export default App;
