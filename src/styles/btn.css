@@ -1,0 +1,6 @@
+@layer base {
+  button {
+    @apply text-white  border border-[#0d4d1b]  hover:bg-[#ffffff] hover:text-[#0d4d1b]  px-5 py-[6px] text-base font-medium rounded-md;
+    @apply active:bg-white active:text-[#0d4d1b];
+  }
+}
