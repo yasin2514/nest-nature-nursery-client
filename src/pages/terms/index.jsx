@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Terms = () => {
   return (
-    <div className="max-w-full px-7 md:px-20 my-20">
+    <div className="max-w-full flex flex-col h-[60vh] mt-[75px]  items-center justify-center">
       {/* <PageTitle title="Terms" /> */}
       <div>
         <h2 className="text-3xl  font-bold">
@@ -36,7 +36,10 @@ const Terms = () => {
           </li>
         </span>
       </div>
-      <Link className="btn btn-primary" to={"/register"}>
+      <Link
+        className="btn bg-green-800 hover:bg-green-900 text-white"
+        to={"/register"}
+      >
         {" "}
         Go Back to Registration
       </Link>

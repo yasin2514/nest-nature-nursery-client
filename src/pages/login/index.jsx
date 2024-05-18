@@ -157,7 +157,7 @@ const Login = () => {
               <input
                 type="submit"
                 disabled={disabled}
-                className="btn btn-primary"
+                className="btn bg-green-800 hover:bg-green-900 text-white"
                 value="Sign In"
               />
             </div>

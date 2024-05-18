@@ -54,9 +54,9 @@ const Register = () => {
   };
 
   return (
-    <div className="hero min-h-screen py-10">
+    <div className="hero min-h-screen  mt-[75px] flex justify-center items-center py-10">
       {/* <PageTitle title={"Registration"}></PageTitle> */}
-      <div className="hero-content w-full flex-col lg:flex-row">
+      <div className="hero-content w-full flex-col lg:flex-row gap-10">
         <div className="w-full lg:w-1/2">
           <img src={login} alt="" />
           <Lottie animationData={login} loop={true} />
