@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { RiCloseLine, RiMenu4Line } from "react-icons/ri";
 import logo from "../../assets/logo.png";
@@ -6,10 +6,11 @@ import logo from "../../assets/logo.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
+  console.log({ scrolling });
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 130) {
+      if (window.scrollY > 140) {
         setScrolling(true);
       } else {
         setScrolling(false);
@@ -38,8 +39,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 z-[999] w-full bg-[#01352c] bg-opacity-${
-        scrolling ? "0" : "50"
+      className={`fixed top-0 z-[999] w-full bg-[#01352c] ${
+        scrolling ? "bg-opacity-100" : "bg-opacity-50"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4">
