@@ -7,11 +7,6 @@ import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 // import { AuthContext } from "../../../Providers/AuthProviders";
 import { useForm } from "react-hook-form";
-import {
-  loadCaptchaEnginge,
-  LoadCanvasTemplate,
-  validateCaptcha,
-} from "react-simple-captcha";
 import axios from "axios";
 
 const Login = () => {
@@ -23,26 +18,11 @@ const Login = () => {
   } = useForm();
   const [error, setError] = useState(null);
   const [show, setShow] = useState(false);
-//   const { googleLogin, signIn } = useContext(AuthContext);
+  //   const { googleLogin, signIn } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
   const [disabled, setDisabled] = useState(true);
-
-  // captcha
-
-  useEffect(() => {
-    loadCaptchaEnginge(6);
-  }, []);
-
-  const handleValidateCaptcha = (event) => {
-    const user_captcha_value = event.target.value;
-    if (validateCaptcha(user_captcha_value)) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  };
 
   // google login
   const handleGoogleLogin = () => {
@@ -91,8 +71,16 @@ const Login = () => {
       .catch((error) => setError(error.message));
   };
 
+  const handleDisabled = (e) => {
+    if (e.target.value.length > 4) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  };
+
   return (
-    <div className="hero min-h-screen  w-full py-10">
+    <div className="hero h-screen mt-10  w-full flex  items-center justify-center">
       {/* <PageTitle title={"SignIn"}></PageTitle> */}
       <div className="md:hero-content items-center justify-center lg:flex-row">
         <div className="w-full lg:w-1/2">
@@ -100,26 +88,19 @@ const Login = () => {
           <Lottie animationData={login} loop={true} />
         </div>
 
-        <div className="card w-full lg:w-1/2 py-10 shadow-lg border-2">
-          <h1 className="text-3xl ms-10 text-center font-bold text-blue-600">
-            SignIn
-          </h1>
-          <p className="ms-10 text-center text-green-900 text-sm">
-            Let's go fill Up the form and enjoy our service,HurryUp!
-          </p>
-
-          <div className="text-center mt-10 space-x-10">
+        <div className="card w-full lg:w-1/2  shadow-lg border-2">
+          <div className="text-center mt-10 ">
             <button onClick={handleGoogleLogin} className="btn btn-outline">
               <FcGoogle className="text-3xl"></FcGoogle>
             </button>
           </div>
-          <div className="divider mx-10 md:mx-32 mt-10 font-bold">
+          <div className="divider mx-10 md:mx-32 mt-8 font-bold">
             {" "}
             OR continue With
           </div>
 
           {/* form start */}
-          <form onSubmit={handleSubmit(onsubmit)} className="card-body">
+          <form onSubmit={handleSubmit(onsubmit)} className="px-7 py-10 space-y-4">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email*</span>
@@ -146,6 +127,7 @@ const Login = () => {
                 </span>
               </label>
               <input
+                onKeyDown={handleDisabled}
                 type={show ? "text" : "password"}
                 placeholder="Your password"
                 className="input input-bordered"
@@ -160,21 +142,6 @@ const Login = () => {
               )}
             </div>
 
-            <div className="label w-full flex flex-wrap justify-evenly gap-2">
-              <LoadCanvasTemplate />
-              <input
-                type="text"
-                onMouseLeave={handleValidateCaptcha}
-                placeholder="type the captcha"
-                className="input w-full input-bordered"
-                name="captcha"
-              />
-            </div>
-            <div className="label justify-start gap-2">
-              <input type="checkbox" className="checkbox " />
-              <span className="label-text-alt">Remember me</span>
-            </div>
-
             <label className="label">
               <p className="">
                 New User?{" "}
@@ -185,6 +152,7 @@ const Login = () => {
                 </Link>
               </p>
             </label>
+
             <div className="form-control">
               <input
                 type="submit"

@@ -6,7 +6,6 @@ import logo from "../../assets/logo.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
-  console.log({ scrolling });
 
   useEffect(() => {
     const handleScroll = () => {
