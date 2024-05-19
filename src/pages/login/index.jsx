@@ -35,18 +35,18 @@ const Login = () => {
           photo: loggedUser?.photoURL,
           role: "user",
         };
-        // axios.post("", saveUser).then((res) => {
-        //   navigate(from, { relative: true });
-        //   if (res.data.insertedId) {
-        //     reset();
-        //     Swal.fire({
-        //       icon: "success",
-        //       title: "Login Successfully",
-        //       showConfirmButton: false,
-        //       timer: 1500,
-        //     });
-        //   }
-        // });
+        axios.post("http://localhost:5000/addUser", saveUser).then((res) => {
+          navigate(from, { relative: true });
+          if (res.data.insertedId) {
+            reset();
+            Swal.fire({
+              icon: "success",
+              title: "Login Successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
         console.log({ loggedUser });
       })
       .catch((error) => {

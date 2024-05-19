@@ -33,20 +33,18 @@ const Register = () => {
             photo: data?.photoUrl,
             role: "user",
           };
-          // axios
-          //   .post("", saveUser)
-          //   .then((res) => {
-          //     if (res.data.insertedId) {
-          //       reset();
-          //       Swal.fire({
-          //         icon: "success",
-          //         title: "User Created Successfully",
-          //         showConfirmButton: false,
-          //         timer: 1500,
-          //       });
-          //       navigate("/");
-          //     }
-          //   });
+          axios.post("http://localhost:5000/addUser", saveUser).then((res) => {
+            if (res.data.insertedId) {
+              reset();
+              Swal.fire({
+                icon: "success",
+                title: "User Created Successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/");
+            }
+          });
         })
         .catch((error) => {
           setError(error.message);
