@@ -56,6 +56,31 @@ const Navbar = () => {
     { to: "/services", name: "ContactUs" },
   ];
 
+  const filterNavLinks = user
+    ? navLinks
+    : navLinks.filter((link) => link.name !== "Dashboard");
+
+  // login and logout button
+  const loginAndLogoutBtn = user ? (
+    <>
+      <img
+        src={user?.photoURL}
+        alt={user?.displayName}
+        className="rounded-full w-9 h-9 border mr-5"
+      />
+      <button
+        onClick={handleLogout}
+        className="hover:bg-red-600 hover:text-white"
+      >
+        LogOut
+      </button>
+    </>
+  ) : (
+    <Link to="/login">
+      <button>Login</button>
+    </Link>
+  );
+
   return (
     <nav
       className={`fixed top-0 z-[999] w-full bg-[#01352c] ${
@@ -70,7 +95,7 @@ const Navbar = () => {
             </NavLink>
           </div>
           <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-9">
-            {navLinks.map((link, index) => (
+            {filterNavLinks.map((link, index) => (
               <NavLink
                 key={index}
                 to={link.to}
@@ -85,25 +110,7 @@ const Navbar = () => {
             ))}
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
-            {user ? (
-              <>
-                <img
-                  src={user?.photoURL}
-                  alt={user?.displayName}
-                  className="rounded-full w-9 h-9 border mr-5"
-                />
-                <button
-                  onClick={handleLogout}
-                  className="hover:bg-red-600 hover:text-white"
-                >
-                  LogOut
-                </button>
-              </>
-            ) : (
-              <Link to="/login">
-                <button>Login</button>
-              </Link>
-            )}
+            {loginAndLogoutBtn}
           </div>
           <div className="sm:hidden flex items-center">
             <button onClick={toggleMenu} className="" aria-label="Toggle menu">
@@ -121,7 +128,7 @@ const Navbar = () => {
       {isOpen && (
         <div className="sm:hidden" id="mobile-menu">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            {navLinks.map((link, index) => (
+            {filterNavLinks.map((link, index) => (
               <NavLink
                 key={index}
                 to={link.to}
@@ -136,11 +143,7 @@ const Navbar = () => {
             ))}
           </div>
           <div className="pt-4 pb-3 border-t border-gray-700">
-            <div className="mt-3 px-2 space-y-1">
-              <NavLink to="/login">
-                <button>Login</button>
-              </NavLink>
-            </div>
+            <div className="mt-3 px-2 space-y-1">{loginAndLogoutBtn}</div>
           </div>
         </div>
       )}

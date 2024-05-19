@@ -31,22 +31,22 @@ const Register = () => {
             name: data?.name,
             email: data?.email,
             photo: data?.photoUrl,
-            role: "student",
+            role: "user",
           };
-          axios
-            .post("https://global-tongues-server.vercel.app/users", saveUser)
-            .then((res) => {
-              if (res.data.insertedId) {
-                reset();
-                Swal.fire({
-                  icon: "success",
-                  title: "User Created Successfully",
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
-                navigate("/");
-              }
-            });
+          // axios
+          //   .post("", saveUser)
+          //   .then((res) => {
+          //     if (res.data.insertedId) {
+          //       reset();
+          //       Swal.fire({
+          //         icon: "success",
+          //         title: "User Created Successfully",
+          //         showConfirmButton: false,
+          //         timer: 1500,
+          //       });
+          //       navigate("/");
+          //     }
+          //   });
         })
         .catch((error) => {
           setError(error.message);
