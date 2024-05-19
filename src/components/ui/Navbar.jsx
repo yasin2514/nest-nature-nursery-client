@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { RiCloseLine, RiMenu4Line } from "react-icons/ri";
 import logo from "../../assets/logo.png";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
+  const { user, logOut } = useContext(AuthContext);
   const location = useLocation();
 
   useEffect(() => {
@@ -33,6 +36,17 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Logout Successfully",
+        });
+      })
+      .catch(() => {});
+  };
   // Define your navigation links
   const navLinks = [
     { to: "/", name: "Home" },
@@ -71,9 +85,25 @@ const Navbar = () => {
             ))}
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
-            <Link to="/login">
-              <button>Login</button>
-            </Link>
+            {user ? (
+              <>
+                <img
+                  src={user?.photoURL}
+                  alt={user?.displayName}
+                  className="rounded-full w-9 h-9 border mr-5"
+                />
+                <button
+                  onClick={handleLogout}
+                  className="hover:bg-red-600 hover:text-white"
+                >
+                  LogOut
+                </button>
+              </>
+            ) : (
+              <Link to="/login">
+                <button>Login</button>
+              </Link>
+            )}
           </div>
           <div className="sm:hidden flex items-center">
             <button onClick={toggleMenu} className="" aria-label="Toggle menu">

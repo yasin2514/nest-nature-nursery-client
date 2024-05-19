@@ -1,18 +1,85 @@
-import { getAuth } from "firebase/auth";
-import { createContext, useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+  GoogleAuthProvider,
+} from "firebase/auth";
+import { createContext, useEffect, useState } from "react";
 import { app } from "../firebase/firebase.config";
 
 const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 
 export const AuthContext = createContext(null);
+
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const userInfo = {
-    user,
-    setUser,
+  const [loading, setLoading] = useState(true);
+
+  // google login
+  const googleLogin = () => {
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider).finally(() =>
+      setLoading(false)
+    );
   };
+
+  // create user using email and password
+  const createUser = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password).finally(() =>
+      setLoading(false)
+    );
+  };
+
+  // sign In
+  const signIn = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password).finally(() =>
+      setLoading(false)
+    );
+  };
+
+  // sign Out
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth).finally(() => setLoading(false));
+  };
+
+  // update user profile
+  const updateUserProfile = (name, photo) => {
+    if (!auth.currentUser) {
+      return Promise.reject(new Error("No user is currently signed in."));
+    }
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
+  };
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const authInfo = {
+    user,
+    loading,
+    googleLogin,
+    createUser,
+    signIn,
+    logOut,
+    updateUserProfile,
+  };
+
   return (
-    <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 };
 

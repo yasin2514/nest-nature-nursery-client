@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
   const {
@@ -19,7 +20,7 @@ const Register = () => {
   const [active, setActive] = useState(false);
   const [show, setShow] = useState(false);
   const [showTwo, setShowTwo] = useState(false);
-  // const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const onSubmit = (data) => {

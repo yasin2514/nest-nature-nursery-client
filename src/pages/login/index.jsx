@@ -3,11 +3,11 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import login from "/public/login.json";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Swal from "sweetalert2";
-// import { AuthContext } from "../../../Providers/AuthProviders";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
   const {
@@ -18,7 +18,7 @@ const Login = () => {
   } = useForm();
   const [error, setError] = useState(null);
   const [show, setShow] = useState(false);
-  //   const { googleLogin, signIn } = useContext(AuthContext);
+  const { googleLogin, signIn } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -33,22 +33,21 @@ const Login = () => {
           email: loggedUser.email,
           name: loggedUser.displayName,
           photo: loggedUser?.photoURL,
-          role: "student",
+          role: "user",
         };
-        axios
-          .post("https://global-tongues-server.vercel.app/users", saveUser)
-          .then((res) => {
-            navigate(from, { relative: true });
-            if (res.data.insertedId) {
-              reset();
-              Swal.fire({
-                icon: "success",
-                title: "Login Successfully",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            }
-          });
+        // axios.post("", saveUser).then((res) => {
+        //   navigate(from, { relative: true });
+        //   if (res.data.insertedId) {
+        //     reset();
+        //     Swal.fire({
+        //       icon: "success",
+        //       title: "Login Successfully",
+        //       showConfirmButton: false,
+        //       timer: 1500,
+        //     });
+        //   }
+        // });
+        console.log({ loggedUser });
       })
       .catch((error) => {
         alert(error.message);
@@ -100,7 +99,10 @@ const Login = () => {
           </div>
 
           {/* form start */}
-          <form onSubmit={handleSubmit(onsubmit)} className="px-7 py-10 space-y-4">
+          <form
+            onSubmit={handleSubmit(onsubmit)}
+            className="px-7 py-10 space-y-4"
+          >
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email*</span>
