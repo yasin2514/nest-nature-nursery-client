@@ -68,12 +68,10 @@ const Navbar = () => {
         alt={user?.displayName}
         className="rounded-full w-9 h-9 border mr-5"
       />
-      <button
-        onClick={handleLogout}
-        className="hover:bg-red-600 hover:text-white"
-      >
-        LogOut
-      </button>
+
+      <Link onClick={handleLogout} to={"/login"}>
+        <button className="hover:bg-red-600 hover:text-white">LogOut</button>
+      </Link>
     </>
   ) : (
     <Link to="/login">
