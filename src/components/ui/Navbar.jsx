@@ -50,10 +50,10 @@ const Navbar = () => {
   // Define your navigation links
   const navLinks = [
     { to: "/", name: "Home" },
-    { to: "/about", name: "Plant Category" },
-    { to: "/services", name: "All Plants" },
-    { to: "/services", name: "Dashboard" },
-    { to: "/services", name: "ContactUs" },
+    { to: "/plant-category", name: "Plant Category" },
+    { to: "/all-plants", name: "All Plants" },
+    { to: "/dashboard", name: "Dashboard" },
+    { to: "/contact-us", name: "ContactUs" },
   ];
 
   const filterNavLinks = user
