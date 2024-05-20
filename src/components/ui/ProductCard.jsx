@@ -1,18 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
 
 const ProductCard = ({ data }) => {
-  const {
-    _id,
-    name,
-    price,
-    photo,
-    category,
-    quantity,
-    rating,
-    description,
-    previousPrice,
-  } = data;
+  const { name, price, photo, rating, previousPrice } = data;
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -34,11 +24,11 @@ const ProductCard = ({ data }) => {
 
   return (
     <div
-      className="max-w-sm rounded overflow-hidden shadow-lg m-4 relative"
+      className="max-w-sm rounded overflow-hidden outline outline-[#01352c] relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="h-64 overflow-hidden">
+      <div className="h-64 overflow-hidden rounded">
         <img className="w-full object-cover h-full" src={photo} alt={name} />
       </div>
       <div

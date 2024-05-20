@@ -2,7 +2,7 @@ import ProductCard from "./ProductCard";
 
 const ProductsContainer = ({ data }) => {
   return (
-    <div className="grid grid-cols-12 gap-4">
+    <div className="grid grid-cols-12 gap-10">
       {data &&
         data.map((product, index) => {
           return (
