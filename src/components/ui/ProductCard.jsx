@@ -32,7 +32,7 @@ const ProductCard = ({ data }) => {
         <img className="w-full object-cover h-full" src={photo} alt={name} />
       </div>
       <div
-        className={`absolute bottom-0 left-0 right-0 bg-white/90 p-4 transition-all duration-300 transform ${
+        className={`absolute bottom-0 left-0 right-0 bg-white p-4 transition-all duration-300 transform ${
           isHovered ? "translate-y-0" : "translate-y-full"
         }`}
       >
