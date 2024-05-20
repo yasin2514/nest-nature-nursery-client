@@ -59,10 +59,10 @@ const ProductCard = ({ data }) => {
         </div>
         {isHovered && (
           <div className="flex justify-between">
-            <button className="bg-green-500 hover:bg-green-700 hover:text-white font-bold py-2 px-4 rounded-full border-0">
+            <button className="button-green rounded-full">
               Buy Now
             </button>
-            <button className="bg-gray-200 hover:bg-gray-300 hover:text-black text-gray-800 font-bold py-2 px-4 rounded-full border-0">
+            <button className="button-green rounded-full">
               See Details
             </button>
           </div>
