@@ -1,8 +1,13 @@
+import ShortBanner from "../../components/ui/ShortBanner";
 
 const PlantCategory = () => {
   return (
     <div>
-      <h1>plant category page</h1>
+      <ShortBanner
+        banner={"all-plants-banner"}
+        header={"All Plant Category"}
+        text={`Welcome to Next Nature Nursery, your go-to for vibrant, healthy plants. Find flowers, herbs, succulents, and more to enhance your indoor and outdoor spaces.`}
+      />
     </div>
   );
 };
