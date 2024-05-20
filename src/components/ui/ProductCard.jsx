@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
 
 const ProductCard = ({ data }) => {
@@ -12,6 +13,8 @@ const ProductCard = ({ data }) => {
     description,
     previousPrice,
   } = data;
+
+  const [isHovered, setIsHovered] = useState(false);
 
   // Function to render stars based on rating
   const renderStars = (rating) => {
@@ -30,28 +33,50 @@ const ProductCard = ({ data }) => {
   };
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg m-4 flex flex-col">
+    <div
+      className="max-w-sm rounded overflow-hidden shadow-lg m-4 relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="h-64 overflow-hidden">
         <img className="w-full object-cover h-full" src={photo} alt={name} />
       </div>
-      <div className="px-6 py-4 flex flex-col flex-grow">
+      <div
+        className={`absolute bottom-0 left-0 right-0 bg-white/90 p-4 transition-all duration-300 transform ${
+          isHovered ? "translate-y-0" : "translate-y-full"
+        }`}
+      >
         <div className="font-bold text-xl mb-2">{name}</div>
-        <p className="text-gray-700 text-base flex-grow">{description}</p>
-        <div className="flex items-center my-2">
-          {renderStars(rating)}
-          <span className="ml-2 text-gray-600">{rating}</span>
-        </div>
-        <div className="pt-4">
-          <span className="text-lg font-semibold text-green-500">${price}</span>
-          {previousPrice && (
-            <span className="text-sm line-through text-gray-500 ml-2">
-              ${previousPrice}
+        <div className="flex justify-between items-center mb-2">
+          <div>
+            {previousPrice && (
+              <span className="text-sm line-through text-gray-500 mr-2">
+                ${previousPrice}
+              </span>
+            )}
+            <span className="text-lg font-semibold text-green-500">
+              ${price}
             </span>
-          )}
+          </div>
+          <div>
+            {isHovered && (
+              <div className="flex items-center">
+                {renderStars(rating)}
+                <span className="ml-2 text-gray-600">{rating}</span>
+              </div>
+            )}
+          </div>
         </div>
-        <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Buy Now
-        </button>
+        {isHovered && (
+          <div className="flex justify-between">
+            <button className="bg-green-500 hover:bg-green-700 hover:text-white font-bold py-2 px-4 rounded-full border-0">
+              Buy Now
+            </button>
+            <button className="bg-gray-200 hover:bg-gray-300 hover:text-black text-gray-800 font-bold py-2 px-4 rounded-full border-0">
+              See Details
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
