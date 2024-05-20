@@ -3,6 +3,7 @@ import Container from "../../components/ui/Container";
 import ShortBanner from "../../components/ui/ShortBanner";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
+import ProductsContainer from "../../components/ui/ProductsContainer";
 
 const PlantCategory = () => {
   const axiosSecure = useAxiosSecure();
@@ -31,8 +32,6 @@ const PlantCategory = () => {
     },
     enabled: !!selectedCategory,
   });
-
-  console.log(products);
 
   return (
     <>
@@ -65,8 +64,7 @@ const PlantCategory = () => {
             })}
         </aside>
         <div className="col-span-9">
-          <h1>Plant Category</h1>
-          <p>products</p>
+        <ProductsContainer data={products}/>
         </div>
       </Container>
     </>
