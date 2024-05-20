@@ -8,7 +8,7 @@ const PlantCategory = () => {
   const axiosSecure = useAxiosSecure();
   // get all plant categories
   const { data: categoryData = [] } = useQuery({
-    queryKey: "plant-category",
+    queryKey: ["plant-category"],
     queryFn: async () => {
       const res = await axiosSecure.get("products/groupedByCategory");
       return res.data;
@@ -16,15 +16,23 @@ const PlantCategory = () => {
   });
   // filter plants by category
   const [selectedCategory, setSelectedCategory] = useState("");
-
-  // Update selectedCategory when categoryData is fetched
   useEffect(() => {
     if (categoryData?.length > 0) {
       setSelectedCategory(categoryData[0]?.category);
     }
   }, [categoryData]);
 
-  console.log({ selectedCategory });
+  // get all plant categories
+  const { data: products = [] } = useQuery({
+    queryKey: ["category-products", selectedCategory],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`products/category/${selectedCategory}`);
+      return res.data;
+    },
+    enabled: !!selectedCategory,
+  });
+
+  console.log(products);
 
   return (
     <>
@@ -47,10 +55,11 @@ const PlantCategory = () => {
                     onClick={(e) => {
                       setSelectedCategory(e.target.innerText);
                     }}
-                    className="text-lg hover:cursor-pointer hover:text-green-600 hover:font-bold font-semibold"
+                    className="text-lg hover:cursor-pointer hover:text-green-700 font-semibold"
                   >
                     {item?.category}
                   </span>
+                  <span className="ms-2">({item?.totalProducts} plants)</span>
                 </div>
               );
             })}
