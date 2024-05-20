@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Container from "../../components/ui/Container";
 import ProductsContainer from "../../components/ui/ProductsContainer";
 import ShortBanner from "../../components/ui/ShortBanner";
@@ -7,6 +7,14 @@ import useGetProducts from "../../hooks/useGetProducts";
 const AllPlants = () => {
   const [products] = useGetProducts();
   const [search, setSearch] = useState("");
+
+  // Filter products based on the search input
+  const filteredProducts = useMemo(() => {
+    return products.filter((item) =>
+      item?.name.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [products, search]);
+
   return (
     <div className="bg-[#fcfffa]">
       <ShortBanner
@@ -42,7 +50,7 @@ const AllPlants = () => {
           </label>
         </div>
         <ProductsContainer
-          data={products}
+          data={filteredProducts}
           className={"grid grid-cols-12 gap-10"}
           innerClassName={"col-span-3"}
           pageLimit={8}

@@ -41,7 +41,7 @@ const PlantCategory = () => {
   // Filter products based on the search input
   const filteredProducts = useMemo(() => {
     return products.filter((item) =>
-      item.name.toLowerCase().includes(search.toLowerCase())
+      item?.name.toLowerCase().includes(search.toLowerCase())
     );
   }, [products, search]);
 
