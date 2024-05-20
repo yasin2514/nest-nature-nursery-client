@@ -24,15 +24,19 @@ const PlantCategory = () => {
   }, [categoryData]);
 
   // get all plant categories
-  const { data: products = [] } = useQuery({
+  const { data: products = [], refetch } = useQuery({
     queryKey: ["category-products", selectedCategory],
     queryFn: async () => {
-      const res = await axiosSecure.get(`products/category/${selectedCategory}`);
+      const res = await axiosSecure.get(
+        `products/category/${selectedCategory}`
+      );
       return res.data;
     },
     enabled: !!selectedCategory,
   });
-
+  useEffect(() => {
+    refetch();
+  }, [selectedCategory, refetch]);
   return (
     <div className="bg-[#fcfffa]">
       <ShortBanner
@@ -41,35 +45,42 @@ const PlantCategory = () => {
         text={`Welcome to Next Nature Nursery, your go-to for vibrant, healthy plants. Find flowers, herbs, succulents, and more to enhance your indoor and outdoor spaces.`}
       />
 
-      <Container className="grid grid-cols-12 py-16 place-content-center ">
+      <Container className="grid grid-cols-12 py-16 place-content-center gap-5">
         <aside className="col-span-3">
-          <h1 className="font-bold text-2xl mb-10 text-green-600">
+          <h1 className="font-bold text-2xl mb-16 text-green-600">
             Plant Categories
           </h1>
-          {categoryData &&
-            categoryData.map((item, index) => {
-              return (
-                <div key={index} className="my-2">
-                  <span
-                    onClick={(e) => {
-                      setSelectedCategory(e.target.innerText);
-                    }}
-                    className="text-lg hover:cursor-pointer hover:text-green-700 font-semibold"
-                  >
-                    {item?.category}
-                  </span>
-                  <span className="ms-2">({item?.totalProducts} plants)</span>
-                </div>
-              );
-            })}
+          <div className=" py-1 space-y-2 max-h-[600px]  overflow-auto">
+            {categoryData &&
+              categoryData.map((item, index) => {
+                return (
+                  <div key={index}>
+                    <span
+                      onClick={(e) => {
+                        setSelectedCategory(e.target.innerText);
+                      }}
+                      className="text-lg hover:cursor-pointer hover:text-green-700 font-semibold"
+                    >
+                      {item?.category}
+                    </span>
+                    <span className="ms-2">({item?.totalProducts} plants)</span>
+                  </div>
+                );
+              })}
+          </div>
         </aside>
         <div className="col-span-9">
           <div className="flex justify-between items-start mb-10">
             <h1 className="font-bold text-2xl">
-              Category: <span className="text-green-600">{selectedCategory}</span>
+              Category:{" "}
+              <span className="text-green-600">{selectedCategory}</span>
             </h1>
             <label className="input input-bordered flex items-center gap-2">
-              <input type="text" className="grow" placeholder="Enter plant name" />
+              <input
+                type="text"
+                className="grow"
+                placeholder="Enter plant name"
+              />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
