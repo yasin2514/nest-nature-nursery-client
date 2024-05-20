@@ -8,7 +8,7 @@ const ProductsContainer = ({ data }) => {
   // Calculate index of the first and last product to be displayed on the current page
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = data.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = data?.slice(indexOfFirstProduct, indexOfLastProduct);
 
   // Calculate total number of pages
   const totalPages = Math.ceil(data.length / productsPerPage);
@@ -27,7 +27,7 @@ const ProductsContainer = ({ data }) => {
   return (
     <>
       <div className="grid grid-cols-12 gap-10 ">
-        {currentProducts.map((product, index) => {
+        {currentProducts?.map((product, index) => {
           return (
             <div key={index} className="col-span-4">
               <ProductCard data={product} />
@@ -43,7 +43,7 @@ const ProductsContainer = ({ data }) => {
         >
           Pre
         </button>
-        {pageNumbers.map((pageNumber) => (
+        {pageNumbers?.map((pageNumber) => (
           <button
             key={pageNumber}
             className={`btn btn-sm ${
@@ -56,7 +56,7 @@ const ProductsContainer = ({ data }) => {
         ))}
         <button
           className="btn btn-sm"
-          disabled={indexOfLastProduct >= data.length}
+          disabled={indexOfLastProduct >= data?.length}
           onClick={() => handlePageChange(currentPage + 1)}
         >
           Next

@@ -2,12 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import Container from "../../components/ui/Container";
 import ShortBanner from "../../components/ui/ShortBanner";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import ProductsContainer from "../../components/ui/ProductsContainer";
 
 const PlantCategory = () => {
   const axiosSecure = useAxiosSecure();
-  // get all plant categories
+  const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  // Get all plant categories
   const { data: categoryData = [] } = useQuery({
     queryKey: ["plant-category"],
     queryFn: async () => {
@@ -15,16 +18,16 @@ const PlantCategory = () => {
       return res.data;
     },
   });
-  // filter plants by category
-  const [selectedCategory, setSelectedCategory] = useState("");
+
+  // Set the default selected category
   useEffect(() => {
     if (categoryData?.length > 0) {
       setSelectedCategory(categoryData[0]?.category);
     }
   }, [categoryData]);
 
-  // get all plant categories
-  const { data: products = [], refetch } = useQuery({
+  // Get products based on the selected category
+  const { data: products = [] } = useQuery({
     queryKey: ["category-products", selectedCategory],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -34,9 +37,14 @@ const PlantCategory = () => {
     },
     enabled: !!selectedCategory,
   });
-  useEffect(() => {
-    refetch();
-  }, [selectedCategory, refetch]);
+
+  // Filter products based on the search input
+  const filteredProducts = useMemo(() => {
+    return products.filter((item) =>
+      item.name.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [products, search]);
+
   return (
     <div className="bg-[#fcfffa]">
       <ShortBanner
@@ -44,29 +52,24 @@ const PlantCategory = () => {
         header={"All Plant Category"}
         text={`Welcome to Next Nature Nursery, your go-to for vibrant, healthy plants. Find flowers, herbs, succulents, and more to enhance your indoor and outdoor spaces.`}
       />
-
       <Container className="grid grid-cols-12 py-16 place-content-center gap-5">
         <aside className="col-span-3">
           <h1 className="font-bold text-2xl mb-16 text-green-600">
             Plant Categories
           </h1>
-          <div className=" py-1 space-y-2 max-h-[600px]  overflow-auto">
+          <div className="py-1 space-y-2 max-h-[600px] overflow-auto">
             {categoryData &&
-              categoryData.map((item, index) => {
-                return (
-                  <div key={index}>
-                    <span
-                      onClick={(e) => {
-                        setSelectedCategory(e.target.innerText);
-                      }}
-                      className="text-lg hover:cursor-pointer hover:text-green-700 font-semibold"
-                    >
-                      {item?.category}
-                    </span>
-                    <span className="ms-2">({item?.totalProducts} plants)</span>
-                  </div>
-                );
-              })}
+              categoryData.map((item, index) => (
+                <div key={index}>
+                  <span
+                    onClick={() => setSelectedCategory(item?.category)}
+                    className="text-lg hover:cursor-pointer hover:text-green-700 font-semibold"
+                  >
+                    {item?.category}
+                  </span>
+                  <span className="ms-2">({item?.totalProducts} plants)</span>
+                </div>
+              ))}
           </div>
         </aside>
         <div className="col-span-9">
@@ -80,6 +83,8 @@ const PlantCategory = () => {
                 type="text"
                 className="grow"
                 placeholder="Enter plant name"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +100,7 @@ const PlantCategory = () => {
               </svg>
             </label>
           </div>
-          <ProductsContainer data={products} />
+          <ProductsContainer data={filteredProducts} />
         </div>
       </Container>
     </div>
