@@ -100,7 +100,12 @@ const PlantCategory = () => {
               </svg>
             </label>
           </div>
-          <ProductsContainer data={filteredProducts} />
+          <ProductsContainer
+            data={filteredProducts}
+            className={"grid grid-cols-12 gap-10"}
+            innerClassName={"col-span-4"}
+            pageLimit={6}
+          />
         </div>
       </Container>
     </div>

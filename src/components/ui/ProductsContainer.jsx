@@ -1,9 +1,9 @@
 import { useState } from "react";
 import ProductCard from "./ProductCard";
 
-const ProductsContainer = ({ data }) => {
+const ProductsContainer = ({ data, className, innerClassName, pageLimit }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage, setProductsPerPage] = useState(6);
+  const [productsPerPage, setProductsPerPage] = useState(pageLimit);
 
   // Calculate index of the first and last product to be displayed on the current page
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -26,10 +26,10 @@ const ProductsContainer = ({ data }) => {
 
   return (
     <>
-      <div className="grid grid-cols-12 gap-10 ">
+      <div className={className}>
         {currentProducts?.map((product, index) => {
           return (
-            <div key={index} className="col-span-4">
+            <div key={index} className={innerClassName}>
               <ProductCard data={product} />
             </div>
           );
