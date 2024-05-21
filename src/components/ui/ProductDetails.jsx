@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import ShortBanner from "./ShortBanner";
 import Container from "./Container";
@@ -26,16 +26,16 @@ const ProductDetails = () => {
         header={`${name} Details`}
         text={`Buy ${name} at an affordable price. See the details below.`}
       />
-      <Container className={"grid grid-cols-1 md:grid-cols-2 gap-8 py-16"}>
+      <Container className={"grid grid-cols-1 md:grid-cols-2 gap-8 py-20"}>
         <div className="flex flex-col justify-center items-center">
           <ImageZoom src={selectedImage} alt={name} />
-          <div className="flex space-x-2 mt-4">
+          <div className="flex space-x-5 mt-4">
             {photo?.map((photo, index) => (
-              <div key={index} className="overflow-hidden rounded-lg shadow-md">
+              <div key={index} className="overflow-hidden rounded-lg shadow-md ">
                 <img
                   src={photo}
                   alt={`${name} ${index}`}
-                  className="object-cover h-20 w-20 cursor-pointer transition-transform duration-300 transform hover:scale-105"
+                  className="object-cover size-20 cursor-pointer transition-transform duration-300 transform hover:scale-105 "
                   onClick={() => setSelectedImage(photo)}
                 />
               </div>
@@ -43,8 +43,8 @@ const ProductDetails = () => {
           </div>
         </div>
         <div className="flex flex-col justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-800">{name}</h1>
+          <div className=" max-h-[450px] h-full overflow-auto">
+            <h1 className="text-3xl font-bold text-green-800">{name}</h1>
             <p className="mt-4 text-gray-600">{description}</p>
             <div className="flex items-center mt-4">
               <span className="text-2xl font-semibold text-green-600">
@@ -88,10 +88,13 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
-          <div className="mt-8">
-            <button className="px-6 py-2 text-white bg-green-600 rounded-lg shadow hover:bg-green-700 transition duration-300">
-              Add to Cart
-            </button>
+          <div className="mt-8 space-x-5">
+            <button className="button-green">Add Cart</button>
+            <Link>
+              <button className="button-green bg-red-500 hover:bg-red-600">
+                Buy now{" "}
+              </button>
+            </Link>
           </div>
         </div>
       </Container>

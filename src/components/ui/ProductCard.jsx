@@ -64,7 +64,7 @@ const ProductCard = ({ data }) => {
         </div>
         {isHovered && (
           <div className="flex justify-between">
-            <button className="button-green rounded-full">Buy Now</button>
+            <button className="button-green rounded-full">Add Cart</button>
             <Link to={`/plant-details/${_id}`}>
               {" "}
               <button className="button-green rounded-full">See Details</button>
