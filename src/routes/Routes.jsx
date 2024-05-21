@@ -6,9 +6,10 @@ import Register from "../pages/register";
 import Terms from "../pages/terms";
 import PlantCategory from "../pages/plantCategory";
 import AllPlants from "../pages/allPlants";
-import AdminLayout from "../layout/AdminLayout";
 import ContactUS from "../pages/contactUs";
 import ProductDetails from "../components/ui/ProductDetails";
+import DashboardLayout from "../layout/DashboardLayout";
+import DashboardHome from "../pages/dashboard";
 
 const router = createBrowserRouter([
   {
@@ -53,11 +54,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <AdminLayout />,
+    element: <DashboardLayout />,
     children: [
       {
         index: true,
-        element: <h1>Dashboard</h1>,
+        element: <DashboardHome/>,
       },
     ],
   },

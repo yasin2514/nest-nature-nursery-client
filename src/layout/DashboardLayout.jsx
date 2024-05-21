@@ -4,7 +4,7 @@ import Header from "../components/dashboard/Header";
 import SidebarHeader from "../components/dashboard/SidebarHeader";
 import { useState } from "react";
 
-const AdminLayout = () => {
+const DashboardLayout = () => {
   const [collapse, setCollapse] = useState(true);
 
   const toggleCollapse = () => {
@@ -14,7 +14,7 @@ const AdminLayout = () => {
   return (
     <div className="h-screen flex transition-all duration-500">
       <div
-        className={`bg-[#01352c] transition-all duration-500 ${
+        className={`bg-[#01352c] text-white transition-all duration-500 ${
           collapse ? "w-1/6" : "w-0"
         } overflow-hidden`}
       >
@@ -39,4 +39,4 @@ const AdminLayout = () => {
   );
 };
 
-export default AdminLayout;
+export default DashboardLayout;

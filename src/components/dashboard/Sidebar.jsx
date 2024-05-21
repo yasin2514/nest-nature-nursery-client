@@ -1,10 +1,15 @@
+import AdminSidebar from "./AdminSidebar";
+import UserSidebar from "./UserSidebar";
 
 const Sidebar = () => {
-    return (
-      <div>
-        <h1>Sidebar</h1>
-      </div>
-    );
+  const admin = true;
+  const user = false;
+  return (
+    <div>
+      {admin && <AdminSidebar />}
+      {user && <UserSidebar />}
+    </div>
+  );
 };
 
 export default Sidebar;
