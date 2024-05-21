@@ -1,11 +1,21 @@
-import React from 'react';
+import { Outlet } from "react-router-dom";
+import Sidebar from "../components/dashboard/Sidebar";
+import Header from "../components/dashboard/Header";
+import SidebarHeader from "../components/dashboard/SidebarHeader";
 
 const AdminLayout = () => {
-    return (
-        <div>
-            admin layout
-        </div>
-    );
+  return (
+    <div className="grid grid-cols-12 h-screen">
+      <div className="col-span-2 bg-[#01352c]">
+        <SidebarHeader/>
+        <Sidebar />
+      </div>
+      <div className="col-span-10">
+        <Header/>
+        <Outlet />
+      </div>
+    </div>
+  );
 };
 
 export default AdminLayout;
