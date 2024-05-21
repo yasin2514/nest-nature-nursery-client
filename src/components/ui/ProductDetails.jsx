@@ -1,6 +1,8 @@
 import { useLoaderData } from "react-router-dom";
+import { useState } from "react";
 import ShortBanner from "./ShortBanner";
 import Container from "./Container";
+import ImageZoom from "./ImageZoom";
 
 const ProductDetails = () => {
   const product = useLoaderData();
@@ -15,6 +17,8 @@ const ProductDetails = () => {
     description,
   } = product || {};
 
+  const [selectedImage, setSelectedImage] = useState(photo?.[0]);
+
   return (
     <div>
       <ShortBanner
@@ -23,12 +27,20 @@ const ProductDetails = () => {
         text={`Buy ${name} at an affordable price. See the details below.`}
       />
       <Container className={"grid grid-cols-1 md:grid-cols-2 gap-8 py-16"}>
-        <div className="flex justify-center items-center">
-          <img
-            src={photo?.[0]}
-            alt={name}
-            className="object-fill  h-80 md:h-96 rounded-lg shadow-md"
-          />
+        <div className="flex flex-col justify-center items-center">
+          <ImageZoom src={selectedImage} alt={name} />
+          <div className="flex space-x-2 mt-4">
+            {photo?.map((photo, index) => (
+              <div key={index} className="overflow-hidden rounded-lg shadow-md">
+                <img
+                  src={photo}
+                  alt={`${name} ${index}`}
+                  className="object-cover h-20 w-20 cursor-pointer transition-transform duration-300 transform hover:scale-105"
+                  onClick={() => setSelectedImage(photo)}
+                />
+              </div>
+            ))}
+          </div>
         </div>
         <div className="flex flex-col justify-between">
           <div>
