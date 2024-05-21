@@ -22,20 +22,22 @@ const ProductDetails = () => {
   const [selectedImage, setSelectedImage] = useState(photo?.[0]);
   const formatNumber = useNumberFormatter();
   return (
-    <div>
+    <div className="bg-[#fcfffa]">
       <ShortBanner
         banner={"all-plants-banner"}
         header={`${name} Details`}
         text={`Buy ${name} at an affordable price. See the details below.`}
       />
-      <Container className={"grid grid-cols-1 md:grid-cols-2 gap-8 py-20"}>
+      <Container
+        className={"grid grid-cols-1 md:grid-cols-2 gap-8 py-20"}
+      >
         <div className="flex flex-col justify-center items-center">
           <ImageZoom src={selectedImage} alt={name} />
           <div className="flex space-x-5 mt-4">
             {photo?.map((photo, index) => (
               <div
                 key={index}
-                className="overflow-hidden rounded-lg shadow-md "
+                className="overflow-hidden rounded-lg  border border-[#01352c]"
               >
                 <img
                   src={photo}
@@ -96,9 +98,7 @@ const ProductDetails = () => {
           <div className="mt-8 space-x-5">
             <button className="button-green">Add Cart</button>
             <Link>
-              <button className="button-red">
-                Buy now{" "}
-              </button>
+              <button className="button-red">Buy now </button>
             </Link>
           </div>
         </div>
