@@ -5,7 +5,7 @@ import SidebarHeader from "../components/dashboard/SidebarHeader";
 import { useState } from "react";
 
 const AdminLayout = () => {
-  const [collapse, setCollapse] = useState(false);
+  const [collapse, setCollapse] = useState(true);
 
   const toggleCollapse = () => {
     setCollapse((prev) => !prev);
@@ -19,7 +19,7 @@ const AdminLayout = () => {
         } overflow-hidden`}
       >
         {collapse && (
-          <div className="p-4">
+          <div>
             <SidebarHeader />
             <Sidebar />
           </div>
