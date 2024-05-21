@@ -8,6 +8,7 @@ import PlantCategory from "../pages/plantCategory";
 import AllPlants from "../pages/allPlants";
 import AdminLayout from "../layout/AdminLayout";
 import ContactUS from "../pages/contactUs";
+import ProductDetails from "../components/ui/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -42,18 +43,24 @@ const router = createBrowserRouter([
         path: "/all-plants",
         element: <AllPlants />,
       },
+      {
+        path: "/plant-details/:id",
+        element: <ProductDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/product/${params.id}`),
+      },
     ],
   },
   {
-    path:'/dashboard',
-    element:<AdminLayout/>,
-    children:[
+    path: "/dashboard",
+    element: <AdminLayout />,
+    children: [
       {
-        index:true,
-        element:<h1>Dashboard</h1>
-      }
-    ]
-  }
+        index: true,
+        element: <h1>Dashboard</h1>,
+      },
+    ],
+  },
 ]);
 
 export default router;

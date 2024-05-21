@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ data }) => {
-  const { name, price, photo, rating, previousPrice } = data;
+  const { _id, name, price, photo, rating, previousPrice } = data;
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -59,12 +60,11 @@ const ProductCard = ({ data }) => {
         </div>
         {isHovered && (
           <div className="flex justify-between">
-            <button className="button-green rounded-full">
-              Buy Now
-            </button>
-            <button className="button-green rounded-full">
-              See Details
-            </button>
+            <button className="button-green rounded-full">Buy Now</button>
+            <Link to={`/plant-details/${_id}`}>
+              {" "}
+              <button className="button-green rounded-full">See Details</button>
+            </Link>
           </div>
         )}
       </div>
