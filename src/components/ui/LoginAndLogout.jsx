@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 
-const LoginAndLogout = () => {
+const LoginAndLogout = ({ ...rest }) => {
   const { user, logOut } = useContext(AuthContext);
 
   const handleLogout = () => {
@@ -18,7 +18,7 @@ const LoginAndLogout = () => {
       .catch(() => {});
   };
   return (
-    <>
+    <div {...rest}>
       {user ? (
         <>
           <img
@@ -38,7 +38,7 @@ const LoginAndLogout = () => {
           <button>Login</button>
         </Link>
       )}
-    </>
+    </div>
   );
 };
 

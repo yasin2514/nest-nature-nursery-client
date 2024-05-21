@@ -7,12 +7,14 @@ const AdminLayout = () => {
   return (
     <div className="grid grid-cols-12 h-screen">
       <div className="col-span-2 bg-[#01352c]">
-        <SidebarHeader/>
+        <SidebarHeader />
         <Sidebar />
       </div>
       <div className="col-span-10">
-        <Header/>
-        <Outlet />
+        <Header />
+        <div className="p-7">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

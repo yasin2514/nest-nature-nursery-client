@@ -77,9 +77,8 @@ const Navbar = () => {
               </NavLink>
             ))}
           </div>
-          <div className="hidden sm:ml-6 sm:flex sm:items-center">
-            <LoginAndLogout />
-          </div>
+          <LoginAndLogout className="hidden sm:ml-6 sm:flex sm:items-center" />
+
           <div className="sm:hidden flex items-center">
             <button onClick={toggleMenu} className="" aria-label="Toggle menu">
               {isOpen ? (
@@ -111,9 +110,7 @@ const Navbar = () => {
             ))}
           </div>
           <div className="pt-4 pb-3 border-t border-gray-700">
-            <div className="mt-3 px-2 space-y-1">
-              <LoginAndLogout />
-            </div>
+            <LoginAndLogout className="mt-3 px-2 space-y-1" />
           </div>
         </div>
       )}
