@@ -1,14 +1,14 @@
 import { useState, useEffect, useContext } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { RiCloseLine, RiMenu4Line } from "react-icons/ri";
 import logo from "../../assets/logo.png";
 import { AuthContext } from "../../providers/AuthProvider";
-import Swal from "sweetalert2";
+import LoginAndLogout from "./LoginAndLogout";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
-  const { user, logOut } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const location = useLocation();
 
   useEffect(() => {
@@ -36,17 +36,6 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleLogout = () => {
-    logOut()
-      .then(() => {
-        Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: "Logout Successfully",
-        });
-      })
-      .catch(() => {});
-  };
   // Define your navigation links
   const navLinks = [
     { to: "/", name: "Home" },
@@ -59,25 +48,6 @@ const Navbar = () => {
   const filterNavLinks = user
     ? navLinks
     : navLinks.filter((link) => link.name !== "Dashboard");
-
-  // login and logout button
-  const loginAndLogoutBtn = user ? (
-    <>
-      <img
-        src={user?.photoURL}
-        alt={user?.displayName}
-        className="rounded-full w-9 h-9 border mr-5"
-      />
-
-      <Link onClick={handleLogout} to={"/login"}>
-        <button className="hover:bg-red-600 hover:text-white">LogOut</button>
-      </Link>
-    </>
-  ) : (
-    <Link to="/login">
-      <button>Login</button>
-    </Link>
-  );
 
   return (
     <nav
@@ -108,7 +78,7 @@ const Navbar = () => {
             ))}
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
-            {loginAndLogoutBtn}
+            <LoginAndLogout />
           </div>
           <div className="sm:hidden flex items-center">
             <button onClick={toggleMenu} className="" aria-label="Toggle menu">
@@ -141,7 +111,9 @@ const Navbar = () => {
             ))}
           </div>
           <div className="pt-4 pb-3 border-t border-gray-700">
-            <div className="mt-3 px-2 space-y-1">{loginAndLogoutBtn}</div>
+            <div className="mt-3 px-2 space-y-1">
+              <LoginAndLogout />
+            </div>
           </div>
         </div>
       )}
