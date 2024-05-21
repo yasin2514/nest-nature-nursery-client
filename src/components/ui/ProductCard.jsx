@@ -30,7 +30,11 @@ const ProductCard = ({ data }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="h-64 overflow-hidden rounded">
-        <img className="w-full object-cover h-full" src={photo} alt={name} />
+        <img
+          className="w-full object-cover h-full"
+          src={photo?.[0]}
+          alt={name}
+        />
       </div>
       <div
         className={`absolute bottom-0 left-0 right-0 bg-white p-4 transition-all duration-300 transform ${
