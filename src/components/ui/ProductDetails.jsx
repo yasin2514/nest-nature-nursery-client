@@ -3,6 +3,7 @@ import { useState } from "react";
 import ShortBanner from "./ShortBanner";
 import Container from "./Container";
 import ImageZoom from "./ImageZoom";
+import useNumberFormatter from "../../hooks/useNumberFormatter";
 
 const ProductDetails = () => {
   const product = useLoaderData();
@@ -16,9 +17,10 @@ const ProductDetails = () => {
     previousPrice,
     description,
   } = product || {};
+  console.log({ price });
 
   const [selectedImage, setSelectedImage] = useState(photo?.[0]);
-
+  const formatNumber = useNumberFormatter();
   return (
     <div>
       <ShortBanner
@@ -31,7 +33,10 @@ const ProductDetails = () => {
           <ImageZoom src={selectedImage} alt={name} />
           <div className="flex space-x-5 mt-4">
             {photo?.map((photo, index) => (
-              <div key={index} className="overflow-hidden rounded-lg shadow-md ">
+              <div
+                key={index}
+                className="overflow-hidden rounded-lg shadow-md "
+              >
                 <img
                   src={photo}
                   alt={`${name} ${index}`}
@@ -48,11 +53,11 @@ const ProductDetails = () => {
             <p className="mt-4 text-gray-600">{description}</p>
             <div className="flex items-center mt-4">
               <span className="text-2xl font-semibold text-green-600">
-                ${price.toFixed(2)}
+                ${formatNumber(price)}
               </span>
               {previousPrice && (
                 <span className="text-lg line-through text-gray-500 ml-4">
-                  ${previousPrice.toFixed(2)}
+                  ${formatNumber(previousPrice)}
                 </span>
               )}
             </div>
@@ -64,7 +69,7 @@ const ProductDetails = () => {
             <div className="mt-2">
               <span className="text-lg font-medium text-gray-700">
                 Available Quantity:{" "}
-                <span className="text-green-600">{quantity}</span>
+                <span className="text-green-600">{formatNumber(quantity)}</span>
               </span>
             </div>
             <div className="mt-4 flex items-center">
@@ -91,7 +96,7 @@ const ProductDetails = () => {
           <div className="mt-8 space-x-5">
             <button className="button-green">Add Cart</button>
             <Link>
-              <button className="button-green bg-red-500 hover:bg-red-600">
+              <button className="button-red">
                 Buy now{" "}
               </button>
             </Link>

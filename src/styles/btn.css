@@ -6,4 +6,7 @@
   .button-green{
     @apply bg-green-500 hover:bg-green-700 hover:text-white font-bold py-2 px-4  border-0
   }
+  .button-red{
+    @apply button-green bg-red-500 hover:bg-red-600
+  }
 }

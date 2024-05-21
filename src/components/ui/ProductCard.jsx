@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import useNumberFormatter from "../../hooks/useNumberFormatter";
 
 const ProductCard = ({ data }) => {
   const { _id, name, price, photo, rating, previousPrice } = data;
 
   const [isHovered, setIsHovered] = useState(false);
+  const formatNumber = useNumberFormatter();
 
   // Function to render stars based on rating
   const renderStars = (rating) => {
@@ -46,11 +48,11 @@ const ProductCard = ({ data }) => {
           <div>
             {previousPrice && (
               <span className="text-sm line-through text-gray-500 mr-2">
-                ${previousPrice}
+                ${formatNumber(previousPrice)}
               </span>
             )}
             <span className="text-lg font-semibold text-green-500">
-              ${price}
+              ${formatNumber(price)}
             </span>
           </div>
           <div>
@@ -67,7 +69,7 @@ const ProductCard = ({ data }) => {
             <button className="button-green rounded-full">Add Cart</button>
             <Link to={`/plant-details/${_id}`}>
               {" "}
-              <button className="button-green rounded-full">See Details</button>
+              <button className="button-red rounded-full">See Details</button>
             </Link>
           </div>
         )}
