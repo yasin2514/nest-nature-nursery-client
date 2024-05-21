@@ -1,10 +1,29 @@
+import SideBarComponent from "../../../components/dashboard/SideBarComponent";
 
 const UserSidebar = () => {
-    return (
-      <div>
-        <h1>UserSidebar</h1>
-      </div>
-    );
+  const navLinks = [
+    {
+      name: "Dashboard",
+      to: "/dashboard",
+      icons: "",
+    },
+    {
+      name: "Cart",
+      to: "/dashboard/products",
+    },
+    {
+      name: "Orders",
+      to: "/dashboard/orders",
+    },
+    {
+      name: "Payment History",
+      to: "/dashboard/users",
+    },
+  ];
+     return (
+       <SideBarComponent data={navLinks} settingPath="/dashboard/User/settings" />
+     );
+
 };
 
 export default UserSidebar;
