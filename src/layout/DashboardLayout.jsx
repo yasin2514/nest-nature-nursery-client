@@ -31,7 +31,7 @@ const DashboardLayout = () => {
         }`}
       >
         <Header collapse={collapse} toggleCollapse={toggleCollapse} />
-        <div className="p-7 border h-full max-h-[calc(100vh-70px)] overflow-auto rounded-lg bg-gray-100">
+        <div className="px-7 py-5 border h-full max-h-[calc(100vh-70px)] overflow-auto rounded-lg bg-gray-100">
           <Outlet />
         </div>
       </div>
