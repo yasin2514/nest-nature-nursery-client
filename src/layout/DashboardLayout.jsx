@@ -12,7 +12,7 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div className="h-screen flex transition-all duration-500">
+    <div className="max-h-screen h-full flex transition-all duration-500 ">
       <div
         className={`bg-[#01352c] text-white transition-all duration-500 ${
           collapse ? "w-1/6" : "w-0"
@@ -31,7 +31,7 @@ const DashboardLayout = () => {
         }`}
       >
         <Header collapse={collapse} toggleCollapse={toggleCollapse} />
-        <div className="p-7">
+        <div className="p-7 border h-full max-h-[calc(100vh-70px)] overflow-auto rounded-lg bg-gray-100">
           <Outlet />
         </div>
       </div>

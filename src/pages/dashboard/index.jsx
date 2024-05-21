@@ -5,11 +5,11 @@ const DashboardHome = () => {
       const admin = true;
       const user = false;
     return (
-        <div>
+        <>
             {admin && <AdminDashboard/>}
             {user && <UserDashboard/>}
             
-        </div>
+        </>
     );
 };
 
