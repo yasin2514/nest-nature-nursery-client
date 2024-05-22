@@ -9,10 +9,10 @@ const AdminDashboard = () => {
       <BreadCum text1={"Admin Dashboard"} text2={"Home"} />
       <div className="flex flex-col justify-around h-[calc(100vh-165px)]">
         <div className="mt-6 grid grid-cols-12 gap-8">
-          <Box value={10} title={"Total Users"} className={"bg-[#2c8d2c]"} />
-          <Box value={10} title={"Total Users"} className={"bg-[#16a7c0]"} />
+          <Box value={10} title={"Total Products"} className={"bg-[#2c8d2c]"} />
+          <Box value={10} title={"Total Orders"} className={"bg-[#16a7c0]"} />
           <Box value={10} title={"Total Users"} className={"bg-[#786fc4]"} />
-          <Box value={10} title={"Total Users"} className={"bg-[#ce4b3a]"} />
+          <Box value={10} title={"Total Sell Amount"} className={"bg-[#ce4b3a]"} />
         </div>
 
         <div className="grid grid-cols-12  gap-8 mt-9">

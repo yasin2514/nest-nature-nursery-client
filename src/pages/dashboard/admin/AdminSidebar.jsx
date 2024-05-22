@@ -9,7 +9,16 @@ const AdminSidebar = () => {
     },
     {
       name: "Products",
-      to: "/dashboard/products",
+      child: [
+        {
+          name: "My Products",
+          to: "/dashboard/admin-products",
+        },
+        {
+          name: "Upload Products",
+          to: "/dashboard/admin-products",
+        },
+      ],
     },
     {
       name: "Orders",
