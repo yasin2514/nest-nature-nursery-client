@@ -18,7 +18,6 @@ const AdminSidebar = () => {
           name: "My Product List",
           to: "/dashboard/admin-products",
         },
-
         {
           name: "Total Product List",
           to: "/dashboard/admin-products",
@@ -27,7 +26,16 @@ const AdminSidebar = () => {
     },
     {
       name: "Orders",
-      to: "/dashboard/orders",
+      child: [
+        {
+          name: "Pending Orders",
+          to: "/dashboard/orders/pending",
+        },
+        {
+          name: "Completed Orders",
+          to: "/dashboard/orders/completed",
+        },
+      ],
     },
     {
       name: "Users",
