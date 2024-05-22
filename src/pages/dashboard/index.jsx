@@ -2,8 +2,8 @@ import AdminDashboard from "./admin";
 import UserDashboard from "./user";
 
 const DashboardHome = () => {
-      const admin = true;
-      const user = false;
+      const admin = false;
+      const user = true;
     return (
         <>
             {admin && <AdminDashboard/>}

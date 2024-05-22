@@ -17,9 +17,9 @@ const AdminDashboard = () => {
 
         <div className="grid grid-cols-12  gap-8 mt-9">
           {/* for sales chart */}
-          <div className="bg-white col-span-8 py-10 rounded-lg shadow-md flex flex-col items-center justify-center">
+          <div className="bg-white col-span-8 py-10 rounded-lg shadow-md flex flex-col items-center justify-center gap-2">
             <BarChartComponent />
-            <h2 className="text-2xl text-green-800 font-semibold">
+            <h2 className="text-xl text-green-800 font-semibold">
               Weekly Sales Chart
             </h2>
           </div>
@@ -31,7 +31,7 @@ const AdminDashboard = () => {
               <p className="text-center text max-w-[20ch] mx-auto text-gray-700 font-semibold">
                 Summary based on categories of plants sold in the last 30 days
               </p>
-              <h2 className="text-center text-2xl text-green-800 font-semibold">
+              <h2 className="text-center text-xl text-green-800 font-semibold">
                 Sales Summary Chart
               </h2>
             </div>
