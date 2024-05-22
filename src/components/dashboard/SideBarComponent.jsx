@@ -48,7 +48,7 @@ const SideBarComponent = ({ data, settingPath }) => {
               )}
             </div>
             {link.child && link.child.length > 0 && openIndices[index] && (
-              <div className="pl-4 flex flex-col items-start gap-2 mt-2">
+              <div className="pl-4 flex flex-col items-start gap-1 mt-2">
                 {link.child.map((childLink, childIndex) => (
                   <NavLink
                     key={childIndex}

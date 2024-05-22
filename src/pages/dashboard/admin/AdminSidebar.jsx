@@ -11,11 +11,16 @@ const AdminSidebar = () => {
       name: "Products",
       child: [
         {
-          name: "My Products",
+          name: "Upload Product",
           to: "/dashboard/admin-products",
         },
         {
-          name: "Upload Products",
+          name: "My Product List",
+          to: "/dashboard/admin-products",
+        },
+
+        {
+          name: "Total Product List",
           to: "/dashboard/admin-products",
         },
       ],
@@ -30,7 +35,9 @@ const AdminSidebar = () => {
     },
   ];
 
-  return <SideBarComponent data={navLinks} settingPath="/dashboard/Admin/settings" />;
+  return (
+    <SideBarComponent data={navLinks} settingPath="/dashboard/Admin/settings" />
+  );
 };
 
 export default AdminSidebar;
