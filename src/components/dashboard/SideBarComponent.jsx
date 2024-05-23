@@ -76,7 +76,7 @@ const SideBarComponent = ({ data, settingPath }) => {
               : "text-[#ffffff]  hover:bg-green-800 px-2 py-1 rounded w-full text-[17px] "
           }
         >
-          Setting
+          Settings
         </NavLink>
       </div>
     </div>

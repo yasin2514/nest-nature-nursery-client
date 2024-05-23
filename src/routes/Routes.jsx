@@ -10,6 +10,13 @@ import ContactUS from "../pages/contactUs";
 import ProductDetails from "../components/ui/ProductDetails";
 import DashboardLayout from "../layout/DashboardLayout";
 import DashboardHome from "../pages/dashboard";
+import UploadProducts from "../pages/dashboard/admin/UploadProducts";
+import MyProductListAdmin from "../pages/dashboard/admin/MyProductListAdmin";
+import AdminProductList from "../pages/dashboard/admin/AdminProductList";
+import PendingOrders from "../pages/dashboard/admin/PendingOrders";
+import CompletedOrders from "../pages/dashboard/admin/CompletedOrders";
+import UserList from "../pages/dashboard/admin/UserList";
+import AdminSettings from "../pages/dashboard/admin/AdminSettings";
 
 const router = createBrowserRouter([
   {
@@ -21,31 +28,31 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/contact-us",
+        path: "contact-us",
         element: <ContactUS />,
       },
       {
-        path: "/login",
+        path: "login",
         element: <Login />,
       },
       {
-        path: "/register",
+        path: "register",
         element: <Register />,
       },
       {
-        path: "/terms",
+        path: "terms",
         element: <Terms />,
       },
       {
-        path: "/plant-category",
+        path: "plant-category",
         element: <PlantCategory />,
       },
       {
-        path: "/all-plants",
+        path: "all-plants",
         element: <AllPlants />,
       },
       {
-        path: "/plant-details/:id",
+        path: "plant-details/:id",
         element: <ProductDetails />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/product/${params.id}`),
@@ -60,6 +67,34 @@ const router = createBrowserRouter([
         index: true,
         element: <DashboardHome/>,
       },
+      {
+        path:"products/upload",
+        element:<UploadProducts/>
+      },
+      {
+        path:"products/admin-products",
+        element:<MyProductListAdmin/>
+      },
+      {
+        path:"products/products-list",
+        element:<AdminProductList/>
+      },
+      {
+        path:"orders/pending",
+        element:<PendingOrders/>
+      },
+      {
+        path:"orders/completed",
+        element:<CompletedOrders/>
+      },
+      {
+        path:"admin/users-list",
+        element:<UserList/>
+      },
+      {
+        path: "admin-settings",
+        element: <AdminSettings/>,
+      }
     ],
   },
 ]);
