@@ -12,22 +12,22 @@ const UserSidebar = () => {
       child: [
         {
           name: "Pending Items",
-          to: "/dashboard/pending-items",
+          to: "/dashboard/cart/pending-items",
         },
         {
           name: "Purchased Items",
-          to: "/dashboard/purchased-items",
+          to: "/dashboard/cart/purchased-items",
         },
       ],
     },
     {
       name: "Payment History",
-      to: "/dashboard/users",
+      to: "/dashboard/payment-history",
     },
   ];
 
   return (
-    <SideBarComponent data={navLinks} settingPath="/dashboard/User/settings" />
+    <SideBarComponent data={navLinks} settingPath="/dashboard/user-settings" />
   );
 };
 

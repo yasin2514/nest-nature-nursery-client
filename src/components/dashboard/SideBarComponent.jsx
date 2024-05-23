@@ -25,7 +25,7 @@ const SideBarComponent = ({ data, settingPath }) => {
             >
               {link.to ? (
                 <NavLink
-                  to={link.to}
+                  to={link?.to}
                   className={({ isActive }) =>
                     isActive
                       ? "bg-green-800 px-2 py-1 rounded text-[17px] w-full "
