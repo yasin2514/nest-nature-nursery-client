@@ -12,7 +12,7 @@ const ClientReview = () => {
         title="What our customers say about us"
       />
 
-      <div className="mx-10 lg:mx-20 grid md:grid-cols-2 lg:grid-cols-3 gap-16 group">
+      <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 gap-20 group">
         {/* client -1 */}
         <Client
           img={img1}
