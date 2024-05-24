@@ -11,7 +11,7 @@ const BestProductsSection = () => {
       <div className="flex justify-between items-start">
         <SectionHeader header={"Our Best Plants"} />
         <div>
-          <Link to="/all-plants">Vew All</Link>
+          <Link to="/all-plants" className="btn btn-sm">Vew All</Link>
         </div>
       </div>
       <div className={"grid grid-cols-4 gap-8"}>
