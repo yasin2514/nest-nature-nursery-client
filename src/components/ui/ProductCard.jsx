@@ -1,29 +1,14 @@
 import { useState } from "react";
-import { FaStar, FaRegStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useNumberFormatter from "../../hooks/useNumberFormatter";
+import useRating from "../../hooks/useRating";
 
 const ProductCard = ({ data }) => {
   const { _id, name, price, photo, rating, previousPrice } = data;
 
   const [isHovered, setIsHovered] = useState(false);
   const formatNumber = useNumberFormatter();
-
-  // Function to render stars based on rating
-  const renderStars = (rating) => {
-    const totalStars = 5;
-    const filledStars = Math.round(rating); // round rating to nearest whole number
-    const stars = [];
-
-    for (let i = 1; i <= totalStars; i++) {
-      if (i <= filledStars) {
-        stars.push(<FaStar key={i} className="text-yellow-500" />);
-      } else {
-        stars.push(<FaRegStar key={i} className="text-yellow-500" />);
-      }
-    }
-    return stars;
-  };
+  const renderRating = useRating();
 
   return (
     <div
@@ -58,7 +43,7 @@ const ProductCard = ({ data }) => {
           <div>
             {isHovered && (
               <div className="flex items-center">
-                {renderStars(rating)}
+                {renderRating(rating)}
                 <span className="ml-2 text-gray-600">{rating}</span>
               </div>
             )}
