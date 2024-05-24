@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const OurNurserySection = () => {
   return (
-    <div className="grid grid-cols-12 gap-10 ">
+    <div className="grid grid-cols-12 gap-20 ">
       <div className=" rounded-2xl overflow-hidden col-span-5">
         <img
           src={img}
@@ -13,13 +13,18 @@ const OurNurserySection = () => {
         />
       </div>
       <div className=" col-span-7    w-full ">
-        <SectionHeader
-          header="Our Nursery"
-          title="We provide the best service"
-        />
-        <div
-          className="px-8 space-y-6"
-        >
+        <div className="flex justify-between mb-16 items-center">
+          <SectionHeader
+            className={"text-start mb-0"}
+            header="Our Nursery"
+            title="We provide the best service"
+          />
+          <Link to="/contact-us">
+            <button className="btn btn-sm">Get in Touch</button>
+          </Link>
+        </div>
+
+        <div className="space-y-10 text-gray-700">
           <p>
             Welcome to our nursery, where we nurture the minds and hearts of
             young learners. Our dedicated team provides a safe, stimulating
@@ -34,13 +39,9 @@ const OurNurserySection = () => {
           </p>
           <p>
             Join our nursery family and watch your child thrive in a nurturing,
-            inspiring environment.
+            inspiring environment.Join us in building a foundation for lifelong
+            success and happiness.
           </p>
-          <div className="">
-            <Link to="/contact-us">
-              <button className="button-green">Get in Touch</button>
-            </Link>
-          </div>
         </div>
       </div>
     </div>
