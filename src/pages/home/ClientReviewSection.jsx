@@ -4,9 +4,9 @@ import img3 from "../../assets/client-3.png";
 import SectionHeader from "../../components/ui/SectionHeader";
 import useRating from "../../hooks/useRating";
 
-const ClientReview = () => {
+const ClientReviewSection = () => {
   return (
-    <div className="mb-24">
+    <div>
       <SectionHeader
         header="Our Client Reviews"
         title="What our customers say about us"
@@ -70,4 +70,4 @@ const Client = ({ img, name, rating, review }) => {
   );
 };
 
-export default ClientReview;
+export default ClientReviewSection;
