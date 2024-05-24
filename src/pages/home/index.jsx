@@ -11,7 +11,7 @@ const Home = () => {
     return (
       <>
         <HeroSection />
-        <Container className="my-28 space-y-24 text-justify">
+        <Container className="my-24 space-y-24">
           <OurNurserySection/>
           <TrendingProductsSection/>
           <HowToOrderSection/>
