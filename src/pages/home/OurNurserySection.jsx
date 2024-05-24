@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 
 const OurNurserySection = () => {
   return (
-    <div className="grid grid-cols-12 gap-20 ">
-      <div className=" rounded-2xl overflow-hidden col-span-5">
+    <div className="grid grid-cols-2 gap-20 ">
+      <div className=" rounded-2xl overflow-hidden ">
         <img
           src={img}
           alt="nursery img"
           className="object-fill h-full w-full"
         />
       </div>
-      <div className=" col-span-7    w-full ">
+      <div>
         <div className="flex justify-between mb-16 items-center">
           <SectionHeader
             className={"text-start mb-0"}
