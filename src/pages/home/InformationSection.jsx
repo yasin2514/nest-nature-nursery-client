@@ -1,5 +1,5 @@
 import CountUp from "react-countup";
-import bg from "../../assets/banner-3.jpg";
+import bg from "../../assets/banner-6.jpg";
 import Container from "../../components/ui/Container";
 const InformationSection = () => {
   return (
@@ -33,5 +33,6 @@ const Section = ({value,title}) => {
     </div>
   );
 };
+
 
 export default InformationSection;

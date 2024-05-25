@@ -14,7 +14,7 @@
 .number-slide1 {
   background-image: linear-gradient(
       to right,
-      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.5)
     ),
     url("../assets/banner-1.jpg");
@@ -25,10 +25,10 @@
 .number-slide2 {
   background-image: linear-gradient(
       to right,
-      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.5)
     ),
-    url("../assets/banner-2.jpeg");
+    url("../assets/banner-2.jpg");
   width: 100%;
   background-size: cover;
 }
@@ -36,10 +36,10 @@
 .number-slide3 {
   background-image: linear-gradient(
       to right,
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.6)
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
     ),
-    url("../assets/banner-3.jpg");
+    url("../assets/banner-3.jpeg");
   width: 100%;
   background-size: cover;
 }

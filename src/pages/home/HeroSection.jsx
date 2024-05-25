@@ -2,6 +2,7 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import AOS from "aos";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   useEffect(() => {
@@ -61,7 +62,9 @@ const HeroSection = () => {
               nature flourishes! Discover your perfect nursery today.
             </p>
 
-            <button className="btn btn-sm">Learn More</button>
+            <Link to="/plant-category" className="btn btn-sm">
+              Shop Now
+            </Link>
           </div>
         </div>
         {/* slider-2 */}
@@ -78,7 +81,9 @@ const HeroSection = () => {
               This is not a nursery , this is a green heaven for us. Where
               nature flourishes! Discover your perfect nursery today.
             </p>
-              <button className="btn btn-sm">Learn More</button>
+                <Link to="/plant-category" className="btn btn-sm">
+              Shop Now
+            </Link>
           </div>
         </div>
         {/* slider-3 */}
@@ -96,7 +101,9 @@ const HeroSection = () => {
               nature flourishes! Discover your perfect nursery today.
             </p>
 
-              <button className="btn btn-sm">Learn More</button>
+                <Link to="/plant-category" className="btn btn-sm">
+              Shop Now
+            </Link>
      
           </div>
         </div>
