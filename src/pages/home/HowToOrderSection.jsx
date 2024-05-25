@@ -9,7 +9,7 @@ const HowToOrderSection = () => {
         header="How to Order"
         title="Order plant and help to the World"
       />
-      <div className="grid grid-cols-12 gap-20 ">
+      <div className="grid grid-cols-12 gap-20 bg-gray-50 p-10 rounded-xl">
         <div className="col-span-4 flex flex-col items-start gap-16">
           <Section
             count={"01"}
@@ -22,7 +22,7 @@ const HowToOrderSection = () => {
             title={"Billing Address"}
           />
         </div>
-        <div className="col-span-4   flex items-center justify-center">
+        <div className="col-span-4  flex items-center justify-center">
           <div
             className="p-28 bg-contain bg-no-repeat bg-center hover:scale-110 duration-300 "
             style={{
