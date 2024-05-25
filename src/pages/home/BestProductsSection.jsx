@@ -8,9 +8,9 @@ const BestProductsSection = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mb-12">
         <SectionHeader
-          className={"text-start mb-0"}
+          className={"text-start"}
           header="Our Best Plants"
           title="We provide the best plants "
         />

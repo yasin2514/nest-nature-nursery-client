@@ -6,6 +6,7 @@ const HowToOrderSection = () => {
   return (
     <div>
       <SectionHeader
+      className={"mb-12"}
         header="How to Order"
         title="Order plant and help to the World"
       />
@@ -58,7 +59,7 @@ const Section = ({ title, text, count }) => {
   return (
     <div className="flex flex-col items-center  text-center space-y-2">
       <div
-        className="size-32 flex items-center justify-center text-green-800 text-2xl font-semibold  bg-blend-overlay bg-center bg-contain"
+        className="size-28 flex items-center justify-center text-green-800 text-2xl font-semibold  bg-blend-overlay bg-center bg-contain rounded-full"
         style={{
           backgroundImage: `url(${img})`,
         }}

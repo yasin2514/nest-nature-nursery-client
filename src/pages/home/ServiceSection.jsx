@@ -9,6 +9,7 @@ const ServiceSection = () => {
   return (
     <div>
       <SectionHeader
+        className={"mb-12"}
         header="Our Customer Services"
         title="We provide the best service"
       />

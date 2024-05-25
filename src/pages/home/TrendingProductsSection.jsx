@@ -29,9 +29,9 @@ const TrendingProductsSection = () => {
 
   return (
     <div>
-      <section className="flex justify-between items-center mb-6">
+      <section className="flex justify-between items-center mb-12">
         <SectionHeader
-          className={"text-start mb-0"}
+          className={"text-start"}
           header="Weekly Best Deals"
           title="We provide the best plants at the best price"
         />

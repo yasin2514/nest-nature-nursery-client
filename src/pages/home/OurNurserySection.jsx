@@ -13,13 +13,13 @@ const OurNurserySection = () => {
         />
       </div>
       <div>
-        <div className="flex justify-between mb-16 items-center">
+        <div className="flex justify-between mb-12 items-center ">
           <SectionHeader
-            className={"text-start mb-0"}
+            className={"text-start "}
             header="Our Nursery"
             title="We provide the best service"
           />
-          <Link to="/contact-us">
+          <Link to="/contact-us" className="border">
             <button className="btn btn-sm">Get in Touch</button>
           </Link>
         </div>

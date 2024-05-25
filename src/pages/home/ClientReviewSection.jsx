@@ -8,6 +8,7 @@ const ClientReviewSection = () => {
   return (
     <div>
       <SectionHeader
+        className={"mb-12"}
         header="Our Client Reviews"
         title="What our customers say about us"
       />
