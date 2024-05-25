@@ -55,7 +55,7 @@ const TrendingProductsSection = () => {
       <section className="grid grid-cols-1 md:grid-cols-12 gap-10">
         <div className="md:col-span-3 relative overflow-hidden h-[700px]">
           <div className="absolute top-0 w-full h-[150px]">
-            <div className="clip-path-one bg-opacity-75 bg-[#e4e4e4]"></div>
+            <div className="clip-path-one bg-opacity-50 bg-[#e4f5e0]"></div>
           </div>
           <div className="bg-gray-100 h-full w-full flex items-center justify-center">
             {products.slice(0, 1).map((product, index) => (
