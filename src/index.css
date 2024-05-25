@@ -1,6 +1,7 @@
 @import url("./styles/btn.css");
 @import url("./styles/banner.css");
 @import url("./styles/scrollbar.css");
+@import url("./styles/home.css");
 
 @tailwind base;
 @tailwind components;

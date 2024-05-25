@@ -9,7 +9,7 @@ const ProductsCardTwo = ({ data }) => {
   const renderRating = useRating();
 
   return (
-    <div className="border rounded-xl overflow-hidden hover:shadow-lg shadow-green-700  ">
+    <div className="border  overflow-hidden hover:shadow-lg shadow-green-700  ">
       <div className="h-48 bg-gray-100 overflow-hidden ">
         <img
           src={photo[0]}

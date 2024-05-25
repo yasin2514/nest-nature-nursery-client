@@ -1,8 +1,6 @@
-import { Link } from "react-router-dom";
 import ProductsCardTwo from "../../components/ui/ProductsCardTwo";
 import SectionHeader from "../../components/ui/SectionHeader";
 import useGetProducts from "../../hooks/useGetProducts";
-import img from "../../assets/bg.jpg"
 const TrendingProductsSection = () => {
   const [products] = useGetProducts();
 
@@ -15,16 +13,29 @@ const TrendingProductsSection = () => {
           <span>right</span>
         </div>
       </section>
-      <section className="grid grid-cols-1 md:grid-cols-12 gap-10">
-        <div className="md:col-span-3 relative overflow-hidden rounded-2xl">
-          <img src={img} alt="Deal" className="w-full object-contain h-full" />
-          <div className="absolute inset-0 bg-green-500 bg-opacity-50 flex flex-col justify-center items-start p-6">
-            <h3 className="text-white text-2xl font-bold mb-2">
-              Buy New Fresh Arrivals
-            </h3>
-            <Link to="/products" className="text-white underline">
-              Shop Now
-            </Link>
+      <section className="grid grid-cols-1 md:grid-cols-12 gap-10 ">
+        <div className="md:col-span-3 relative overflow-hidden ">
+          <div className=" absolute top-0 w-full h-[150px] ">
+            <div className="clip-path-one bg-opacity-75 bg-[#e4e4e4]"></div>
+          </div>
+          <div className="bg-gray-100 h-full w-full flex items-center justify-center">
+            {products.slice(0, 1).map((product, index) => (
+              <img
+                key={index}
+                src={product?.photo[0]}
+                alt="bg"
+                className="w-full h-full object-cover"
+              />
+            ))}
+          </div>
+          <div className=" absolute bottom-0 w-full h-[200px] ">
+            <div className="clip-path-two bg-opacity-80 bg-green-700 px-8 flex items-center justify-start ">
+              <h1 className="opacity-100 text-white text-3xl font-bold mt-10">
+                Buy New
+                <br />
+                Fresh Arrivals
+              </h1>
+            </div>
           </div>
         </div>
         <div className="md:col-span-9 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-8">
