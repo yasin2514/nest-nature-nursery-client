@@ -29,14 +29,22 @@ const TrendingProductsSection = () => {
 
   return (
     <div>
-      <section className="flex justify-between mb-6">
-        <SectionHeader header={"Weekly Best Deal"} />
+      <section className="flex justify-between items-center mb-6">
+        <SectionHeader
+          className={"text-start mb-0"}
+          header="Weekly Best Deals"
+          title="We provide the best plants at the best price"
+        />
         <div className="space-x-3">
-          <button onClick={handlePrevious} className="btn btn-sm" disabled={currentPage === 0}>
+          <button
+            onClick={handlePrevious}
+            className="btn btn-sm"
+            disabled={currentPage === 0}
+          >
             Pre
           </button>
           <button
-          className="btn btn-sm"
+            className="btn btn-sm"
             onClick={handleNext}
             disabled={currentPage === totalPages - 1}
           >

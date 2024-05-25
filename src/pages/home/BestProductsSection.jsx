@@ -8,10 +8,16 @@ const BestProductsSection = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-start">
-        <SectionHeader header={"Our Best Plants"} />
+      <div className="flex justify-between items-center">
+        <SectionHeader
+          className={"text-start mb-0"}
+          header="Our Best Plants"
+          title="We provide the best plants "
+        />
         <div>
-          <Link to="/all-plants" className="btn btn-sm">Vew All</Link>
+          <Link to="/all-plants" className="btn btn-sm">
+            Vew All
+          </Link>
         </div>
       </div>
       <div className={"grid grid-cols-4 gap-8"}>
