@@ -2,6 +2,7 @@ import  { useState } from "react";
 import ProductsCardTwo from "../../components/ui/ProductsCardTwo";
 import SectionHeader from "../../components/ui/SectionHeader";
 import useGetProducts from "../../hooks/useGetProducts";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const TrendingProductsSection = () => {
   const [products] = useGetProducts();
@@ -38,17 +39,17 @@ const TrendingProductsSection = () => {
         <div className="space-x-3">
           <button
             onClick={handlePrevious}
-            className="btn btn-sm"
+            className="btn btn-sm text-green-600"
             disabled={currentPage === 0}
           >
-            Pre
+            <FaChevronLeft />
           </button>
           <button
-            className="btn btn-sm"
+            className="btn btn-sm text-green-600"
             onClick={handleNext}
             disabled={currentPage === totalPages - 1}
           >
-            Next
+            <FaChevronRight/>
           </button>
         </div>
       </section>
