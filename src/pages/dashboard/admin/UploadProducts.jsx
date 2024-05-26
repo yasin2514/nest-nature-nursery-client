@@ -21,7 +21,12 @@ const UploadProducts = () => {
             className={"col-span-6"}
           />
           <Input type="text" label={"Rating"} className={"col-span-6"} />
-          <Input type="file" label={"Images"} className={"col-span-12 "} />
+          <Input
+            type="file"
+            label={"Images"}
+            className={"col-span-12 "}
+            cross={true}
+          />
 
           <Textarea
             type="text"

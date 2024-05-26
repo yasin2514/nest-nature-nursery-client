@@ -1,6 +1,9 @@
+import { FaCircleXmark } from "react-icons/fa6";
+
 const Input = ({ className, label, ...rest }) => {
+  const { cross } = rest || {};
   return (
-    <div className={className}>
+    <div className={`relative ${className}`}>
       <label htmlFor={label} className="block mb-2 font-semibold text-gray-500">
         {label}
       </label>
@@ -10,6 +13,7 @@ const Input = ({ className, label, ...rest }) => {
         className="custom-input"
         placeholder={`Enter ${label}`}
       />
+      {cross && <FaCircleXmark  className="absolute top-12 right-3 text-red-500 text-lg cursor-pointer" />}
     </div>
   );
 };
