@@ -1,0 +1,4 @@
+.custom-input {
+  @apply rounded-md p-2 w-full border-gray-300 border;
+  @apply focus:border-green-500 outline-none focus:outline-green-200;
+}
