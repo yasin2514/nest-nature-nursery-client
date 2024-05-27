@@ -41,7 +41,7 @@ const AdminProductList = () => {
       <BreadCum text1={"Admin Dashboard"} text2={"Product List"} />
 
       <div className="bg-white p-5 my-5 rounded-lg">
-        <TableComponent tHeadData={tHeadData} />
+        <TableComponent tHeadData={tHeadData} data={[]} />
       </div>
     </div>
   );
