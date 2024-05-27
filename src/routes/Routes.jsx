@@ -21,6 +21,7 @@ import UserSettings from "../pages/dashboard/user/UserSettings";
 import PendingItems from "../pages/dashboard/user/PendingItems";
 import PurchasedItems from "../pages/dashboard/user/PurchasedItems";
 import PaymentHistory from "../pages/dashboard/user/PaymentHistory";
+import UpdateProducts from "../pages/dashboard/admin/UpdateProducts";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,12 @@ const router = createBrowserRouter([
         element: <UploadProducts />,
       },
       {
+        // path: "products/update/:id",
+        path: "products/update",
+        element: <UpdateProducts />,
+        // loader:({params})=>fetch(`${params.id}`)
+      },
+      {
         path: "products/admin-products",
         element: <MyProductListAdmin />,
       },
@@ -113,9 +120,9 @@ const router = createBrowserRouter([
         element: <PurchasedItems />,
       },
       {
-        path:"payment-history",
-        element:<PaymentHistory/>
-      }
+        path: "payment-history",
+        element: <PaymentHistory />,
+      },
     ],
   },
 ]);

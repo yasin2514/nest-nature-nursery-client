@@ -5,7 +5,7 @@ import FormElement, {
   Textarea,
 } from "../../../components/ui/FormComponent";
 
-const UploadProducts = () => {
+const UpdateProduct = () => {
   const {
     handleSubmit,
     register,
@@ -113,4 +113,4 @@ const UploadProducts = () => {
   );
 };
 
-export default UploadProducts;
+export default UpdateProduct;
