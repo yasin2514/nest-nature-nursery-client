@@ -30,7 +30,7 @@ const FormElement = ({
         {errors[name] && (
           <span className="text-red-500 text-xs">{errors[name]?.message}</span>
         )}
-        {cross && (
+        {cross === "true" && (
           <FaCircleXmark className="absolute top-12 right-3 z-10 text-red-500 text-lg cursor-pointer" />
         )}
       </div>

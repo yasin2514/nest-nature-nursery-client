@@ -84,7 +84,7 @@ const UpdateProduct = () => {
           </FormElement>
           <FormElement
             type="file"
-            cross={true}
+            cross={"true"}
             label={"Images"}
             className={"col-span-12"}
             register={register("images")}
