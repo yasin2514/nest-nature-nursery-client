@@ -23,7 +23,6 @@ const UploadProducts = () => {
   const axiosSecure = useAxiosSecure();
 
   const onSubmit = async (data) => {
-    console.log({ data });
     const uploadedImages = [];
     const uploadPromises = Array.from(data.photos).map((photo) => {
       const formData = new FormData();
@@ -57,7 +56,6 @@ const UploadProducts = () => {
       totalSell: 0,
     };
 
-    console.log({ addProduct });
 
     axiosSecure.post("addProduct", addProduct).then((response) => {
       if (response.data.insertedId) {

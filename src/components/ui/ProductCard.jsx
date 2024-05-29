@@ -4,7 +4,7 @@ import useNumberFormatter from "../../hooks/useNumberFormatter";
 import useRating from "../../hooks/useRating";
 
 const ProductCard = ({ data }) => {
-  const { _id, name, price, photos, rating, previousPrice } = data;
+  const { _id, name, price, photos, rating, previousPrice } = data || {};
 
   const [isHovered, setIsHovered] = useState(false);
   const formatNumber = useNumberFormatter();
