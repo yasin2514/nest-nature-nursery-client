@@ -12,21 +12,21 @@ const TableBody = ({ data, index, show }) => {
     <>
       {(show === "adminList" || show === "myList") && (
         <tr>
-          <td>{index + 1}</td>
-          <td className="">
+          <td className="text-center">{index + 1}</td>
+          <td className="text-center">
             <img
               src={photo?.[0]}
               alt="plant image"
               className="size-16 rounded"
             />
           </td>
-          <td>{name}</td>
-          <td>{category}</td>
-          <td>{formatNumber(price)}</td>
-          <td>{formatNumber(quantity)}</td>
-          {show === "adminList" && <td>{name}</td>}
-          <td>
-            <div className=" flex gap-3 ">
+          <td className="text-center">{name}</td>
+          <td className="text-center">{category}</td>
+          <td className="text-center">{formatNumber(price)}</td>
+          <td className="text-center">{formatNumber(quantity)}</td>
+          {show === "adminList" && <td className="text-center">{name}</td>}
+          <td className="text-center">
+            <div className="flex items-center justify-center gap-3 ">
               <Link to={`/dashboard/products/update/${_id}`}>
                 <FaEdit className="text-2xl text-green-700 hover:text-green-500" />
               </Link>
@@ -39,17 +39,21 @@ const TableBody = ({ data, index, show }) => {
       )}
       {show === "userList" && (
         <tr>
-          <td>{index + 1}</td>
-          <td className="">
+          <td className="text-center">{index + 1}</td>
+          <td className="flex items-center justify-center">
             <img
               src={photo}
               alt="plant image"
-              className="size-16 rounded-full outline"
+              className="size-12 rounded-full shadow shadow-green-900"
             />
           </td>
-          <td>{name}</td>
-          <td>{email}</td>
-          <td>{role}</td>
+          <td className="text-center">{name}</td>
+          <td className="text-center">{email}</td>
+          <td className={`text-center font-semibold ${role==="user"?"text-green-600":"text-blue-600"}`}>{role}</td>
+          <td className="text-center space-x-3">
+            <button className="btn btn-sm">Make Admin</button>
+            <button className="btn btn-sm">Make User</button>
+          </td>
         </tr>
       )}
     </>
