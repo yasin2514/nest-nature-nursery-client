@@ -38,8 +38,6 @@ const MyProductListAdmin = () => {
 
   const [products] = useGetProducts();
   const { user } = useContext(AuthContext);
-  console.log({ user });
-
   return (
     <div>
       <BreadCum
@@ -47,7 +45,7 @@ const MyProductListAdmin = () => {
         text2={`${user?.displayName} Product List `}
       />
       <TableWithHeader
-        products={products}
+        data={products}
         tHeadData={tHeadData}
         show={"myList"}
       />

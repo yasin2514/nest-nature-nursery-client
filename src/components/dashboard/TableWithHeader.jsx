@@ -2,19 +2,19 @@ import { useMemo, useState } from "react";
 import TableHeaderComponent from "./TableHeaderComponent";
 import TableComponent from "./TableComponent";
 
-const TableWithHeader = ({tHeadData,products,show}) => {
+const TableWithHeader = ({tHeadData,data,show}) => {
      const [searchText, setSearchText] = useState("");
      const [searchCategory, setSearchCategory] = useState("Select Category");
 
      // Extract unique categories from products
      const uniqueCategories = useMemo(() => {
-       const categories = products?.map((product) => product?.category);
+       const categories = data?.map((product) => product?.category);
        return ["Select Category", ...new Set(categories)];
-     }, [products]);
+     }, [data]);
 
      // Filter products based on search text and selected category
      const filteredProducts = useMemo(() => {
-       return products.filter((item) => {
+       return data.filter((item) => {
          const matchesSearchText = item?.name
            .toLowerCase()
            .includes(searchText.toLowerCase());
@@ -23,7 +23,7 @@ const TableWithHeader = ({tHeadData,products,show}) => {
            item?.category === searchCategory;
          return matchesSearchText && matchesCategory;
        });
-     }, [products, searchText, searchCategory]);
+     }, [data, searchText, searchCategory]);
 
      // Pass the props to the TableHeaderComponent
      const props = {

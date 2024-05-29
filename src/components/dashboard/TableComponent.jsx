@@ -12,7 +12,7 @@ const TableComponent = ({ tHeadData, data ,show}) => {
       </thead>
       <tbody>
         {data?.map((item, index) => {
-          return <TableBody key={index} product={item} index={index} show={show}/>;
+          return <TableBody key={index} data={item} index={index} show={show}/>;
         })}
       </tbody>
     </table>

@@ -43,7 +43,7 @@ const AdminProductList = () => {
     <div>
       <BreadCum text1={"Admin Dashboard"} text2={"Total Product List"} />
       <TableWithHeader
-        products={products}
+        data={products}
         tHeadData={tHeadData}
         show={"adminList"}
       />
