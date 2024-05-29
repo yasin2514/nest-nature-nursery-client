@@ -1,6 +1,8 @@
+import { IoMdSearch } from "react-icons/io";
 import BreadCum from "../../../components/dashboard/BreadCum";
 import TableComponent from "../../../components/dashboard/TableComponent";
 import useGetProducts from "../../../hooks/useGetProducts";
+import TableHeaderComponent from "../../../components/dashboard/TableHeaderComponent";
 
 const AdminProductList = () => {
   const tHeadData = [
@@ -43,8 +45,11 @@ const AdminProductList = () => {
     <div>
       <BreadCum text1={"Admin Dashboard"} text2={"Product List"} />
 
-      <div className="bg-white p-5 my-5 rounded-lg">
-        <TableComponent tHeadData={tHeadData} data={products} />
+      <div className="bg-white p-5 mt-5 rounded-lg ">
+        <TableHeaderComponent products={products} />
+        <div className="h-[calc(100vh-278px)] overflow-auto">
+          <TableComponent tHeadData={tHeadData} data={products} />
+        </div>
       </div>
     </div>
   );
