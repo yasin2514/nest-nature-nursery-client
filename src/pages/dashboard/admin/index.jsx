@@ -2,17 +2,33 @@ import BarChartComponent from "../../../components/dashboard/BarChartComponent";
 import Box from "../../../components/dashboard/Box";
 import BreadCum from "../../../components/dashboard/BreadCum";
 import PieChart from "../../../components/dashboard/PieChart";
+import useGetDataUploadedByAdmin from "../../../hooks/useGetDataUploadedByAdmin";
+import useGetProducts from "../../../hooks/useGetProducts";
 
 const AdminDashboard = () => {
+  const [products] = useGetProducts();
+  const [myProducts] = useGetDataUploadedByAdmin();
   return (
     <div className=" h-full">
       <BreadCum text1={"Admin Dashboard"} text2={"Home"} />
       <div className="flex flex-col justify-around h-[calc(100vh-165px)]">
         <div className="mt-6 grid grid-cols-12 gap-8">
-          <Box value={10} title={"Total Products"} className={"bg-[#2c8d2c]"} />
-          <Box value={10} title={"Total Orders"} className={"bg-[#16a7c0]"} />
-          <Box value={10} title={"Total Users"} className={"bg-[#786fc4]"} />
-          <Box value={10} title={"Total Sell Amount"} className={"bg-[#ce4b3a]"} />
+          <Box
+            value={products?.length || 0}
+            title={"Total Products"}
+            className={"bg-[#2c8d2c]"}
+          />
+          <Box
+            value={myProducts?.length || 0}
+            title={"My Products"}
+            className={"bg-[#16a7c0]"}
+          />
+          <Box value={10} title={"Completed Orders"} className={"bg-[#786fc4]"} />
+          <Box
+            value={10}
+            title={"Total Sell Amount"}
+            className={"bg-[#ce4b3a]"}
+          />
         </div>
 
         <div className="grid grid-cols-12  gap-8 mt-9">
