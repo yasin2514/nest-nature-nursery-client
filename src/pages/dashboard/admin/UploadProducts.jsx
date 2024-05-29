@@ -4,17 +4,71 @@ import FormElement, {
   Input,
   Textarea,
 } from "../../../components/ui/FormComponent";
+import { useContext } from "react";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const UploadProducts = () => {
+  const { user } = useContext(AuthContext);
   const {
     handleSubmit,
     register,
     formState: { errors },
+    reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
+  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+  const axiosSecure = useAxiosSecure();
+
+  const onSubmit = async (data) => {
+    const uploadedImages = [];
+    const uploadPromises = Array.from(data.photos).map((photo) => {
+      const formData = new FormData();
+      formData.append("image", photo);
+
+      return fetch(img_hosting_url, {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((imgResponse) => {
+          if (imgResponse.success) {
+            uploadedImages.push(imgResponse.data.display_url);
+          }
+        });
+    });
+
+    await Promise.all(uploadPromises);
+
+    const addProduct = {
+      name: data.name,
+      category: data.category,
+      price: data.price,
+      previousPrice: data.previousPrice,
+      quantity: data.quantity,
+      rating: data.rating,
+      photos: uploadedImages,
+      description: data.description,
+      uploadByName: user.displayName,
+      uploadByEmail: user.email,
+      totalSell: 0,
+    };
+
+    axiosSecure.post("/classes", addProduct).then((response) => {
+      if (response.data.insertedId) {
+        reset();
+        Swal.fire({
+          icon: "success",
+          title: "Product added successfully",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+    });
   };
+
   return (
     <div>
       <BreadCum text1={"Admin Dashboard"} text2={"Upload Product"} />
@@ -41,7 +95,6 @@ const UploadProducts = () => {
           >
             <Input />
           </FormElement>
-
           <FormElement
             type="text"
             label={"Current Price"}
@@ -80,13 +133,12 @@ const UploadProducts = () => {
           </FormElement>
           <FormElement
             type="file"
-            cross={"true"}
             label={"Images"}
             className={"col-span-12"}
-            register={register("images")}
+            register={register("photos")}
             errors={errors}
           >
-            <Input />
+            <Input multiple />
           </FormElement>
           <FormElement
             type="text"
@@ -100,10 +152,10 @@ const UploadProducts = () => {
           </FormElement>
 
           <div className="col-span-12 flex justify-end gap-10 mt-5">
-            <button type="Reset" className="button-red">
+            <button type="reset" className="button-red">
               Reset
             </button>
-            <button type="Submit" className="button-green">
+            <button type="submit" className="button-green">
               Submit
             </button>
           </div>
