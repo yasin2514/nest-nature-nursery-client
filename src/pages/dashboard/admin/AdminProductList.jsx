@@ -3,6 +3,7 @@ import BreadCum from "../../../components/dashboard/BreadCum";
 import TableComponent from "../../../components/dashboard/TableComponent";
 import useGetProducts from "../../../hooks/useGetProducts";
 import TableHeaderComponent from "../../../components/dashboard/TableHeaderComponent";
+import { useState } from "react";
 
 const AdminProductList = () => {
   const tHeadData = [
@@ -40,13 +41,22 @@ const AdminProductList = () => {
     },
   ];
   const [products] = useGetProducts();
+  const [searchText, setSearchText] = useState("");
+  const [searchCategory, setSearchCategory] = useState("Select Category");
+  console.log({ searchCategory });
 
+  const props = {
+    products,
+    setSearchText,
+    searchCategory,
+    setSearchCategory,
+  };
   return (
     <div>
       <BreadCum text1={"Admin Dashboard"} text2={"Product List"} />
 
       <div className="bg-white p-5 mt-5 rounded-lg ">
-        <TableHeaderComponent products={products} />
+        <TableHeaderComponent {...props} />
         <div className="h-[calc(100vh-278px)] overflow-auto">
           <TableComponent tHeadData={tHeadData} data={products} />
         </div>
