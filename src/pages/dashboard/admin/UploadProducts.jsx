@@ -59,7 +59,7 @@ const UploadProducts = () => {
 
     console.log({ addProduct });
 
-    axiosSecure.post("/classes", addProduct).then((response) => {
+    axiosSecure.post("/addProduct", addProduct).then((response) => {
       if (response.data.insertedId) {
         reset();
         Swal.fire({
