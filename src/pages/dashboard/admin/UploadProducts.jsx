@@ -23,6 +23,7 @@ const UploadProducts = () => {
   const axiosSecure = useAxiosSecure();
 
   const onSubmit = async (data) => {
+    console.log({ data });
     const uploadedImages = [];
     const uploadPromises = Array.from(data.photos).map((photo) => {
       const formData = new FormData();
@@ -55,6 +56,8 @@ const UploadProducts = () => {
       uploadByEmail: user.email,
       totalSell: 0,
     };
+
+    console.log({ addProduct });
 
     axiosSecure.post("/classes", addProduct).then((response) => {
       if (response.data.insertedId) {
@@ -133,6 +136,7 @@ const UploadProducts = () => {
           </FormElement>
           <FormElement
             type="file"
+            multiple
             label={"Images"}
             className={"col-span-12"}
             register={register("photos")}
