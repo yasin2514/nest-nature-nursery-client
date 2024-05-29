@@ -13,7 +13,7 @@ const TableBody = ({ data, index, show }) => {
       {(show === "adminList" || show === "myList") && (
         <tr>
           <td className="text-center">{index + 1}</td>
-          <td className="text-center">
+          <td className="flex items-center justify-center">
             <img
               src={photo?.[0]}
               alt="plant image"
