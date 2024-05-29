@@ -39,7 +39,7 @@ const MyProductListAdmin = () => {
   return (
     <div>
       <BreadCum text1={"Admin Dashboard"} text2={"My Product List"} />
-      <TableWithHeader products={products} tHeadData={tHeadData} />
+      <TableWithHeader products={products} tHeadData={tHeadData} show={"myList"}/>
     </div>
   );
 };

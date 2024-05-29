@@ -77,10 +77,9 @@ const router = createBrowserRouter([
         element: <UploadProducts />,
       },
       {
-        // path: "products/update/:id",
-        path: "products/update",
+        path: "products/update/:id",
         element: <UpdateProducts />,
-        // loader:({params})=>fetch(`${params.id}`)
+        loader:({params})=>fetch(`${params.id}`)
       },
       {
         path: "products/admin-products",

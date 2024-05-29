@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import TableHeaderComponent from "./TableHeaderComponent";
 import TableComponent from "./TableComponent";
 
-const TableWithHeader = ({tHeadData,products}) => {
+const TableWithHeader = ({tHeadData,products,show}) => {
      const [searchText, setSearchText] = useState("");
      const [searchCategory, setSearchCategory] = useState("Select Category");
 
@@ -36,7 +36,7 @@ const TableWithHeader = ({tHeadData,products}) => {
       <div className="bg-white p-5 mt-5 rounded-lg ">
         <TableHeaderComponent {...props} />
         <div className="h-[calc(100vh-278px)] overflow-auto">
-          <TableComponent tHeadData={tHeadData} data={filteredProducts} />
+          <TableComponent tHeadData={tHeadData} data={filteredProducts} show={show}/>
         </div>
       </div>
     );

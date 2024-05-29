@@ -3,9 +3,8 @@ import useNumberFormatter from "../../hooks/useNumberFormatter";
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 
-const TableBody = ({ product, index }) => {
-  const { name, price, photo, _id, category, quantity, rating, previousPrice } =
-    product || {};
+const TableBody = ({ product, index, show }) => {
+  const { name, price, photo, _id, category, quantity } = product || {};
   const formatNumber = useNumberFormatter();
 
   return (
@@ -18,10 +17,10 @@ const TableBody = ({ product, index }) => {
       <td>{category}</td>
       <td>{formatNumber(price)}</td>
       <td>{formatNumber(quantity)}</td>
-      <td>{name}</td>
+      {show === "adminList" && <td>{name}</td>}
       <td>
         <div className=" flex gap-3 ">
-          <Link className="">
+          <Link to={`/products/update/${_id}`}>
             <FaEdit className="text-2xl text-green-700 hover:text-green-500" />
           </Link>
           <button className="p-0 border-0 ">
