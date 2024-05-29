@@ -1,30 +1,27 @@
 import { IoMdSearch } from "react-icons/io";
 
 const TableHeaderComponent = ({
-  products,
   setSearchText,
   setSearchCategory,
+  uniqueCategories,
+  data,
 }) => {
   return (
     <div className="flex justify-between items-center mb-5">
       <div>
         <select
-          name="select"
-          className="custom-input"
           onChange={(e) => setSearchCategory(e.target.value)}
+          className="custom-input"
         >
-            <option value="Select Category">Select Category</option>
-          {products?.map((product, index) => {
-            return (
-              <option key={index} value={product?.category}>
-                {product?.category}
-              </option>
-            );
-          })}
+          {uniqueCategories?.map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          ))}
         </select>
       </div>
       <div className="text-xl text-green-500 font-semibold">
-        Total Plants: {products?.length}
+        Total Plants: {data?.length}
       </div>
       <div className="relative">
         <input
