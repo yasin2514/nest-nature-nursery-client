@@ -10,7 +10,7 @@ const ProductDetails = () => {
   const {
     name,
     price,
-    photo,
+    photos,
     category,
     quantity,
     rating,
@@ -19,7 +19,7 @@ const ProductDetails = () => {
   } = product || {};
   console.log({ price });
 
-  const [selectedImage, setSelectedImage] = useState(photo?.[0]);
+  const [selectedImage, setSelectedImage] = useState(photos?.[0]);
   const formatNumber = useNumberFormatter();
   return (
     <div className="bg-[#fcfffa]">
@@ -34,7 +34,7 @@ const ProductDetails = () => {
         <div className="flex flex-col justify-center items-center">
           <ImageZoom src={selectedImage} alt={name} />
           <div className="flex space-x-5 mt-4">
-            {photo?.map((photo, index) => (
+            {photos?.map((photo, index) => (
               <div
                 key={index}
                 className="overflow-hidden rounded-lg  border border-[#01352c]"

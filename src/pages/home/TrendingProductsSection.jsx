@@ -23,7 +23,7 @@ const TrendingProductsSection = () => {
   };
 
   const startIndex = currentPage * itemsPerPage;
-  const selectedProducts = products.slice(
+  const selectedProducts = products?.slice(
     startIndex,
     startIndex + itemsPerPage
   );
@@ -62,7 +62,7 @@ const TrendingProductsSection = () => {
             {products.slice(0, 1).map((product, index) => (
               <img
                 key={index}
-                src={product?.photo[0]}
+                src={product?.photos[0]}
                 alt="bg"
                 className="w-full h-full object-cover"
               />

@@ -4,8 +4,18 @@ import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 
 const TableBody = ({ data, index, show }) => {
-  const { name, price, photo, _id, category, quantity, email, role } =
-    data || {};
+  const {
+    name,
+    price,
+    photos,
+    photo,
+    _id,
+    category,
+    quantity,
+    email,
+    role,
+    uploadByEmail,
+  } = data || {};
   const formatNumber = useNumberFormatter();
 
   return (
@@ -15,7 +25,7 @@ const TableBody = ({ data, index, show }) => {
           <td className="text-center">{index + 1}</td>
           <td className="flex items-center justify-center">
             <img
-              src={photo?.[0]}
+              src={photos?.[0]}
               alt="plant image"
               className="size-16 rounded"
             />
@@ -24,7 +34,9 @@ const TableBody = ({ data, index, show }) => {
           <td className="text-center">{category}</td>
           <td className="text-center">{formatNumber(price)}</td>
           <td className="text-center">{formatNumber(quantity)}</td>
-          {show === "adminList" && <td className="text-center">{name}</td>}
+          {show === "adminList" && (
+            <td className="text-center max-w-[17ch]">{uploadByEmail}</td>
+          )}
           <td className="text-center">
             <div className="flex items-center justify-center gap-3 ">
               <Link to={`/dashboard/products/update/${_id}`}>

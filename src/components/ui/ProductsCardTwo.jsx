@@ -3,7 +3,7 @@ import useNumberFormatter from "../../hooks/useNumberFormatter";
 import useRating from "../../hooks/useRating";
 
 const ProductsCardTwo = ({ data }) => {
-  const { _id, name, price, photo, rating, previousPrice } = data;
+  const { _id, name, price, photos, rating, previousPrice } = data;
 
   const formatNumber = useNumberFormatter();
   const renderRating = useRating();
@@ -12,7 +12,7 @@ const ProductsCardTwo = ({ data }) => {
     <div className="border  overflow-hidden hover:shadow-lg shadow-green-700 h-[330px] ">
       <div className="h-48 bg-gray-100 overflow-hidden ">
         <img
-          src={photo[0]}
+          src={photos[0]}
           alt={name}
           className="w-full h-full object-contain mb-4 hover:scale-110 duration-300"
         />

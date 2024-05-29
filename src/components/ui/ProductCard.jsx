@@ -4,7 +4,7 @@ import useNumberFormatter from "../../hooks/useNumberFormatter";
 import useRating from "../../hooks/useRating";
 
 const ProductCard = ({ data }) => {
-  const { _id, name, price, photo, rating, previousPrice } = data;
+  const { _id, name, price, photos, rating, previousPrice } = data;
 
   const [isHovered, setIsHovered] = useState(false);
   const formatNumber = useNumberFormatter();
@@ -19,7 +19,7 @@ const ProductCard = ({ data }) => {
       <div className="h-64 overflow-hidden rounded">
         <img
           className="w-full object-cover h-full"
-          src={photo?.[0]}
+          src={photos?.[0]}
           alt={name}
         />
       </div>
