@@ -49,10 +49,26 @@ const TableBody = ({ data, index, show }) => {
           </td>
           <td className="text-center">{name}</td>
           <td className="text-center">{email}</td>
-          <td className={`text-center font-semibold ${role==="user"?"text-green-600":"text-blue-600"}`}>{role}</td>
+          <td
+            className={`text-center uppercase font-semibold ${
+              role === "user" ? "text-green-600" : "text-blue-600 "
+            }`}
+          >
+            {role}
+          </td>
           <td className="text-center space-x-3">
-            <button className="btn btn-sm">Make Admin</button>
-            <button className="btn btn-sm">Make User</button>
+            <button
+              disabled={role === "admin"}
+              className="btn btn-ghost  btn-sm hover:text-blue-700"
+            >
+              Make Admin
+            </button>
+            <button
+              disabled={role === "admin"}
+              className="btn btn-ghost btn-sm hover:text-green-700"
+            >
+              Make User
+            </button>
           </td>
         </tr>
       )}
