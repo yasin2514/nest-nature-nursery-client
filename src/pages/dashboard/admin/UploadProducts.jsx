@@ -145,7 +145,7 @@ const UploadProducts = () => {
             register={register("photos")}
             errors={errors}
           >
-            <Input multiple />
+            <Input  />
           </FormElement>
           <FormElement
             type="text"

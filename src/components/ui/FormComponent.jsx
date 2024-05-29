@@ -1,5 +1,4 @@
 import { createContext, useContext } from "react";
-import { FaCircleXmark } from "react-icons/fa6";
 
 const FormContext = createContext(null);
 const FormElement = ({
@@ -10,7 +9,6 @@ const FormElement = ({
   children,
   ...rest
 }) => {
-  const { cross } = rest || {};
   const { name } = register || {};
   const providerValues = {
     label,
@@ -29,9 +27,6 @@ const FormElement = ({
         {children}
         {errors[name] && (
           <span className="text-red-500 text-xs">{errors[name]?.message}</span>
-        )}
-        {cross === "true" && (
-          <FaCircleXmark className="absolute top-12 right-3 z-10 text-red-500 text-lg cursor-pointer" />
         )}
       </div>
     </FormContext.Provider>
