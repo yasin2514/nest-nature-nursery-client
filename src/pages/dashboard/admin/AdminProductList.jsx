@@ -41,7 +41,7 @@ const AdminProductList = () => {
   const [products] = useGetProducts();
   return (
     <div>
-      <BreadCum text1={"Admin Dashboard"} text2={"Product List"} />
+      <BreadCum text1={"Admin Dashboard"} text2={"Total Product List"} />
       <TableWithHeader
         products={products}
         tHeadData={tHeadData}

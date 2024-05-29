@@ -1,6 +1,8 @@
 import BreadCum from "../../../components/dashboard/BreadCum";
 import useGetProducts from "../../../hooks/useGetProducts";
 import TableWithHeader from "../../../components/dashboard/TableWithHeader";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const MyProductListAdmin = () => {
   const tHeadData = [
@@ -35,11 +37,20 @@ const MyProductListAdmin = () => {
   ];
 
   const [products] = useGetProducts();
+  const { user } = useContext(AuthContext);
+  console.log({ user });
 
   return (
     <div>
-      <BreadCum text1={"Admin Dashboard"} text2={"My Product List"} />
-      <TableWithHeader products={products} tHeadData={tHeadData} show={"myList"}/>
+      <BreadCum
+        text1={"Admin Dashboard"}
+        text2={`${user?.displayName} Product List `}
+      />
+      <TableWithHeader
+        products={products}
+        tHeadData={tHeadData}
+        show={"myList"}
+      />
     </div>
   );
 };
