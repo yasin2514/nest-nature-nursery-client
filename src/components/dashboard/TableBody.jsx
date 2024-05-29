@@ -20,7 +20,7 @@ const TableBody = ({ product, index, show }) => {
       {show === "adminList" && <td>{name}</td>}
       <td>
         <div className=" flex gap-3 ">
-          <Link to={`/products/update/${_id}`}>
+          <Link to={`/dashboard/products/update/${_id}`}>
             <FaEdit className="text-2xl text-green-700 hover:text-green-500" />
           </Link>
           <button className="p-0 border-0 ">

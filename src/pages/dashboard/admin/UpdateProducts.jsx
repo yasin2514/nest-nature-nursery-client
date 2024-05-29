@@ -4,8 +4,12 @@ import FormElement, {
   Input,
   Textarea,
 } from "../../../components/ui/FormComponent";
+import { useLoaderData } from "react-router-dom";
 
+BreadCum
 const UpdateProduct = () => {
+  const data = useLoaderData();
+  console.log({ data });
   const {
     handleSubmit,
     register,
