@@ -8,9 +8,12 @@ import { useContext } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../providers/AuthProvider";
+import useGetProducts from "../../../hooks/useGetProducts";
 
 const UploadProducts = () => {
   const { user } = useContext(AuthContext);
+  const [, , refetch] = useGetProducts();
+
   const {
     handleSubmit,
     register,
@@ -60,6 +63,7 @@ const UploadProducts = () => {
     axiosSecure.post("addProduct", addProduct).then((response) => {
       if (response.data.insertedId) {
         reset();
+        refetch();
         Swal.fire({
           icon: "success",
           title: "Product added successfully",

@@ -4,12 +4,13 @@ import FormElement, {
   Input,
   Textarea,
 } from "../../../components/ui/FormComponent";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
 BreadCum;
 const UpdateProduct = () => {
+  const navigate = useNavigate();
   const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
   const axiosSecure = useAxiosSecure();
@@ -81,6 +82,7 @@ const UpdateProduct = () => {
       .then((response) => {
         if (response.data.modifiedCount > 0) {
           reset();
+          navigate("/dashboard/products/products-list");
           Swal.fire({
             icon: "success",
             title: "Updated successfully",
