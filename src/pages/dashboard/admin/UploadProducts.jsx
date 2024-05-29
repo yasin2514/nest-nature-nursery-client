@@ -99,7 +99,8 @@ const UploadProducts = () => {
             <Input />
           </FormElement>
           <FormElement
-            type="text"
+            type="number"
+            step="any"
             label={"Current Price"}
             className={"col-span-6"}
             register={register("price")}
@@ -108,7 +109,8 @@ const UploadProducts = () => {
             <Input />
           </FormElement>
           <FormElement
-            type="text"
+            type="number"
+            step="any"
             label={"Previous Price"}
             className={"col-span-6"}
             register={register("previousPrice")}
@@ -117,7 +119,7 @@ const UploadProducts = () => {
             <Input />
           </FormElement>
           <FormElement
-            type="text"
+            type="number"
             label={"Quantity"}
             className={"col-span-6"}
             register={register("quantity")}
@@ -126,7 +128,8 @@ const UploadProducts = () => {
             <Input />
           </FormElement>
           <FormElement
-            type="text"
+            type="number"
+            step="any"
             label={"Rating"}
             className={"col-span-6"}
             register={register("rating")}
