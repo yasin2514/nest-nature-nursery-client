@@ -1,5 +1,6 @@
 import BreadCum from "../../../components/dashboard/BreadCum";
 import TableComponent from "../../../components/dashboard/TableComponent";
+import useGetProducts from "../../../hooks/useGetProducts";
 
 const AdminProductList = () => {
   const tHeadData = [
@@ -36,12 +37,14 @@ const AdminProductList = () => {
       field: "Actions",
     },
   ];
+  const [products] = useGetProducts();
+
   return (
     <div>
       <BreadCum text1={"Admin Dashboard"} text2={"Product List"} />
 
       <div className="bg-white p-5 my-5 rounded-lg">
-        <TableComponent tHeadData={tHeadData} data={[]} />
+        <TableComponent tHeadData={tHeadData} data={products} />
       </div>
     </div>
   );

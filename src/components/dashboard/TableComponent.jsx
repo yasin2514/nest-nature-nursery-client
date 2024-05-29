@@ -11,11 +11,9 @@ const TableComponent = ({ tHeadData, data }) => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          {data?.map((item, index) => {
-            return <TableBody key={index} product={item} index={index} />;
-          })}
-        </tr>
+        {data?.map((item, index) => {
+          return <TableBody key={index} product={item} index={index} />;
+        })}
       </tbody>
     </table>
   );
