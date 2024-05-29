@@ -3,6 +3,7 @@ import useGetProducts from "../../../hooks/useGetProducts";
 import TableWithHeader from "../../../components/dashboard/TableWithHeader";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import useGetDataUploadedByAdmin from "../../../hooks/useGetDataUploadedByAdmin";
 
 const MyProductListAdmin = () => {
   const tHeadData = [
@@ -36,7 +37,7 @@ const MyProductListAdmin = () => {
     },
   ];
 
-  const [products] = useGetProducts();
+  const [adminProducts] = useGetDataUploadedByAdmin();
   const { user } = useContext(AuthContext);
   return (
     <div>
@@ -45,7 +46,7 @@ const MyProductListAdmin = () => {
         text2={`${user?.displayName} Product List `}
       />
       <TableWithHeader
-        data={products}
+        data={adminProducts}
         tHeadData={tHeadData}
         show={"myList"}
       />
