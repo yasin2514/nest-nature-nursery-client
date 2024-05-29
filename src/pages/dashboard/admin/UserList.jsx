@@ -30,7 +30,6 @@ const UserList = () => {
     },
   ];
   const [users] = useGetUser();
-  console.log({ users });
   return (
     <div>
       <BreadCum text1={"Admin Dashboard"} text2={"User List"} />

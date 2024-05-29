@@ -5,6 +5,7 @@ const TableHeaderComponent = ({
   setSearchCategory,
   uniqueCategories,
   data,
+  show,
 }) => {
   return (
     <div className="flex justify-between items-center mb-5">
@@ -21,7 +22,8 @@ const TableHeaderComponent = ({
         </select>
       </div>
       <div className="text-xl text-green-500 font-semibold">
-        Total Plants: {data?.length}
+        {show === "userList" ? " Total Users: " : " Total Plants: "}
+        {data?.length}
       </div>
       <div className="relative">
         <input
