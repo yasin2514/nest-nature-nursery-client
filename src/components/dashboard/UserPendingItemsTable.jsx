@@ -24,7 +24,7 @@ const UserPendingItemsTable = ({ data, index }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.delete(`deleteCart/${id}`).then((response) => {
-          console.log({response});
+          console.log({ response });
           if (response.data.result.deletedCount > 0) {
             refetchAll();
             refetch();
@@ -45,7 +45,14 @@ const UserPendingItemsTable = ({ data, index }) => {
         {name} <span className="text-green-600">{edited && "(Updated)"}</span>
       </td>
       <td className="text-center">{formatNumber(price)}</td>
-      <td className="text-center">{formatNumber(quantity)}</td>
+      <td className="text-center">
+        <div className="space-x-4">
+          <button className="btn btn-sm text-red-500">-</button>
+          <span className="w-24">{formatNumber(quantity)}</span>
+          <button className="btn btn-sm text-green-500">+</button>
+        </div>
+      </td>
+      <td className="text-center">{formatNumber(price)}</td>
 
       <td className="text-center  w-[20%] m-0 p-0 space-x-3">
         <button className="btn btn-sm btn-success text-white hover:text-gray-50">

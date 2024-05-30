@@ -27,6 +27,10 @@ const PendingItems = () => {
    
      {
        id: 6,
+       field: "Total Amount",
+     },
+     {
+       id: 7,
        field: "Actions",
      },
    ];
