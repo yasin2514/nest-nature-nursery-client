@@ -32,7 +32,6 @@ const PendingOrders = () => {
   ];
 
   const [pendingCart] = useGetCartProducts();
-  console.log({ pendingCart });
   return (
     <div>
       <BreadCum text1={"Admin Dashboard"} text2={"Pending Orders"} />
