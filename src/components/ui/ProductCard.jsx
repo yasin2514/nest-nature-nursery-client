@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useNumberFormatter from "../../hooks/useNumberFormatter";
 import useRating from "../../hooks/useRating";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const ProductCard = ({ data }) => {
+  const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const { _id, name, price, photos, rating, previousPrice } = data || {};
 
@@ -16,12 +19,21 @@ const ProductCard = ({ data }) => {
     const saveItem = {
       name: item.name,
       price: item.price,
-      photo: item.photos,
+      photos: item.photos,
       quantity: 1,
-      uploadByName: item.uploadByName,
-      uploadByEmail: item.uploadByEmail,
+      userName: user?.displayName,
+      userEmail: user?.email,
     };
-    console.log({ saveItem });
+    axiosSecure.post("addCart", saveItem).then((res) => {
+      if (res.data) {
+        Swal.fire({
+          icon: "success",
+          title: "Add to Cart Successfully",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+    });
   };
   return (
     <div
