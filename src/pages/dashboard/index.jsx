@@ -2,7 +2,7 @@ import AdminDashboard from "./admin";
 import UserDashboard from "./user";
 
 const DashboardHome = () => {
-      const admin = false;
+      const admin = true;
       const user = true;
     return (
         <>
