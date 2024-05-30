@@ -51,7 +51,7 @@ const ImageZoom = ({ src, alt }) => {
         className={`object-contain transition-transform duration-300 ${
           isZoomed ? "transform scale-150" : "transform scale-100"
         }`}
-        style={{ width: "100%", height: "auto", maxHeight: "450px" }} // Adjust the maxHeight as needed
+        style={{ width: "100%",  height: "400px" }} // Adjust the maxHeight as needed
       />
     </div>
   );
