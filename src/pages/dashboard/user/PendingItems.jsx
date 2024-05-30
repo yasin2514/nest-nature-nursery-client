@@ -24,12 +24,9 @@ const PendingItems = () => {
        id: 5,
        field: "Quantity",
      },
+   
      {
        id: 6,
-       field: "Payment",
-     },
-     {
-       id: 7,
        field: "Actions",
      },
    ];
