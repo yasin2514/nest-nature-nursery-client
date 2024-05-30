@@ -6,18 +6,17 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useGetProducts from "../../hooks/useGetProducts";
 import useGetDataUploadedByAdmin from "../../hooks/useGetDataUploadedByAdmin";
+import UserPendingItemsTable from "./UserPendingItemsTable";
+import UserListAdminTable from "./UserListAdminTable";
 
 const TableBody = ({ data, index, show }) => {
   const {
     name,
     price,
     photos,
-    photo,
     _id,
     category,
     quantity,
-    email,
-    role,
     uploadByEmail,
     edited,
   } = data || {};
@@ -90,40 +89,9 @@ const TableBody = ({ data, index, show }) => {
           )}
         </tr>
       )}
-      {show === "userList" && (
-        <tr>
-          <td className="text-center">{index + 1}</td>
-          <td className="flex items-center justify-center">
-            <img
-              src={photo}
-              alt="plant image"
-              className="size-12 rounded-full shadow shadow-green-900"
-            />
-          </td>
-          <td className="text-center">{name}</td>
-          <td className="text-center">{email}</td>
-          <td
-            className={`text-center uppercase font-semibold ${
-              role === "user" ? "text-green-600" : "text-blue-600 "
-            }`}
-          >
-            {role}
-          </td>
-          <td className="text-center space-x-3">
-            <button
-              disabled={role === "admin"}
-              className="btn btn-ghost  btn-sm hover:text-blue-700"
-            >
-              Make Admin
-            </button>
-            <button
-              disabled={role === "admin"}
-              className="btn btn-ghost btn-sm hover:text-green-700"
-            >
-              Make User
-            </button>
-          </td>
-        </tr>
+      {show === "userList" && <UserListAdminTable data={data} index={index} />}
+      {show === "userPendingItems" && (
+        <UserPendingItemsTable data={data} index={index} />
       )}
     </>
   );

@@ -18,15 +18,19 @@ const PendingItems = () => {
      },
      {
        id: 4,
-       field: "Category",
-     },
-     {
-       id: 5,
        field: "Price",
      },
      {
-       id: 6,
+       id: 5,
        field: "Quantity",
+     },
+     {
+       id: 6,
+       field: "Payment",
+     },
+     {
+       id: 7,
+       field: "Actions",
      },
    ];
   const [userPendingItems] = useGetCartDataByUser();
@@ -37,7 +41,7 @@ const PendingItems = () => {
         <TableWithHeader
           data={userPendingItems}
           tHeadData={tHeadData}
-          show={"pendingOrders"}
+          show={"userPendingItems"}
         />
       </div>
     );
