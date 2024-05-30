@@ -20,9 +20,11 @@ const ProductCard = ({ data }) => {
       name: item.name,
       price: item.price,
       photos: item.photos,
+      category: item.category,
       quantity: 1,
       userName: user?.displayName,
       userEmail: user?.email,
+      uploadByEmail: item.uploadByEmail,
     };
     axiosSecure.post("addCart", saveItem).then((res) => {
       if (res.data) {

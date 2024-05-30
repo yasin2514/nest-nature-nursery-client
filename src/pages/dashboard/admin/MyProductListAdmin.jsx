@@ -1,5 +1,4 @@
 import BreadCum from "../../../components/dashboard/BreadCum";
-import useGetProducts from "../../../hooks/useGetProducts";
 import TableWithHeader from "../../../components/dashboard/TableWithHeader";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";

@@ -51,7 +51,9 @@ const TableBody = ({ data, index, show }) => {
 
   return (
     <>
-      {(show === "adminList" || show === "myList") && (
+      {(show === "adminList" ||
+        show === "myList" ||
+        show === "pendingOrders") && (
         <tr>
           <td className="text-center">{index + 1}</td>
           <td className="flex items-center justify-center">
@@ -71,19 +73,21 @@ const TableBody = ({ data, index, show }) => {
           {show === "adminList" && (
             <td className="text-center max-w-[17ch]">{uploadByEmail}</td>
           )}
-          <td className="text-center">
-            <div className="flex items-center justify-center gap-3 ">
-              <Link to={`/dashboard/products/update/${_id}`}>
-                <FaEdit className="text-2xl text-green-700 hover:text-green-500" />
-              </Link>
-              <button
-                className="p-0 border-0"
-                onClick={() => handleDelete(_id)}
-              >
-                <AiFillDelete className="text-2xl text-red-700 hover:text-red-500" />
-              </button>
-            </div>
-          </td>
+          {(show === "adminList" || show === "myList") && (
+            <td className="text-center">
+              <div className="flex items-center justify-center gap-3 ">
+                <Link to={`/dashboard/products/update/${_id}`}>
+                  <FaEdit className="text-2xl text-green-700 hover:text-green-500" />
+                </Link>
+                <button
+                  className="p-0 border-0"
+                  onClick={() => handleDelete(_id)}
+                >
+                  <AiFillDelete className="text-2xl text-red-700 hover:text-red-500" />
+                </button>
+              </div>
+            </td>
+          )}
         </tr>
       )}
       {show === "userList" && (
