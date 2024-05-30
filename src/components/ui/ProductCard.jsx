@@ -2,14 +2,27 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import useNumberFormatter from "../../hooks/useNumberFormatter";
 import useRating from "../../hooks/useRating";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ProductCard = ({ data }) => {
+  const axiosSecure = useAxiosSecure();
   const { _id, name, price, photos, rating, previousPrice } = data || {};
 
   const [isHovered, setIsHovered] = useState(false);
   const formatNumber = useNumberFormatter();
   const renderRating = useRating();
 
+  const handleAddToCart = (item) => {
+    const saveItem = {
+      name: item.name,
+      price: item.price,
+      photo: item.photos,
+      quantity: 1,
+      uploadByName: item.uploadByName,
+      uploadByEmail: item.uploadByEmail,
+    };
+    console.log({ saveItem });
+  };
   return (
     <div
       className="max-w-sm rounded overflow-hidden outline outline-[#01352c] relative"
@@ -51,7 +64,12 @@ const ProductCard = ({ data }) => {
         </div>
         {isHovered && (
           <div className="flex justify-between">
-            <button className="button-green rounded-full">Add Cart</button>
+            <button
+              onClick={() => handleAddToCart(data)}
+              className="button-green rounded-full"
+            >
+              Add Cart
+            </button>
             <Link to={`/plant-details/${_id}`}>
               {" "}
               <button className="button-red rounded-full">See Details</button>
