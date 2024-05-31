@@ -1,19 +1,42 @@
-
-const PaymentOption = ({data}) => {
-    return (
-      <div className="bg-white p-5 mt-5 rounded-lg h-[calc(100vh-177px)] overflow-auto">
-        <div className="flex justify-between text-xl font-semibold text-gray-700">
-            <span>Total Item: </span>
-            <span>Total Quantity:</span>
-            <span>Total Amount: $ </span>
-        </div>
-        <div className="mt-10 flex justify-between">
-          <div className="border p-5 rounded-md shadow-md">Stripe Payment</div>
-          <div>Stripe Payment</div>
-          <div>Stripe Payment</div>
-        </div>
+import sslImg from "../../assets/ssl.png";
+import codImg from "../../assets/cod.png";
+import stripeImg from "../../assets/stripe.png";
+import { Link } from "react-router-dom";
+const PaymentOption = ({ data }) => {
+  const paymentOption = [
+    {
+      id: 1,
+      name: "Stripe",
+      img: stripeImg,
+      path: "/make-single-payment/2",
+    },
+    {
+      id: 2,
+      name: "Cash on Delivery",
+      img: codImg,
+      path: "/make-single-payment/3",
+    },
+    {
+      id: 3,
+      name: "SSL Commerz",
+      img: sslImg,
+      path: "/make-single-payment/1",
+    },
+  ];
+  return (
+    <div className="bg-white p-5 mt-5 rounded-lg h-[calc(100vh-177px)] overflow-auto ">
+      <div className="flex justify-end text-2xl font-semibold text-green-700">
+        <span>Total Amount: $ </span>
       </div>
-    );
+      <div className="flex gap-16 justify-between h-[30vh] items-end">
+        {paymentOption.map((item,index) => (
+          <Link to={item?.path} key={index} className="border w-full hover:outline hover:outline-lime-800 h-32 p-5 rounded-md shadow-md ">
+            <img src={item.img} alt={item.name} className="  h-full w-full object-contain" />
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default PaymentOption;
