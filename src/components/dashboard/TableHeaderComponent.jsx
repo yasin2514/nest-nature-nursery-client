@@ -25,16 +25,23 @@ const TableHeaderComponent = ({
         {show === "userList" ? " Total Users: " : " Total Plants: "}
         {data?.length}
       </div>
-      <div className="relative">
-        <input
-          type="text"
-          className="custom-input "
-          name="search"
-          id="search"
-          placeholder="Search by name"
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-        <IoMdSearch className="absolute right-2 text-gray-500 top-4 " />
+      <div className="flex items-center gap-5">
+        {show === "userPendingItems" && (
+          <div>
+            <button className="button-payment"> Payment ALL</button>
+          </div>
+        )}
+        <div className="relative">
+          <input
+            type="text"
+            className="custom-input "
+            name="search"
+            id="search"
+            placeholder="Search by name"
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          <IoMdSearch className="absolute right-2 text-gray-500 top-4 " />
+        </div>
       </div>
     </div>
   );

@@ -3,10 +3,16 @@
     @apply text-white  border border-[#0d4d1b]  hover:bg-[#ffffff] hover:text-[#0d4d1b]  px-5 py-[6px] text-base font-medium rounded-md;
     @apply active:bg-white active:text-[#0d4d1b];
   }
-  .button-green{
-    @apply bg-green-500 hover:bg-green-700 hover:text-white font-bold py-2 px-4  border-0
+  .button-green {
+    @apply bg-green-500 hover:bg-green-700 hover:text-white font-bold py-2 px-4  border-0;
   }
-  .button-red{
-    @apply button-green bg-red-500 hover:bg-red-600
+  .button-red {
+    @apply button-green bg-red-500 hover:bg-red-600;
+  }
+  .button-payment {
+    @apply btn btn-sm btn-success text-white hover:text-gray-50;
+  }
+  .button-remove{
+    @apply btn btn-sm btn-error text-white hover:text-gray-50
   }
 }

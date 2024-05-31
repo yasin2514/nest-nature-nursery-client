@@ -4,7 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useGetCartDataByUser from "../../hooks/useGetCartDataByUser";
 import useGetCartProducts from "../../hooks/useGetCartProducts";
 import { useState } from "react";
-import { FaMinus, FaPlus } from "react-icons/fa";
+import { FiMinus, FiPlus } from "react-icons/fi";
 
 const UserPendingItemsTable = ({ data, index }) => {
   const formatNumber = useNumberFormatter();
@@ -62,26 +62,26 @@ const UserPendingItemsTable = ({ data, index }) => {
             disabled={count === 1}
             className="btn btn-sm text-red-500 hover:text-red-600"
           >
-            <FaMinus />
+            <FiMinus />
           </button>
           <span className="w-16 ">{formatNumber(count)}</span>
           <button
             onClick={handleIncrementCount}
             className="btn btn-sm text-green-500 hover:text-green-600"
           >
-            <FaPlus />
+            <FiPlus />
           </button>
         </div>
       </td>
       <td className="text-center">$ {formatNumber(price * count)}</td>
 
       <td className="text-center  w-[20%] m-0 p-0 space-x-3">
-        <button className="btn btn-sm btn-success text-white hover:text-gray-50">
+        <button className="button-payment">
           Make Payment
         </button>
         <button
           onClick={() => handleDelete(_id)}
-          className="btn btn-sm btn-error text-white hover:text-gray-50"
+          className="button-remove"
         >
           Remove
         </button>
