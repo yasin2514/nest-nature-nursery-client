@@ -1,9 +1,10 @@
+import BreadCum from "./BreadCum";
 
 const StripePayment = () => {
     return (
-        <div>
-            stripe payment
-        </div>
+      <div>
+        <BreadCum text1={"User Dashboard"} text2={"Stripe Payment"} />
+      </div>
     );
 };
 

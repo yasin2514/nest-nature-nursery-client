@@ -1,9 +1,10 @@
+import BreadCum from "./BreadCum";
 
 const SSLCommercePayment = () => {
     return (
-        <div>
-            
-        </div>
+      <div>
+        <BreadCum text1={"User Dashboard"} text2={"SSL Payment"} />
+      </div>
     );
 };
 

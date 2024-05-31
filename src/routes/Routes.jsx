@@ -25,6 +25,9 @@ import UpdateProducts from "../pages/dashboard/admin/UpdateProducts";
 import CodPayments from "../pages/dashboard/user/CodPayments";
 import MakeSinglePayment from "../pages/dashboard/user/MakeSinglePayment";
 import MakeAllPayment from "../pages/dashboard/user/MakeAllPayment";
+import StripePayment from "../components/dashboard/StripePayment";
+import CODPayment from "../components/dashboard/CODPayment";
+import SSLCommercePayment from "../components/dashboard/SSLCommercePayment";
 
 const router = createBrowserRouter([
   {
@@ -140,6 +143,18 @@ const router = createBrowserRouter([
         path: "make-all-payment",
         element: <MakeAllPayment />,
       },
+      {
+        path: "payment-gateway/stripe",
+        element: <StripePayment/>,
+      },
+      {
+        path: "payment-gateway/cod",
+        element: <CODPayment/>,
+      },
+      {
+        path: "payment-gateway/ssl",
+        element: <SSLCommercePayment/>,
+      }
     ],
   },
 ]);

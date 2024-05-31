@@ -3,26 +3,25 @@ import codImg from "../../assets/cod.png";
 import stripeImg from "../../assets/stripe.png";
 import { Link } from "react-router-dom";
 import useNumberFormatter from "../../hooks/useNumberFormatter";
-import { useEffect, useState } from "react";
 const PaymentOption = ({ data }) => {
   const paymentOption = [
     {
       id: 1,
       name: "Stripe",
       img: stripeImg,
-      path: "/make-single-payment/2",
+      path: "/dashboard/payment-gateway/stripe",
     },
     {
       id: 2,
       name: "Cash on Delivery",
       img: codImg,
-      path: "/make-single-payment/3",
+      path: "/dashboard/payment-gateway/cod",
     },
     {
       id: 3,
       name: "SSL Commerz",
       img: sslImg,
-      path: "/make-single-payment/1",
+      path: "/dashboard/payment-gateway/ssl",
     },
   ];
 
