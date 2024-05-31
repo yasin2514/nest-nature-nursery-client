@@ -4,10 +4,11 @@ import PaymentOption from "../../../components/dashboard/PaymentOption";
 
 const MakeSinglePayment = () => {
   const item = useLoaderData();
+  const items = [item]
   return (
     <div>
       <BreadCum text1={"User Dashboard"} text2={"Make Payment"} />
-      <PaymentOption data={item} />
+      <PaymentOption data={items} />
     </div>
   );
 };
