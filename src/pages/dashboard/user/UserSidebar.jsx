@@ -11,7 +11,7 @@ const UserSidebar = () => {
       name: "My Cart",
       child: [
         {
-          name: "Pending Items",
+          name: "Cart Items",
           to: "/dashboard/cart/pending-items",
         },
         {
@@ -22,7 +22,16 @@ const UserSidebar = () => {
     },
     {
       name: "Payment History",
-      to: "/dashboard/payment-history",
+      child:[
+        {
+          name: "Online Payments",
+          to: "/dashboard/payment-history/online",
+        },
+        {
+          name: "COD Payments",
+          to: "/dashboard/payment-history/cod", 
+        }
+      ]
     },
   ];
 

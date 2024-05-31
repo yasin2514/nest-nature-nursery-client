@@ -11,7 +11,7 @@ const UserPendingItemsTable = ({ data, index }) => {
   const axiosSecure = useAxiosSecure();
   const [, , refetch] = useGetCartDataByUser();
   const [, , refetchAll] = useGetCartProducts();
-  const { _id, name, price, photos, quantity, edited, totalAmount } =
+  const { _id, name, price, photos, quantity, edited } =
     data || {};
   const [count, setCount] = useState(quantity);
 

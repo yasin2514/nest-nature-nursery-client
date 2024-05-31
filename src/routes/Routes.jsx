@@ -22,6 +22,7 @@ import PendingItems from "../pages/dashboard/user/PendingItems";
 import PurchasedItems from "../pages/dashboard/user/PurchasedItems";
 import PaymentHistory from "../pages/dashboard/user/PaymentHistory";
 import UpdateProducts from "../pages/dashboard/admin/UpdateProducts";
+import CodPayments from "../pages/dashboard/user/CodPayments";
 
 const router = createBrowserRouter([
   {
@@ -120,8 +121,12 @@ const router = createBrowserRouter([
         element: <PurchasedItems />,
       },
       {
-        path: "payment-history",
+        path: "payment-history/online",
         element: <PaymentHistory />,
+      },
+      {
+        path: "payment-history/cod",
+        element: <CodPayments />,
       },
     ],
   },
