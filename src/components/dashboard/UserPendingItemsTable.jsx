@@ -3,6 +3,8 @@ import useNumberFormatter from "../../hooks/useNumberFormatter";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useGetCartDataByUser from "../../hooks/useGetCartDataByUser";
 import useGetCartProducts from "../../hooks/useGetCartProducts";
+import { useState } from "react";
+import { FaMinus, FaPlus } from "react-icons/fa";
 
 const UserPendingItemsTable = ({ data, index }) => {
   const formatNumber = useNumberFormatter();
@@ -10,6 +12,14 @@ const UserPendingItemsTable = ({ data, index }) => {
   const [, , refetch] = useGetCartDataByUser();
   const [, , refetchAll] = useGetCartProducts();
   const { _id, name, price, photos, quantity, edited } = data || {};
+  const [count, setCount] = useState(quantity);
+
+  const handleIncrementCount = () => {
+    setCount((pre) => pre + 1);
+  };
+  const handleDecrementCount = () => {
+    if (count > 1) setCount((pre) => pre - 1);
+  };
 
   // delete cart product
   const handleDelete = (id) => {
@@ -44,15 +54,26 @@ const UserPendingItemsTable = ({ data, index }) => {
       <td className="text-center">
         {name} <span className="text-green-600">{edited && "(Updated)"}</span>
       </td>
-      <td className="text-center">{formatNumber(price)}</td>
-      <td className="text-center">
-        <div className="space-x-4">
-          <button className="btn btn-sm text-red-500">-</button>
-          <span className="w-24">{formatNumber(quantity)}</span>
-          <button className="btn btn-sm text-green-500">+</button>
+      <td className="text-center">$ {formatNumber(price)}</td>
+      <td className="w-[10%] text-center">
+        <div className="flex justify-center items-center">
+          <button
+            onClick={handleDecrementCount}
+            disabled={count === 1}
+            className="btn btn-sm text-red-500 hover:text-red-600"
+          >
+            <FaMinus />
+          </button>
+          <span className="w-16 ">{formatNumber(count)}</span>
+          <button
+            onClick={handleIncrementCount}
+            className="btn btn-sm text-green-500 hover:text-green-600"
+          >
+            <FaPlus />
+          </button>
         </div>
       </td>
-      <td className="text-center">{formatNumber(price)}</td>
+      <td className="text-center">$ {formatNumber(price * count)}</td>
 
       <td className="text-center  w-[20%] m-0 p-0 space-x-3">
         <button className="btn btn-sm btn-success text-white hover:text-gray-50">
