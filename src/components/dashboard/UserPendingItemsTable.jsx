@@ -11,7 +11,8 @@ const UserPendingItemsTable = ({ data, index }) => {
   const axiosSecure = useAxiosSecure();
   const [, , refetch] = useGetCartDataByUser();
   const [, , refetchAll] = useGetCartProducts();
-  const { _id, name, price, photos, quantity, edited } = data || {};
+  const { _id, name, price, photos, quantity, edited, totalAmount } =
+    data || {};
   const [count, setCount] = useState(quantity);
 
   const handleIncrementCount = () => {
@@ -45,6 +46,21 @@ const UserPendingItemsTable = ({ data, index }) => {
     });
   };
 
+  // update cart product
+  const handleUpdate = (id, countValue) => {
+    axiosSecure
+      .patch(`updateCartItem/${id}`, {
+        quantity: countValue,
+        totalAmount: countValue * price,
+      })
+      .then((response) => {
+        if (response.data.modifiedCount > 0) {
+          refetchAll();
+          refetch();
+        }
+      });
+  };
+
   return (
     <tr>
       <td className="text-center">{index + 1}</td>
@@ -58,7 +74,10 @@ const UserPendingItemsTable = ({ data, index }) => {
       <td className="w-[10%] text-center">
         <div className="flex justify-center items-center">
           <button
-            onClick={handleDecrementCount}
+            onClick={() => {
+              handleDecrementCount();
+              handleUpdate(_id, count - 1);
+            }}
             disabled={count === 1}
             className="btn btn-sm text-red-500 hover:text-red-600"
           >
@@ -66,23 +85,21 @@ const UserPendingItemsTable = ({ data, index }) => {
           </button>
           <span className="w-16 ">{formatNumber(count)}</span>
           <button
-            onClick={handleIncrementCount}
+            onClick={() => {
+              handleIncrementCount();
+              handleUpdate(_id, count + 1);
+            }}
             className="btn btn-sm text-green-500 hover:text-green-600"
           >
             <FiPlus />
           </button>
         </div>
       </td>
-      <td className="text-center">$ {formatNumber(price * count)}</td>
+      <td className="text-center">$ {formatNumber(count * price)}</td>
 
       <td className="text-center  w-[20%] m-0 p-0 space-x-3">
-        <button className="button-payment">
-          Make Payment
-        </button>
-        <button
-          onClick={() => handleDelete(_id)}
-          className="button-remove"
-        >
+        <button className="button-payment">Make Payment</button>
+        <button onClick={() => handleDelete(_id)} className="button-remove">
           Remove
         </button>
       </td>

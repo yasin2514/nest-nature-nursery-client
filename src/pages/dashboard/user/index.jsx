@@ -10,7 +10,7 @@ const UserDashboard = () => {
   const formatNumber = useNumberFormatter();
 
   const totalPendingAmount = userPendingItems?.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+    (acc, item) => acc + item?.totalAmount,
     0
   );
 
