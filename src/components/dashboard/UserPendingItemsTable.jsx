@@ -5,6 +5,7 @@ import useGetCartDataByUser from "../../hooks/useGetCartDataByUser";
 import useGetCartProducts from "../../hooks/useGetCartProducts";
 import { useState } from "react";
 import { FiMinus, FiPlus } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const UserPendingItemsTable = ({ data, index }) => {
   const formatNumber = useNumberFormatter();
@@ -98,7 +99,12 @@ const UserPendingItemsTable = ({ data, index }) => {
       <td className="text-center">$ {formatNumber(count * price)}</td>
 
       <td className="text-center  w-[20%] m-0 p-0 space-x-3">
-        <button className="button-payment">Make Payment</button>
+        <Link
+          to={`/dashboard/make-single-payment/${_id}`}
+          className="button-payment"
+        >
+          Make Payment
+        </Link>
         <button onClick={() => handleDelete(_id)} className="button-remove">
           Remove
         </button>

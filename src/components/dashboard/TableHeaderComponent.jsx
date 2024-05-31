@@ -1,4 +1,5 @@
 import { IoMdSearch } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const TableHeaderComponent = ({
   setSearchText,
@@ -28,7 +29,10 @@ const TableHeaderComponent = ({
       <div className="flex items-center gap-5">
         {show === "userPendingItems" && (
           <div>
-            <button className="button-payment"> Payment ALL</button>
+            <Link to={"/dashboard/make-all-payment"} className="button-payment">
+              {" "}
+              Payment ALL
+            </Link>
           </div>
         )}
         <div className="relative">

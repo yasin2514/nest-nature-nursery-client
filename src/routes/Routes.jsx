@@ -23,6 +23,8 @@ import PurchasedItems from "../pages/dashboard/user/PurchasedItems";
 import PaymentHistory from "../pages/dashboard/user/PaymentHistory";
 import UpdateProducts from "../pages/dashboard/admin/UpdateProducts";
 import CodPayments from "../pages/dashboard/user/CodPayments";
+import MakeSinglePayment from "../pages/dashboard/user/MakeSinglePayment";
+import MakeAllPayment from "../pages/dashboard/user/MakeAllPayment";
 
 const router = createBrowserRouter([
   {
@@ -127,6 +129,16 @@ const router = createBrowserRouter([
       {
         path: "payment-history/cod",
         element: <CodPayments />,
+      },
+      {
+        path: "make-single-payment/:id",
+        element: <MakeSinglePayment />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/cartItem/${params?.id}`),
+      },
+      {
+        path: "make-all-payment",
+        element: <MakeAllPayment />,
       },
     ],
   },
