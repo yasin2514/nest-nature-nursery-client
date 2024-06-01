@@ -1,10 +1,15 @@
 import { useForm } from "react-hook-form";
 import BreadCum from "./BreadCum";
 import FormElement, { Input, Textarea } from "../ui/FormComponent";
+import useNumberFormatter from "../../hooks/useNumberFormatter";
 
 const CODPayment = ({ data }) => {
-  console.log(data); // Still useful for debugging or potential future use
-
+  const formatNumber = useNumberFormatter();
+  const totalPlants = data?.length;
+  const totalQuantity = data?.reduce((acc, curr) => acc + curr?.quantity, 0);
+  const totalAmount = data?.reduce((acc, curr) => acc + curr.totalAmount, 0);
+  const deliveryCharge = 60;
+  const totalAmountWithDelivery = totalAmount + deliveryCharge;
   const {
     handleSubmit,
     register,
@@ -99,12 +104,14 @@ const CODPayment = ({ data }) => {
                   </p>
                 </div>
                 <div className="col-span-4 text-gray-500 font-semibold text-lg  space-y-3 text-end">
-                  <p>122</p>
-                  <p>4</p>
-                  <p>$ </p>
-                  <p>$ </p>
-                  <p>$ </p>
-                  <p className="text-red-500 font-semibold text-lg">$ </p>
+                  <p>{formatNumber(totalPlants || 0)}</p>
+                  <p>{formatNumber(totalQuantity || 0)}</p>
+                  <p>${formatNumber(totalAmount || 0)}</p>
+                  <p>${formatNumber(deliveryCharge)} </p>
+                  <p>${formatNumber(totalAmountWithDelivery || 0)}</p>
+                  <p className="text-red-500 font-semibold text-lg">
+                    ${formatNumber(totalAmountWithDelivery || 0)}
+                  </p>
                 </div>
               </div>
               <div className="flex justify-end gap-5 mt-auto ">
