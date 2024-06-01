@@ -74,6 +74,8 @@ const CODPayment = ({ data: items, isDelete }) => {
         price: item.price,
         category: item.category,
         totalAmount: item.totalAmount,
+        userName: user?.displayName,
+        userEmail: user?.email,
         uploadByEmail: item.uploadByEmail,
         photos: item.photos,
         name: item.name,
