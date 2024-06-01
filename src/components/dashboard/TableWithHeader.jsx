@@ -21,9 +21,9 @@ const TableWithHeader = ({ tHeadData, data, show }) => {
 
   // Filter products based on search text and selected category
   const filteredProducts = useMemo(() => {
-    return data.filter((item) => {
+    return data?.filter((item) => {
       const matchesSearchText = item?.name
-        .toLowerCase()
+        ?.toLowerCase()
         .includes(searchText.toLowerCase());
       const matchesCategory =
         searchCategory === "Select Category" ||
@@ -36,7 +36,7 @@ const TableWithHeader = ({ tHeadData, data, show }) => {
 
   // Pass the props to the TableHeaderComponent
   const props = {
-    data: filteredProducts,
+    data: filteredProducts || [],
     setSearchText,
     setSearchCategory,
     uniqueCategories,

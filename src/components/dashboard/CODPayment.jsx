@@ -61,7 +61,7 @@ const CODPayment = ({ data: items, isDelete }) => {
       totalQuantity,
       totalAmount: totalAmountWithDelivery,
       deliveryCharge,
-      delivery: false,
+      delivery: "pending",
       paymentMethod: "COD",
       paymentAmount: 0,
       totalDue: totalAmountWithDelivery,
@@ -86,25 +86,24 @@ const CODPayment = ({ data: items, isDelete }) => {
           showConfirmButton: false,
           timer: 1000,
         });
-         isDelete === "all" &&
-           axiosSecure
-             .delete(`deleteAllCartItems/${user?.email}`)
-             .then((res) => {
-               if (res.data.deletedCount > 0) {
-                 refetch();
-                 refetchALL();
-               }
-             });
-         isDelete === "single" &&
-           axiosSecure.delete(`deleteCartItem/${items[0]?._id}`).then((res) => {
-             if (res.data.deletedCount > 0) {
-               refetch();
-               refetchALL();
-             }
-           });
+        isDelete === "all" &&
+          axiosSecure
+            .delete(`deleteAllCartItems/${user?.email}`)
+            .then((res) => {
+              if (res.data.deletedCount > 0) {
+                refetch();
+                refetchALL();
+              }
+            });
+        isDelete === "single" &&
+          axiosSecure.delete(`deleteCartItem/${items[0]?._id}`).then((res) => {
+            if (res.data.deletedCount > 0) {
+              refetch();
+              refetchALL();
+            }
+          });
       }
     });
-   
   };
   return (
     <div>
