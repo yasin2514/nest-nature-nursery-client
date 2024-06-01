@@ -3,7 +3,7 @@ import CODPayment from './CODPayment';
 
 const CODAllPayment = () => {
      const [items] = useGetCartDataByUser();
-     return <CODPayment data={items} />;
+     return <CODPayment data={items} isDelete={"all"} />;
 
 };
 

@@ -4,9 +4,13 @@ import FormElement, { Input, Textarea } from "../ui/FormComponent";
 import useNumberFormatter from "../../hooks/useNumberFormatter";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import { Link } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
-const CODPayment = ({ data: items }) => {
+const CODPayment = ({ data: items, isDelete }) => {
   const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
   const formatNumber = useNumberFormatter();
   const totalPlants = items?.length;
   const totalQuantity = items?.reduce((acc, curr) => acc + curr?.quantity, 0);
@@ -34,6 +38,14 @@ const CODPayment = ({ data: items }) => {
 
   const onSubmit = (data) => {
     const userInfo = {
+      phone: data?.phone,
+      address: {
+        city: data?.city,
+        district: data?.district,
+        country: data?.country,
+      },
+    };
+    const purchaseData = {
       userName: user?.displayName,
       userEmail: user?.email,
       userPhone: data?.phone,
@@ -41,16 +53,14 @@ const CODPayment = ({ data: items }) => {
       userDistrict: data?.district,
       userCountry: data?.country,
       userAdditionalInfo: data?.additionalInfo,
-    };
-    const paymentData = {
-      ...userInfo,
       totalPlants,
       totalQuantity,
-      totalAmount,
+      totalAmount: totalAmountWithDelivery,
       deliveryCharge,
-      totalAmountWithDelivery,
       delivery: false,
       paymentMethod: "COD",
+      paymentAmount: 0,
+      totalDue: totalAmountWithDelivery,
       paymentId: generateUniquePaymentId(),
       items: items?.map((item) => ({
         id: item._id,
@@ -61,9 +71,24 @@ const CODPayment = ({ data: items }) => {
         uploadByEmail: item.uploadByEmail,
       })),
     };
-    console.log(paymentData);
-  };
 
+    axiosSecure.patch(`updateUser/${user?.email}`, userInfo).then(() => {});
+    axiosSecure.post("addPurchase", purchaseData).then((response) => {
+      if (response.data.insertedId) {
+        reset();
+        Swal.fire({
+          icon: "success",
+          title: "Product added successfully",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+    });
+    isDelete === "all" &&
+      axiosSecure.delete(`deleteAllCartItems/${user?.email}`);
+    isDelete === "single" &&
+      axiosSecure.delete(`deleteCartItem/${items[0]?._id}`);
+  };
   return (
     <div>
       <BreadCum text1={"User Dashboard"} text2={"COD Payment"} />
@@ -158,9 +183,11 @@ const CODPayment = ({ data: items }) => {
                 </div>
               </div>
               <div className="flex justify-end gap-5 mt-auto ">
-                <button type="reset" className="button-red">
-                  Reset Order
-                </button>
+                <Link to={"/dashboard/cart/pending-items"}>
+                  <button type="reset" className="button-red">
+                    Cancel Order
+                  </button>
+                </Link>
                 <button type="submit" className="button-green">
                   Confirm Order
                 </button>

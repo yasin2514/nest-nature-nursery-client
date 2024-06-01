@@ -3,7 +3,7 @@ import CODPayment from './CODPayment';
 
 const CODSinglePayment = () => {
       const item = useLoaderData();
-      return <CODPayment data={[item]} />;
+      return <CODPayment data={[item]} isDelete={"single"} />;
 
 };
 
