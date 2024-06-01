@@ -2,12 +2,15 @@ import { useForm } from "react-hook-form";
 import BreadCum from "./BreadCum";
 import FormElement, { Input, Textarea } from "../ui/FormComponent";
 import useNumberFormatter from "../../hooks/useNumberFormatter";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
-const CODPayment = ({ data }) => {
+const CODPayment = ({ data: items }) => {
+  const { user } = useContext(AuthContext);
   const formatNumber = useNumberFormatter();
-  const totalPlants = data?.length;
-  const totalQuantity = data?.reduce((acc, curr) => acc + curr?.quantity, 0);
-  const totalAmount = data?.reduce((acc, curr) => acc + curr.totalAmount, 0);
+  const totalPlants = items?.length;
+  const totalQuantity = items?.reduce((acc, curr) => acc + curr?.quantity, 0);
+  const totalAmount = items?.reduce((acc, curr) => acc + curr.totalAmount, 0);
   const deliveryCharge = 60;
   const totalAmountWithDelivery = totalAmount + deliveryCharge;
   const {
@@ -17,8 +20,48 @@ const CODPayment = ({ data }) => {
     formState: { errors },
   } = useForm();
 
+  const generateUniquePaymentId = () => {
+    const date = new Date()
+      .toISOString()
+      .slice(0, 16)
+      .replace(/-/g, "")
+      .replace(/T/g, ""); // YYYYMMDDHHMMSS format
+    const randomSection = Math.floor(Math.random() * 1000000)
+      .toString()
+      .padStart(6, "0"); // Random 6-digit section
+    return `${date}${randomSection}`; // Combine date/time and random section
+  };
+
   const onSubmit = (data) => {
-    console.log(data); // Submit the collected form data
+    const userInfo = {
+      userName: user?.displayName,
+      userEmail: user?.email,
+      userPhone: data?.phone,
+      userCity: data?.city,
+      userDistrict: data?.district,
+      userCountry: data?.country,
+      userAdditionalInfo: data?.additionalInfo,
+    };
+    const paymentData = {
+      ...userInfo,
+      totalPlants,
+      totalQuantity,
+      totalAmount,
+      deliveryCharge,
+      totalAmountWithDelivery,
+      delivery: false,
+      paymentMethod: "COD",
+      paymentId: generateUniquePaymentId(),
+      items: items?.map((item) => ({
+        id: item._id,
+        quantity: item.quantity,
+        price: item.price,
+        category: item.category,
+        totalAmount: item.totalAmount,
+        uploadByEmail: item.uploadByEmail,
+      })),
+    };
+    console.log(paymentData);
   };
 
   return (
