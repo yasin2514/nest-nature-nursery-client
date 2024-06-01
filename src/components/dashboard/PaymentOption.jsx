@@ -6,7 +6,10 @@ const PaymentOption = ({ data, paymentOption }) => {
 
   return (
     <div className="bg-white p-5 mt-5 rounded-lg h-[calc(100vh-177px)] overflow-auto ">
-      <div className="text-end text-2xl font-semibold text-green-700">
+      <div className="flex  ml-auto w-2/3 justify-between text-2xl font-semibold text-green-700">
+        <h4 className="text-green-700 text-2xl font-semibold">
+          Choose Payment Option
+        </h4>
         <span>Total Amount: $ {formatNumber(amount)}</span>
       </div>
       <div className="flex gap-16 justify-between h-[30vh] items-end">
