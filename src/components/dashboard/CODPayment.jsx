@@ -1,10 +1,8 @@
 import BreadCum from "./BreadCum";
-import useGetCartDataByUser from "../../hooks/useGetCartDataByUser";
 
-const CODPayment = () => {
-    const [items] = useGetCartDataByUser();
+const CODPayment = ({data}) => {
+ console.log({ data });
 
-  console.log({ items });
   return (
     <div>
       <BreadCum text1={"User Dashboard"} text2={"COD Payment"} />

@@ -1,9 +1,7 @@
-import useGetCartDataByUser from "../../hooks/useGetCartDataByUser";
 import BreadCum from "./BreadCum";
 
-const StripePayment = () => {
-  const [items] = useGetCartDataByUser();
-  console.log({ items });
+const StripePayment = ({data}) => {
+ console.log({data});
 
   return (
     <div>

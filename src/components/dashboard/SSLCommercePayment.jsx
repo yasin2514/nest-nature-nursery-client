@@ -1,10 +1,8 @@
-import useGetCartDataByUser from "../../hooks/useGetCartDataByUser";
 import BreadCum from "./BreadCum";
 
-const SSLCommercePayment = () => {
-  const [items] = useGetCartDataByUser();
+const SSLCommercePayment = ({data}) => {
+   console.log({ data });
 
-  console.log({ items });
   return (
     <div>
       <BreadCum text1={"User Dashboard"} text2={"SSL Payment"} />

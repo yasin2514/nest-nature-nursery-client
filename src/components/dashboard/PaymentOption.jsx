@@ -19,7 +19,7 @@ const PaymentOption = ({ data, paymentOption }) => {
             <img
               src={item.img}
               alt={item.name}
-              className="  h-full w-full object-contain"
+              className="h-full w-full object-contain"
             />
           </Link>
         ))}

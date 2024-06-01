@@ -1,10 +1,9 @@
 import { useLoaderData } from "react-router-dom";
+import StripePayment from "./StripePayment";
 
 const StripePaymentSingle = () => {
   const item = useLoaderData();
-  console.log({ item });
-
-  return <div>StripePaymentSingle</div>;
+  return <StripePayment data={[item]} />;
 };
 
 export default StripePaymentSingle;

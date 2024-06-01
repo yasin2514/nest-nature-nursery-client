@@ -8,7 +8,6 @@ import stripeImg from "../../../assets/stripe.png";
 const MakeSinglePayment = () => {
   const item = useLoaderData();
   const id = item?._id;
-  const items = [item];
   const paymentOption = [
     {
       id: 1,
@@ -32,7 +31,7 @@ const MakeSinglePayment = () => {
   return (
     <div>
       <BreadCum text1={"User Dashboard"} text2={"Make Payment"} />
-      <PaymentOption data={items} paymentOption={paymentOption} />
+      <PaymentOption data={[item]} paymentOption={paymentOption} />
     </div>
   );
 };

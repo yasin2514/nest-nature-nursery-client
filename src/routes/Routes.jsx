@@ -22,17 +22,17 @@ import PendingItems from "../pages/dashboard/user/PendingItems";
 import PurchasedItems from "../pages/dashboard/user/PurchasedItems";
 import PaymentHistory from "../pages/dashboard/user/PaymentHistory";
 import UpdateProducts from "../pages/dashboard/admin/UpdateProducts";
-import CodPayments from "../pages/dashboard/user/CodPayments";
 import MakeSinglePayment from "../pages/dashboard/user/MakeSinglePayment";
 import MakeAllPayment from "../pages/dashboard/user/MakeAllPayment";
-import StripePayment from "../components/dashboard/StripePayment";
-import CODPayment from "../components/dashboard/CODPayment";
-import SSLCommercePayment from "../components/dashboard/SSLCommercePayment";
 import ToReceiveItems from "../pages/dashboard/user/ToReceiveItems";
 import ReceiveItems from "../pages/dashboard/user/ReceiveItems";
 import StripePaymentSingle from "../components/dashboard/StripePaymentSingle";
 import CODSinglePayment from "../components/dashboard/CODSinglePayment";
 import SslSinglePayment from "../components/dashboard/SslSinglePayment";
+import CodPaymentsData from "../pages/dashboard/user/CodPaymentsData";
+import StripeAllPayment from "../components/dashboard/StripeAllPayment";
+import CODAllPayment from "../components/dashboard/CODAllPayment";
+import SslAllPayment from "../components/dashboard/SslAllPayment";
 
 const router = createBrowserRouter([
   {
@@ -131,12 +131,20 @@ const router = createBrowserRouter([
         element: <PurchasedItems />,
       },
       {
+        path: "cart/to-receive-items",
+        element: <ToReceiveItems />,
+      },
+      {
+        path: "cart/received-items",
+        element: <ReceiveItems />,
+      },
+      {
         path: "payment-history/online",
         element: <PaymentHistory />,
       },
       {
         path: "payment-history/cod",
-        element: <CodPayments />,
+        element: <CodPaymentsData />,
       },
       {
         path: "make-single-payment/:id",
@@ -150,23 +158,15 @@ const router = createBrowserRouter([
       },
       {
         path: "payment-gateway/stripe",
-        element: <StripePayment />,
+        element: <StripeAllPayment />,
       },
       {
         path: "payment-gateway/cod",
-        element: <CODPayment />,
+        element: <CODAllPayment />,
       },
       {
         path: "payment-gateway/ssl",
-        element: <SSLCommercePayment />,
-      },
-      {
-        path: "cart/to-receive-items",
-        element: <ToReceiveItems />,
-      },
-      {
-        path: "cart/received-items",
-        element: <ReceiveItems />,
+        element: <SslAllPayment />,
       },
       {
         path: "payment-gateway/stripe/:id",
