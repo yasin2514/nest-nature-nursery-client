@@ -1,6 +1,7 @@
 import UserPendingItemsTable from "./UserPendingItemsTable";
 import UserListAdminTable from "./UserListAdminTable";
 import AdminProductListTable from "./AdminProductListTable";
+import UserPurchaseItemsTable from "./UserPurchaseItemsTable";
 
 const TableBody = ({ data, index, show }) => {
   return (
@@ -13,6 +14,9 @@ const TableBody = ({ data, index, show }) => {
       {show === "userList" && <UserListAdminTable data={data} index={index} />}
       {show === "userPendingItems" && (
         <UserPendingItemsTable data={data} index={index} />
+      )}
+      {show === "userPurchaseItems" && (
+        <UserPurchaseItemsTable data={data} index={index} />
       )}
     </>
   );

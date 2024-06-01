@@ -32,6 +32,10 @@ const PurchasedItems = () => {
       id: 7,
       field: "Delivery Status",
     },
+    {
+      id:8,
+      field:"Payment Status"
+    }
   ];
 
   const [purchaseItems] = useGetPurchaseByUser();
@@ -42,7 +46,7 @@ const PurchasedItems = () => {
       <TableWithHeader
         data={purchaseItems || []}
         tHeadData={tHeadData}
-        show={"userPendingItems"}
+        show={"userPurchaseItems"}
       />
     </div>
   );

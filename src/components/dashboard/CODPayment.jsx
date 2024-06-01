@@ -66,7 +66,6 @@ const CODPayment = ({ data: items, isDelete }) => {
       deliveryCharge,
       delivery: "pending",
       paymentMethod: "COD",
-      payment: "Due",
       totalDue: totalAmountWithDelivery,
       paymentId,
       items: items?.map((item) => ({
@@ -81,6 +80,7 @@ const CODPayment = ({ data: items, isDelete }) => {
         name: item.name,
         delivery: "pending",
         paymentId,
+        paymentMethod: "COD",
       })),
     };
 
