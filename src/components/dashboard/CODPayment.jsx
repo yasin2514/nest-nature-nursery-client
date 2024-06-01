@@ -7,11 +7,15 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useGetCartProducts from "../../hooks/useGetCartProducts";
+import useGetCartDataByUser from "../../hooks/useGetCartDataByUser";
 
 const CODPayment = ({ data: items, isDelete }) => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const formatNumber = useNumberFormatter();
+  const [, , refetchALL] = useGetCartProducts();
+  const [, , refetch] = useGetCartDataByUser();
   const totalPlants = items?.length;
   const totalQuantity = items?.reduce((acc, curr) => acc + curr?.quantity, 0);
   const totalAmount = items?.reduce((acc, curr) => acc + curr.totalAmount, 0);
@@ -85,9 +89,19 @@ const CODPayment = ({ data: items, isDelete }) => {
       }
     });
     isDelete === "all" &&
-      axiosSecure.delete(`deleteAllCartItems/${user?.email}`);
+      axiosSecure.delete(`deleteAllCartItems/${user?.email}`).then((res) => {
+        if (res.data.deletedCount > 0) {
+          refetch();
+          refetchALL();
+        }
+      });
     isDelete === "single" &&
-      axiosSecure.delete(`deleteCartItem/${items[0]?._id}`);
+      axiosSecure.delete(`deleteCartItem/${items[0]?._id}`).then((res) => {
+        if (res.data.deletedCount > 0) {
+          refetch();
+          refetchALL();
+        }
+      });
   };
   return (
     <div>
