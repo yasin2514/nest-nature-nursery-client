@@ -88,16 +88,16 @@ const CODPayment = ({ data: items, isDelete }) => {
         });
         isDelete === "all" &&
           axiosSecure
-            .delete(`deleteAllCartItems/${user?.email}`)
+            .delete(`deleteUserCartItems/${user?.email}`)
             .then((res) => {
-              if (res.data.deletedCount > 0) {
+              if (res.data.result.deletedCount > 0) {
                 refetch();
                 refetchALL();
               }
             });
         isDelete === "single" &&
-          axiosSecure.delete(`deleteCartItem/${items[0]?._id}`).then((res) => {
-            if (res.data.deletedCount > 0) {
+          axiosSecure.delete(`deleteCart/${items[0]?._id}`).then((res) => {
+            if (res.data.result.deletedCount > 0) {
               refetch();
               refetchALL();
             }

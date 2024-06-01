@@ -35,9 +35,8 @@ const UserPendingItemsTable = ({ data, index }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`deleteCart/${id}`).then((response) => {
-          console.log({ response });
-          if (response.data.result.deletedCount > 0) {
+        axiosSecure.delete(`deleteCart/${id}`).then((res) => {
+          if (res.data.result.deletedCount > 0) {
             refetchAll();
             refetch();
             Swal.fire("Deleted!", "Product has been deleted.", "success");
