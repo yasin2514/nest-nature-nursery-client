@@ -18,6 +18,14 @@ const UserSidebar = () => {
           name: "Purchased Items",
           to: "/dashboard/cart/purchased-items",
         },
+        {
+        name:"To Receive Items",
+        to:"/dashboard/cart/to-receive-items"
+        },
+        {
+          name:"Received Items",
+          to:"/dashboard/cart/received-items"
+        }
       ],
     },
     {

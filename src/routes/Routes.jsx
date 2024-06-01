@@ -28,6 +28,8 @@ import MakeAllPayment from "../pages/dashboard/user/MakeAllPayment";
 import StripePayment from "../components/dashboard/StripePayment";
 import CODPayment from "../components/dashboard/CODPayment";
 import SSLCommercePayment from "../components/dashboard/SSLCommercePayment";
+import ToReceiveItems from "../pages/dashboard/user/ToReceiveItems";
+import ReceiveItems from "../pages/dashboard/user/ReceiveItems";
 
 const router = createBrowserRouter([
   {
@@ -145,16 +147,24 @@ const router = createBrowserRouter([
       },
       {
         path: "payment-gateway/stripe",
-        element: <StripePayment/>,
+        element: <StripePayment />,
       },
       {
         path: "payment-gateway/cod",
-        element: <CODPayment/>,
+        element: <CODPayment />,
       },
       {
         path: "payment-gateway/ssl",
-        element: <SSLCommercePayment/>,
-      }
+        element: <SSLCommercePayment />,
+      },
+      {
+        path: "cart/to-receive-items",
+        element: <ToReceiveItems />,
+      },
+      {
+        path: "cart/received-items",
+        element: <ReceiveItems />,
+      },
     ],
   },
 ]);
