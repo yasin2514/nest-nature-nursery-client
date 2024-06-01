@@ -8,9 +8,9 @@ const useGetPurchaseItem = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["purchaseItem"],
+    queryKey: ["purchaseItems"],
     queryFn: async () => {
-      const res = await axiosSecure.get("purchases");
+      const res = await axiosSecure.get("purchasesItems");
       return res.data;
     },
   });
