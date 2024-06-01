@@ -30,6 +30,9 @@ import CODPayment from "../components/dashboard/CODPayment";
 import SSLCommercePayment from "../components/dashboard/SSLCommercePayment";
 import ToReceiveItems from "../pages/dashboard/user/ToReceiveItems";
 import ReceiveItems from "../pages/dashboard/user/ReceiveItems";
+import StripePaymentSingle from "../components/dashboard/StripePaymentSingle";
+import CODSinglePayment from "../components/dashboard/CODSinglePayment";
+import SslSinglePayment from "../components/dashboard/SslSinglePayment";
 
 const router = createBrowserRouter([
   {
@@ -164,6 +167,24 @@ const router = createBrowserRouter([
       {
         path: "cart/received-items",
         element: <ReceiveItems />,
+      },
+      {
+        path: "payment-gateway/stripe/:id",
+        element: <StripePaymentSingle />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/cartItem/${params?.id}`),
+      },
+      {
+        path: "payment-gateway/cod/:id",
+        element: <CODSinglePayment />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/cartItem/${params?.id}`),
+      },
+      {
+        path: "payment-gateway/ssl/:id",
+        element: <SslSinglePayment />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/cartItem/${params?.id}`),
       },
     ],
   },

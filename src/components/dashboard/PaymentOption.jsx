@@ -1,30 +1,6 @@
-import sslImg from "../../assets/ssl.png";
-import codImg from "../../assets/cod.png";
-import stripeImg from "../../assets/stripe.png";
 import { Link } from "react-router-dom";
 import useNumberFormatter from "../../hooks/useNumberFormatter";
-const PaymentOption = ({ data }) => {
-  const paymentOption = [
-    {
-      id: 1,
-      name: "Stripe",
-      img: stripeImg,
-      path: "/dashboard/payment-gateway/stripe",
-    },
-    {
-      id: 2,
-      name: "Cash on Delivery",
-      img: codImg,
-      path: "/dashboard/payment-gateway/cod",
-    },
-    {
-      id: 3,
-      name: "SSL Commerz",
-      img: sslImg,
-      path: "/dashboard/payment-gateway/ssl",
-    },
-  ];
-
+const PaymentOption = ({ data, paymentOption }) => {
   const formatNumber = useNumberFormatter();
   const amount = data?.reduce((acc, item) => acc + item?.totalAmount, 0);
 
