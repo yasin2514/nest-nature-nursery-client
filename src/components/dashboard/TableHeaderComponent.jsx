@@ -27,7 +27,7 @@ const TableHeaderComponent = ({
         {data?.length}
       </div>
       <div className="flex items-center gap-5">
-        {show === "userPendingItems" && (
+        {show === "userPendingItems" && data?.length > 0 && (
           <div>
             <Link to={"/dashboard/make-all-payment"} className="button-payment">
               {" "}

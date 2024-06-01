@@ -4,7 +4,7 @@ import FormElement, { Input, Textarea } from "../ui/FormComponent";
 import useNumberFormatter from "../../hooks/useNumberFormatter";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useGetCartProducts from "../../hooks/useGetCartProducts";
@@ -16,6 +16,7 @@ const CODPayment = ({ data: items, isDelete }) => {
   const formatNumber = useNumberFormatter();
   const [, , refetchALL] = useGetCartProducts();
   const [, , refetch] = useGetCartDataByUser();
+  const navigate = useNavigate();
   const totalPlants = items?.length;
   const totalQuantity = items?.reduce((acc, curr) => acc + curr?.quantity, 0);
   const totalAmount = items?.reduce((acc, curr) => acc + curr.totalAmount, 0);
@@ -86,6 +87,7 @@ const CODPayment = ({ data: items, isDelete }) => {
           showConfirmButton: false,
           timer: 1000,
         });
+        navigate("/dashboard/cart/purchased-items");
         isDelete === "all" &&
           axiosSecure
             .delete(`deleteUserCartItems/${user?.email}`)
@@ -198,16 +200,18 @@ const CODPayment = ({ data: items, isDelete }) => {
                   </p>
                 </div>
               </div>
-              <div className="flex justify-end gap-5 mt-auto ">
-                <Link to={"/dashboard/cart/pending-items"}>
-                  <button type="reset" className="button-red">
-                    Cancel Order
+              {totalAmount > 0 && (
+                <div className="flex justify-end gap-5 mt-auto ">
+                  <Link to={"/dashboard/cart/pending-items"}>
+                    <button type="reset" className="button-red">
+                      Cancel Order
+                    </button>
+                  </Link>
+                  <button type="submit" className="button-green">
+                    Confirm Order
                   </button>
-                </Link>
-                <button type="submit" className="button-green">
-                  Confirm Order
-                </button>
-              </div>
+                </div>
+              )}
             </div>
           </fieldset>
         </form>
