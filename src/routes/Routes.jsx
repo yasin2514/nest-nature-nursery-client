@@ -18,7 +18,6 @@ import CompletedOrders from "../pages/dashboard/admin/CompletedOrders";
 import UserList from "../pages/dashboard/admin/UserList";
 import AdminSettings from "../pages/dashboard/admin/AdminSettings";
 import UserSettings from "../pages/dashboard/user/UserSettings";
-import PendingItems from "../pages/dashboard/user/PendingItems";
 import PurchasedItems from "../pages/dashboard/user/PurchasedItems";
 import PaymentHistory from "../pages/dashboard/user/PaymentHistory";
 import UpdateProducts from "../pages/dashboard/admin/UpdateProducts";
@@ -33,6 +32,7 @@ import CodPaymentsData from "../pages/dashboard/user/CodPaymentsData";
 import StripeAllPayment from "../components/dashboard/StripeAllPayment";
 import CODAllPayment from "../components/dashboard/CODAllPayment";
 import SslAllPayment from "../components/dashboard/SslAllPayment";
+import CartItems from "../pages/dashboard/user/CartItems";
 
 const router = createBrowserRouter([
   {
@@ -124,7 +124,7 @@ const router = createBrowserRouter([
       },
       {
         path: "cart/pending-items",
-        element: <PendingItems />,
+        element: <CartItems />,
       },
       {
         path: "cart/purchased-items",

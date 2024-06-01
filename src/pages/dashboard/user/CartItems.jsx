@@ -2,7 +2,7 @@ import BreadCum from "../../../components/dashboard/BreadCum";
 import TableWithHeader from "../../../components/dashboard/TableWithHeader";
 import useGetCartDataByUser from "../../../hooks/useGetCartDataByUser";
 
-const PendingItems = () => {
+const CartItems = () => {
   const tHeadData = [
     {
       id: 1,
@@ -48,4 +48,4 @@ const PendingItems = () => {
   );
 };
 
-export default PendingItems;
+export default CartItems;

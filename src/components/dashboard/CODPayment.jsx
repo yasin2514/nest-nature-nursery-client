@@ -41,6 +41,8 @@ const CODPayment = ({ data: items, isDelete }) => {
     return `${date}${randomSection}`; // Combine date/time and random section
   };
 
+  const paymentId = generateUniquePaymentId();
+
   const onSubmit = (data) => {
     const userInfo = {
       phone: data?.phone,
@@ -64,16 +66,19 @@ const CODPayment = ({ data: items, isDelete }) => {
       deliveryCharge,
       delivery: "pending",
       paymentMethod: "COD",
-      paymentAmount: 0,
+      payment: "Due",
       totalDue: totalAmountWithDelivery,
-      paymentId: generateUniquePaymentId(),
+      paymentId,
       items: items?.map((item) => ({
-        id: item._id,
         quantity: item.quantity,
         price: item.price,
         category: item.category,
         totalAmount: item.totalAmount,
         uploadByEmail: item.uploadByEmail,
+        photos: item.photos,
+        name: item.name,
+        delivery: "pending",
+        paymentId,
       })),
     };
 
