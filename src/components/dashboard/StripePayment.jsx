@@ -43,9 +43,9 @@ const StripePayment = ({ data: items }) => {
     });
   };
   return (
-    <Elements stripe={stripePromise}>
-      <div>
-        <BreadCum text1={"User Dashboard"} text2={"Stripe Payment"} />
+    <div>
+      <BreadCum text1={"User Dashboard"} text2={"Stripe Payment"} />
+      <Elements stripe={stripePromise}>
         <div className="bg-white p-5 mt-5 rounded-lg h-[calc(100vh-177px)] overflow-auto">
           <h4 className="text-green-700 text-2xl text-center mb-8 font-semibold">
             Complete Your Payment
@@ -172,8 +172,8 @@ const StripePayment = ({ data: items }) => {
             </fieldset>
           </form>
         </div>
-      </div>
-    </Elements>
+      </Elements>
+    </div>
   );
 };
 
