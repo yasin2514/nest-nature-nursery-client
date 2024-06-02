@@ -3,10 +3,12 @@ import useNumberFormatter from "../../hooks/useNumberFormatter";
 import BreadCum from "./BreadCum";
 import FormElement, { Input, Textarea } from "../ui/FormComponent";
 import { Link, useNavigate } from "react-router-dom";
+import { CardElement, Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 const StripePayment = ({ data: items }) => {
   const formatNumber = useNumberFormatter();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const totalPlants = items?.length;
   const totalQuantity = items?.reduce((acc, curr) => acc + curr?.quantity, 0);
   const totalAmount = items?.reduce((acc, curr) => acc + curr.totalAmount, 0);
@@ -19,6 +21,8 @@ const StripePayment = ({ data: items }) => {
     formState: { errors },
   } = useForm();
 
+  const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_Pk);
+
   const onSubmit = (data) => {
     console.log(data);
   };
@@ -27,7 +31,7 @@ const StripePayment = ({ data: items }) => {
       <BreadCum text1={"User Dashboard"} text2={"Stripe Payment"} />
       <div className="bg-white p-5 mt-5 rounded-lg h-[calc(100vh-177px)] overflow-auto">
         <h4 className="text-green-700 text-2xl text-center mb-8 font-semibold">
-          Complete Your Order
+          Complete Your Payment
         </h4>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -38,7 +42,7 @@ const StripePayment = ({ data: items }) => {
             <legend className="text-xl font-semibold text-green-700">
               Delivery Details
             </legend>
-            <div className="grid grid-cols-12 gap-5">
+            <div className="grid grid-cols-12 gap-6">
               <FormElement
                 type="text"
                 label={"City/Village"}
@@ -93,13 +97,31 @@ const StripePayment = ({ data: items }) => {
             </legend>
 
             {/* main text section */}
-            <div className=" flex flex-col h-[350px] pt-5">
+            <div className=" flex flex-col h-[370px] pt-5">
               {/* payment design */}
-              <div className="mb-10 p-5 border rounded-md shadow-sm">
-              
+              <div className="mb-5 p-5 border rounded-md shadow-sm">
+                <Elements stripe={stripePromise}>
+                  <CardElement
+                    options={{
+                      style: {
+                        base: {
+                          fontSize: "16px",
+                          fontWeight:"600",
+                          color: "#008f00",
+                          "::placeholder": {
+                            color: "#aab7c4",
+                          },
+                        },
+                        invalid: {
+                          color: "#9e2146",
+                        },
+                      },
+                    }}
+                  />
+                </Elements>
               </div>
               {/* payment information */}
-              <div className=" grid grid-cols-12 ">
+              <div className=" grid grid-cols-12 mb-5 ">
                 <div className="text-gray-500 font-semibold text-lg  space-y-3 col-span-8">
                   <p className="">Total Plants: </p>
                   <p className="">Total Quantity: </p>
