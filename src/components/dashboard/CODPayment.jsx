@@ -64,7 +64,7 @@ const CODPayment = ({ data: items, isDelete }) => {
       totalQuantity,
       totalAmount: totalAmountWithDelivery,
       deliveryCharge,
-      delivery: "pending",
+      delivery: "Pending",
       paymentMethod: "COD",
       totalDue: totalAmountWithDelivery,
       paymentId,
@@ -78,9 +78,10 @@ const CODPayment = ({ data: items, isDelete }) => {
         uploadByEmail: item.uploadByEmail,
         photos: item.photos,
         name: item.name,
-        delivery: "pending",
+        delivery: "Pending",
         paymentId,
         paymentMethod: "COD",
+        payment: "Not Paid",
       })),
     };
 

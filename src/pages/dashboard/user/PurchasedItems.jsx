@@ -33,9 +33,13 @@ const PurchasedItems = () => {
       field: "Delivery Status",
     },
     {
-      id:8,
-      field:"Payment Status"
-    }
+      id: 8,
+      field: "Payment Method",
+    },
+    {
+      id: 9,
+      field: "Payment Status",
+    },
   ];
 
   const [purchaseItems] = useGetPurchaseByUser();

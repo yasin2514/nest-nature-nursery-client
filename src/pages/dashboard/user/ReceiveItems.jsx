@@ -34,13 +34,17 @@ const ReceiveItems = () => {
     },
     {
       id: 8,
+      field: "Payment Method",
+    },
+    {
+      id: 9,
       field: "Payment Status",
     },
   ];
 
   const [purchaseItems] = useGetPurchaseByUser();
   const receiveItems = purchaseItems?.filter(
-    (item) => item.delivery === "success"
+    (item) => item.delivery === "Success"
   );
   return (
     <div>
