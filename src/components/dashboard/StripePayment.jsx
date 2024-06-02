@@ -12,15 +12,14 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import useGetCartProducts from "../../hooks/useGetCartProducts";
 import useGetCartDataByUser from "../../hooks/useGetCartDataByUser";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_Pk);
 
-const StripePayment = ({ data: items, isDelete }) => {
-  const user = useContext(AuthContext);
+const StripePayment = ({ data: items, isDelete, user }) => {
   const axiosSecure = useAxiosSecure();
   const formatNumber = useNumberFormatter();
   const navigate = useNavigate();
@@ -59,21 +58,32 @@ const StripePayment = ({ data: items, isDelete }) => {
 
   // Submit Payment
   const onSubmit = async (data) => {
+    const userInfo = {
+      phone: data?.phone,
+      address: {
+        city: data?.city,
+        district: data?.district,
+        country: data?.country,
+      },
+    };
+
     if (!stripe || !elements) return;
 
     const card = elements.getElement(CardElement);
     if (card === null) return;
 
-    const { error } = await stripe.createPaymentMethod({
+    const { error: paymentMethodError } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
 
-    if (error) {
-      setCardError(error.message);
+    if (paymentMethodError) {
+      setCardError(paymentMethodError.message);
+      return;
     } else {
       setCardError(null);
     }
+
     setProcessing(true);
 
     const { paymentIntent, error: confirmError } =
@@ -86,23 +96,15 @@ const StripePayment = ({ data: items, isDelete }) => {
           },
         },
       });
-
     console.log({ paymentIntent });
+    setProcessing(false);
 
     if (confirmError) {
       setCardError(confirmError.message);
+      return;
     }
-    setProcessing(false);
 
     if (paymentIntent.status === "succeeded") {
-      const userInfo = {
-        phone: data?.phone,
-        address: {
-          city: data?.city,
-          district: data?.district,
-          country: data?.country,
-        },
-      };
       const purchaseData = {
         userName: user?.displayName,
         userEmail: user?.email,
@@ -119,7 +121,7 @@ const StripePayment = ({ data: items, isDelete }) => {
         paymentMethod: "Stripe",
         totalDue: totalAmountWithDelivery,
         paymentId: paymentIntent.id,
-        purchaseData: "todayDate",
+        purchaseData: new Date().toISOString(),
         payment: "Paid",
         items: items?.map((item) => ({
           quantity: item.quantity,
@@ -148,7 +150,8 @@ const StripePayment = ({ data: items, isDelete }) => {
             timer: 1000,
           });
           navigate("/dashboard/cart/purchased-items");
-          isDelete === "all" &&
+
+          if (isDelete === "all") {
             axiosSecure
               .delete(`deleteUserCartItems/${user?.email}`)
               .then((res) => {
@@ -157,13 +160,16 @@ const StripePayment = ({ data: items, isDelete }) => {
                   refetchALL();
                 }
               });
-          isDelete === "single" &&
+          }
+
+          if (isDelete === "single") {
             axiosSecure.delete(`deleteCart/${items[0]?._id}`).then((res) => {
               if (res.data.result.deletedCount > 0) {
                 refetch();
                 refetchALL();
               }
             });
+          }
         }
       });
     }
@@ -173,24 +179,29 @@ const StripePayment = ({ data: items, isDelete }) => {
     <div>
       <BreadCum text1={"User Dashboard"} text2={"Stripe Payment"} />
       <div className="bg-white p-5 mt-5 rounded-lg h-[calc(100vh-177px)] overflow-auto">
-        <h4 className="text-green-700 text-2xl text-center mb-8 font-semibold">
-          Complete Your Payment
-        </h4>
+        <div className="mb-7">
+          <h4 className="text-green-700 text-2xl text-center  font-semibold">
+            Complete Your Payment
+          </h4>
+          {cardError && (
+            <p className="text-red-500 text-sm mt-1 text-center">{cardError}</p>
+          )}
+        </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="grid grid-cols-12 gap-5 px-5"
         >
           {/* Delivery Details Fieldset */}
-          <fieldset className="col-span-6  py-10 px-5 rounded-lg border">
+          <fieldset className="col-span-6  py-7 px-5 rounded-lg border">
             <legend className="text-xl font-semibold text-green-700">
               Delivery Details
             </legend>
-            <div className="grid grid-cols-12 gap-6">
+            <div className="grid grid-cols-12 gap-5">
               <FormElement
                 type="text"
                 label={"City/Village"}
                 className={"col-span-6"}
-                register={register("city")}
+                register={register("city", { required: "City is required" })}
                 errors={errors}
               >
                 <Input />
@@ -199,7 +210,9 @@ const StripePayment = ({ data: items, isDelete }) => {
                 type="text"
                 label={"District"}
                 className={"col-span-6"}
-                register={register("district")}
+                register={register("district", {
+                  required: "District is required",
+                })}
                 errors={errors}
               >
                 <Input />
@@ -208,7 +221,9 @@ const StripePayment = ({ data: items, isDelete }) => {
                 type="text"
                 label={"Country"}
                 className={"col-span-6"}
-                register={register("country")}
+                register={register("country", {
+                  required: "Country is required",
+                })}
                 errors={errors}
               >
                 <Input />
@@ -217,7 +232,9 @@ const StripePayment = ({ data: items, isDelete }) => {
                 type="text"
                 label={"Phone Number"}
                 className={"col-span-6"}
-                register={register("phone")}
+                register={register("phone", {
+                  required: "Phone number is required",
+                })}
                 errors={errors}
               >
                 <Input />
@@ -240,7 +257,7 @@ const StripePayment = ({ data: items, isDelete }) => {
             </legend>
 
             {/* main text section */}
-            <div className="flex flex-col h-[370px] pt-5">
+            <div className="flex flex-col h-[350px] pt-2">
               {/* payment design */}
               <div className="mb-5 p-5 border rounded-md shadow-sm">
                 <CardElement
@@ -262,8 +279,8 @@ const StripePayment = ({ data: items, isDelete }) => {
                 />
               </div>
               {/* payment information */}
-              <div className="grid grid-cols-12 mb-5">
-                <div className="text-gray-500 font-semibold text-lg space-y-3 col-span-8">
+              <div className="grid grid-cols-12 mb-8">
+                <div className="text-gray-500 font-semibold text-lg space-y-2 col-span-8">
                   <p>Total Plants: </p>
                   <p>Total Quantity: </p>
                   <p>Amount: </p>
@@ -286,7 +303,7 @@ const StripePayment = ({ data: items, isDelete }) => {
                     </button>
                   </Link>
                   <button
-                    disabled={!stripe}
+                    disabled={!stripe || !clientSecret || processing}
                     type="submit"
                     className="button-green"
                   >
@@ -294,7 +311,6 @@ const StripePayment = ({ data: items, isDelete }) => {
                   </button>
                 </div>
               )}
-              {cardError && <p className="text-red-500 mt-2">{cardError}</p>}
             </div>
           </fieldset>
         </form>
@@ -303,10 +319,14 @@ const StripePayment = ({ data: items, isDelete }) => {
   );
 };
 
-const StripePaymentWrapper = (props) => (
-  <Elements stripe={stripePromise}>
-    <StripePayment {...props} />
-  </Elements>
-);
+const StripePaymentWrapper = (props) => {
+  const user = useContext(AuthContext);
+  const property = { ...props, user };
+  return (
+    <Elements stripe={stripePromise}>
+      <StripePayment {...property} />
+    </Elements>
+  );
+};
 
 export default StripePaymentWrapper;
