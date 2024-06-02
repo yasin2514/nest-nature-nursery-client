@@ -23,7 +23,7 @@ const UserSidebar = () => {
           to: "/dashboard/cart/to-receive-items",
         },
         {
-          name: "Received Items",
+          name: "Receive Items",
           to: "/dashboard/cart/received-items",
         },
       ],
