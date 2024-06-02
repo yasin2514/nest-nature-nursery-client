@@ -259,7 +259,7 @@ const StripePayment = ({ data: items, isDelete, user }) => {
             {/* main text section */}
             <div className="flex flex-col h-[350px] pt-2">
               {/* payment design */}
-              <div className="mb-5 p-5 border rounded-md shadow-sm">
+              <div className="mb-5 p-4 border rounded-md shadow-sm">
                 <CardElement
                   options={{
                     style: {
