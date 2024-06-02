@@ -15,31 +15,35 @@ const UserSidebar = () => {
           to: "/dashboard/cart/pending-items",
         },
         {
-          name: "Purchased Items",
+          name: "Purchase Items",
           to: "/dashboard/cart/purchased-items",
         },
         {
-        name:"To Receive Items",
-        to:"/dashboard/cart/to-receive-items"
+          name: "To Receive Items",
+          to: "/dashboard/cart/to-receive-items",
         },
         {
-          name:"Received Items",
-          to:"/dashboard/cart/received-items"
-        }
+          name: "Received Items",
+          to: "/dashboard/cart/received-items",
+        },
       ],
     },
     {
       name: "Payment History",
-      child:[
+      child: [
         {
-          name: "Online Payments",
-          to: "/dashboard/payment-history/online",
+          name: "Stripe Payments",
+          to: "/dashboard/payment-history/stripe",
         },
         {
           name: "COD Payments",
-          to: "/dashboard/payment-history/cod", 
-        }
-      ]
+          to: "/dashboard/payment-history/cod",
+        },
+        {
+          name: "SSL Payments",
+          to: "/dashboard/payment-history/ssl",
+        },
+      ],
     },
   ];
 

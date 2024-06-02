@@ -25,7 +25,7 @@ const UserPurchaseItemsTable = ({ data, index }) => {
       <td className="text-center">${formatNumber(totalAmount)}</td>
       <td
         className={`text-center font-semibold ${
-          delivery === "pending" ? "text-red-600" : "text-green-600"
+          delivery === "Pending" ? "text-red-600" : "text-green-600"
         }`}
       >
         {delivery}

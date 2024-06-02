@@ -19,7 +19,6 @@ import UserList from "../pages/dashboard/admin/UserList";
 import AdminSettings from "../pages/dashboard/admin/AdminSettings";
 import UserSettings from "../pages/dashboard/user/UserSettings";
 import PurchasedItems from "../pages/dashboard/user/PurchasedItems";
-import PaymentHistory from "../pages/dashboard/user/PaymentHistory";
 import UpdateProducts from "../pages/dashboard/admin/UpdateProducts";
 import MakeSinglePayment from "../pages/dashboard/user/MakeSinglePayment";
 import MakeAllPayment from "../pages/dashboard/user/MakeAllPayment";
@@ -28,11 +27,13 @@ import ReceiveItems from "../pages/dashboard/user/ReceiveItems";
 import StripePaymentSingle from "../components/dashboard/StripePaymentSingle";
 import CODSinglePayment from "../components/dashboard/CODSinglePayment";
 import SslSinglePayment from "../components/dashboard/SslSinglePayment";
-import CodPaymentsData from "../pages/dashboard/user/CodPaymentsData";
 import StripeAllPayment from "../components/dashboard/StripeAllPayment";
 import CODAllPayment from "../components/dashboard/CODAllPayment";
 import SslAllPayment from "../components/dashboard/SslAllPayment";
 import CartItems from "../pages/dashboard/user/CartItems";
+import SSLPaymentHistory from "../pages/dashboard/user/SSLPaymentHistory";
+import CODPaymentHistory from "../pages/dashboard/user/CODPaymentHistory";
+import StripePaymentHistory from "../pages/dashboard/user/StripePaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -139,12 +140,16 @@ const router = createBrowserRouter([
         element: <ReceiveItems />,
       },
       {
-        path: "payment-history/online",
-        element: <PaymentHistory />,
+        path: "payment-history/stripe",
+        element: <StripePaymentHistory />,
       },
       {
         path: "payment-history/cod",
-        element: <CodPaymentsData />,
+        element: <CODPaymentHistory />,
+      },
+      {
+        path: "payment-history/ssl",
+        element: <SSLPaymentHistory />,
       },
       {
         path: "make-single-payment/:id",
