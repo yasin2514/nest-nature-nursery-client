@@ -44,6 +44,7 @@ const StripePayment = ({ data: items, isDelete }) => {
     formState: { errors },
   } = useForm();
 
+  // Create Payment Intent
   useEffect(() => {
     if (totalAmount > 0) {
       axiosSecure
@@ -56,8 +57,8 @@ const StripePayment = ({ data: items, isDelete }) => {
     }
   }, [totalAmount, axiosSecure, totalAmountWithDelivery]);
 
+  // Submit Payment
   const onSubmit = async (data) => {
-    console.log(data);
     if (!stripe || !elements) return;
 
     const card = elements.getElement(CardElement);
@@ -86,10 +87,10 @@ const StripePayment = ({ data: items, isDelete }) => {
         },
       });
 
+    console.log({ paymentIntent });
+
     if (confirmError) {
       setCardError(confirmError.message);
-    } else {
-      setCardError(null);
     }
     setProcessing(false);
 
@@ -115,11 +116,11 @@ const StripePayment = ({ data: items, isDelete }) => {
         totalAmount: totalAmountWithDelivery,
         deliveryCharge,
         delivery: "Pending",
-        paymentMethod: "COD",
+        paymentMethod: "Stripe",
         totalDue: totalAmountWithDelivery,
-        paymentId,
-        purchaseData: todayDate,
-        payment: "Not Paid",
+        paymentId: paymentIntent.id,
+        purchaseData: "todayDate",
+        payment: "Paid",
         items: items?.map((item) => ({
           quantity: item.quantity,
           price: item.price,
@@ -131,8 +132,8 @@ const StripePayment = ({ data: items, isDelete }) => {
           photos: item.photos,
           name: item.name,
           delivery: "Pending",
-          paymentMethod: "COD",
-          payment: "Not Paid",
+          paymentMethod: "Stripe",
+          payment: "Paid",
         })),
       };
 
