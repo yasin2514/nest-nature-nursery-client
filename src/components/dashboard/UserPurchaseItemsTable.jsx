@@ -4,7 +4,6 @@ const UserPurchaseItemsTable = ({ data, index }) => {
   const formatNumber = useNumberFormatter();
 
   const {
-    _id,
     name,
     price,
     photos,

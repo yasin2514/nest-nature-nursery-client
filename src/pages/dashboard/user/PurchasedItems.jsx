@@ -39,7 +39,6 @@ const PurchasedItems = () => {
   ];
 
   const [purchaseItems] = useGetPurchaseByUser();
-  console.log({ purchaseItems });
   return (
     <div>
       <BreadCum text1={"User Dashboard"} text2={"Purchase Items"} />
