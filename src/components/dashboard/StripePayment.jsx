@@ -19,7 +19,8 @@ import { AuthContext } from "../../providers/AuthProvider";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_Pk);
 
-const StripePayment = ({ data: items, isDelete, user }) => {
+const StripePayment = ({ data: items, isDelete }) => {
+  const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const formatNumber = useNumberFormatter();
   const navigate = useNavigate();
@@ -42,6 +43,12 @@ const StripePayment = ({ data: items, isDelete, user }) => {
     reset,
     formState: { errors },
   } = useForm();
+
+  // Validate email format
+  const isValidEmail = (email) => {
+    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return re.test(String(email).toLowerCase());
+  };
 
   // Create Payment Intent
   useEffect(() => {
@@ -72,6 +79,9 @@ const StripePayment = ({ data: items, isDelete, user }) => {
     const card = elements.getElement(CardElement);
     if (card === null) return;
 
+    // Ensure user email is valid
+    const userEmail = isValidEmail(user?.email) ? user.email : "unknown";
+
     const { error: paymentMethodError } = await stripe.createPaymentMethod({
       type: "card",
       card,
@@ -92,10 +102,11 @@ const StripePayment = ({ data: items, isDelete, user }) => {
           card: card,
           billing_details: {
             name: user?.displayName || "anonymous",
-            email: user?.email || "unknown",
+            email: userEmail,
           },
         },
       });
+
     console.log({ paymentIntent });
     setProcessing(false);
 
@@ -107,7 +118,7 @@ const StripePayment = ({ data: items, isDelete, user }) => {
     if (paymentIntent.status === "succeeded") {
       const purchaseData = {
         userName: user?.displayName,
-        userEmail: user?.email,
+        userEmail,
         userPhone: data?.phone,
         userCity: data?.city,
         userDistrict: data?.district,
@@ -119,23 +130,23 @@ const StripePayment = ({ data: items, isDelete, user }) => {
         deliveryCharge,
         delivery: "Pending",
         paymentMethod: "Stripe",
-        totalDue: totalAmountWithDelivery,
+        totalDue: 0,
         paymentId: paymentIntent.id,
-        purchaseData: new Date().toISOString(),
-        payment: "Paid",
+        purchaseDate: new Date().toISOString(),
+        paymentStatus: "Paid",
         items: items?.map((item) => ({
           quantity: item.quantity,
           price: item.price,
           category: item.category,
           totalAmount: item.totalAmount,
           userName: user?.displayName,
-          userEmail: user?.email,
+          userEmail,
           uploadByEmail: item.uploadByEmail,
           photos: item.photos,
           name: item.name,
           delivery: "Pending",
           paymentMethod: "Stripe",
-          payment: "Paid",
+          paymentStatus: "Paid",
         })),
       };
 
@@ -320,11 +331,9 @@ const StripePayment = ({ data: items, isDelete, user }) => {
 };
 
 const StripePaymentWrapper = (props) => {
-  const user = useContext(AuthContext);
-  const property = { ...props, user };
   return (
     <Elements stripe={stripePromise}>
-      <StripePayment {...property} />
+      <StripePayment {...props} />
     </Elements>
   );
 };

@@ -41,8 +41,6 @@ const CODPayment = ({ data: items, isDelete }) => {
     return `${date}${randomSection}`; // Combine date/time and random section
   };
 
-  const todayDate = new Date().toISOString().slice(0, 10);
-
   const paymentId = generateUniquePaymentId();
 
   const onSubmit = (data) => {
@@ -70,8 +68,8 @@ const CODPayment = ({ data: items, isDelete }) => {
       paymentMethod: "COD",
       totalDue: totalAmountWithDelivery,
       paymentId,
-      purchaseData: todayDate,
-      payment: "Not Paid",
+      purchaseDate: new Date().toISOString(),
+      paymentStatus: "Not Paid",
       items: items?.map((item) => ({
         quantity: item.quantity,
         price: item.price,
@@ -84,7 +82,7 @@ const CODPayment = ({ data: items, isDelete }) => {
         name: item.name,
         delivery: "Pending",
         paymentMethod: "COD",
-        payment: "Not Paid",
+        paymentStatus: "Not Paid",
       })),
     };
 
