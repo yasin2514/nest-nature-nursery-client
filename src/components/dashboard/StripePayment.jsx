@@ -18,6 +18,7 @@ import useGetCartDataByUser from "../../hooks/useGetCartDataByUser";
 import { AuthContext } from "../../providers/AuthProvider";
 import useGetPaymentInfo from "../../hooks/useGetPaymentInfo";
 import useGetPaymentInfoByUser from "../../hooks/useGetPaymentInfoByUser";
+import useGetProducts from "../../hooks/useGetProducts";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_Pk);
 
@@ -28,8 +29,9 @@ const StripePayment = ({ data: items, isDelete }) => {
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
-  const [, , refetchALL] = useGetCartProducts();
-  const [, , refetch] = useGetCartDataByUser();
+  const [, , refetchProducts] = useGetProducts();
+  const [, , refetchCartALL] = useGetCartProducts();
+  const [, , refetchCartUser] = useGetCartDataByUser();
    const [, , refetchPaymentInfo] = useGetPaymentInfo();
    const [, , refetchSinglePaymentInfo] = useGetPaymentInfoByUser();
   const [cardError, setCardError] = useState(null);
@@ -171,10 +173,11 @@ const StripePayment = ({ data: items, isDelete }) => {
               .delete(`deleteUserCartItems/${user?.email}`)
               .then((res) => {
                 if (res.data.result.deletedCount > 0) {
-                  refetch();
-                  refetchALL();
+                  refetchCartUser();
+                  refetchCartALL();
                   refetchPaymentInfo();
                   refetchSinglePaymentInfo();
+                  refetchProducts();
                 }
               });
           }
@@ -182,8 +185,11 @@ const StripePayment = ({ data: items, isDelete }) => {
           if (isDelete === "single") {
             axiosSecure.delete(`deleteCart/${items[0]?._id}`).then((res) => {
               if (res.data.result.deletedCount > 0) {
-                refetch();
-                refetchALL();
+                refetchCartUser();
+                refetchCartALL();
+                refetchPaymentInfo();
+                refetchSinglePaymentInfo();
+                refetchProducts();
               }
             });
           }

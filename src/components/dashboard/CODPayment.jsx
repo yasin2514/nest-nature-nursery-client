@@ -11,13 +11,15 @@ import useGetCartProducts from "../../hooks/useGetCartProducts";
 import useGetCartDataByUser from "../../hooks/useGetCartDataByUser";
 import useGetPaymentInfo from "../../hooks/useGetPaymentInfo";
 import useGetPaymentInfoByUser from "../../hooks/useGetPaymentInfoByUser";
+import useGetProducts from "../../hooks/useGetProducts";
 
 const CODPayment = ({ data: items, isDelete }) => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const formatNumber = useNumberFormatter();
-  const [, , refetchALL] = useGetCartProducts();
-  const [, , refetch] = useGetCartDataByUser();
+  const [, , refetchProducts] = useGetProducts();
+  const [, , refetchCartALL] = useGetCartProducts();
+  const [, , refetchCartUser] = useGetCartDataByUser();
   const [, , refetchPaymentInfo] = useGetPaymentInfo();
   const [, , refetchSinglePaymentInfo] = useGetPaymentInfoByUser();
   const navigate = useNavigate();
@@ -75,7 +77,7 @@ const CODPayment = ({ data: items, isDelete }) => {
       purchaseDate: new Date().toISOString(),
       paymentStatus: "Not Paid",
       items: items?.map((item) => ({
-        productId:item.productId,
+        productId: item.productId,
         quantity: item.quantity,
         price: item.price,
         category: item.category,
@@ -107,17 +109,21 @@ const CODPayment = ({ data: items, isDelete }) => {
             .delete(`deleteUserCartItems/${user?.email}`)
             .then((res) => {
               if (res.data.result.deletedCount > 0) {
-                refetch();
-                refetchALL();
+                refetchCartUser();
+                refetchCartALL();
+                refetchPaymentInfo();
+                refetchSinglePaymentInfo();
+                refetchProducts();
               }
             });
         isDelete === "single" &&
           axiosSecure.delete(`deleteCart/${items[0]?._id}`).then((res) => {
             if (res.data.result.deletedCount > 0) {
-              refetch();
-              refetchALL();
+              refetchCartUser();
+              refetchCartALL();
               refetchPaymentInfo();
               refetchSinglePaymentInfo();
+              refetchProducts();
             }
           });
       }
