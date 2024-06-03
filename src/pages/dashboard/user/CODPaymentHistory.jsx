@@ -18,22 +18,18 @@ const CODPaymentHistory = () => {
      },
      {
        id: 4,
-       field: "Due Amount",
-     },
-     {
-       id: 5,
        field: "Payment Status",
      },
      {
-       id: 6,
+       id: 5,
        field: "Payment Date",
      },
      {
-       id: 7,
+       id: 6,
        field: "Delivery Status",
      },
      {
-       id: 8,
+       id: 7,
        field: "Action",
      },
    ];

@@ -3,40 +3,36 @@ import TableWithHeader from "../../../components/dashboard/TableWithHeader";
 import useGetPaymentInfoByUser from "../../../hooks/useGetPaymentInfoByUser";
 
 const StripePaymentHistory = () => {
-  const tHeadData = [
-    {
-      id: 1,
-      field: "SL",
-    },
-    {
-      id: 2,
-      field: "Payment ID",
-    },
-    {
-      id: 3,
-      field: "Amount",
-    },
-    {
-      id: 4,
-      field: "Due Amount",
-    },
-    {
-      id: 5,
-      field: "Payment Status",
-    },
-    {
-      id: 6,
-      field: "Payment Date",
-    },
-    {
-      id: 7,
-      field: "Delivery Status",
-    },
-    {
-      id: 8,
-      field: "Action",
-    }
-  ];
+    const tHeadData = [
+      {
+        id: 1,
+        field: "SL",
+      },
+      {
+        id: 2,
+        field: "Payment ID",
+      },
+      {
+        id: 3,
+        field: "Amount",
+      },
+      {
+        id: 4,
+        field: "Payment Status",
+      },
+      {
+        id: 5,
+        field: "Payment Date",
+      },
+      {
+        id: 6,
+        field: "Delivery Status",
+      },
+      {
+        id: 7,
+        field: "Action",
+      },
+    ];
   const [paymentInfo]= useGetPaymentInfoByUser();
     const paymentInfoStripe = paymentInfo.filter(
       (item) => item?.paymentMethod === "Stripe"

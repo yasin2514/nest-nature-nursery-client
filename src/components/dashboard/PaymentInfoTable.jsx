@@ -11,14 +11,13 @@ const PaymentInfoTable = ({ data, index }) => {
     delivery,
     paymentStatus,
     purchaseDate,
-    totalDue,
   } = data || {};
   return (
     <tr>
       <td className="text-center">{index + 1}</td>
       <td className="text-center">{paymentId || null}</td>
       <td className="text-center">${formatNumber(totalAmount)}</td>
-      <td className="text-center">${formatNumber(totalDue) || 0}</td>
+
       <td
         className={`text-center font-semibold ${
           paymentStatus === "Paid" ? "text-green-600" : "text-red-600"

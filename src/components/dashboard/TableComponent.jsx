@@ -21,7 +21,7 @@ const TableComponent = ({ tHeadData, data, show }) => {
           ))
         ) : (
           <tr>
-            <td className="text-center" colSpan={tHeadData.length}>
+            <td className="text-center py-4" colSpan={tHeadData.length}>
               No data found
             </td>
           </tr>
