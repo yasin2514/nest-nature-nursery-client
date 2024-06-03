@@ -16,9 +16,12 @@ const TableComponent = ({ tHeadData, data, show }) => {
       </thead>
       <tbody>
         {data?.length > 0 ? (
-          data?.map((item, index) => (
-            <TableBody key={index} data={item} index={index} show={show} />
-          ))
+          data
+            .slice()
+            .reverse()
+            .map((item, index) => (
+              <TableBody key={index} data={item} index={index} show={show} />
+            ))
         ) : (
           <tr>
             <td className="text-center py-4" colSpan={tHeadData.length}>
