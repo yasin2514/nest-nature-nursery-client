@@ -19,7 +19,7 @@ const OurNurserySection = () => {
             header="Our Nursery"
             title="We provide the best service"
           />
-          <Link to="/contact-us" className="border">
+          <Link to="/contact-us">
             <button className="btn btn-sm">Get in Touch</button>
           </Link>
         </div>
