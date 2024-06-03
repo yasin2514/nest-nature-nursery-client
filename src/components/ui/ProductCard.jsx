@@ -17,6 +17,7 @@ const ProductCard = ({ data }) => {
 
   const handleAddToCart = (item) => {
     const saveItem = {
+      productId:item._id,
       name: item.name,
       price: item.price,
       photos: item.photos,

@@ -138,6 +138,7 @@ const StripePayment = ({ data: items, isDelete }) => {
         purchaseDate: new Date().toISOString(),
         paymentStatus: "Paid",
         items: items?.map((item) => ({
+          productId: item.productId,
           quantity: item.quantity,
           price: item.price,
           category: item.category,

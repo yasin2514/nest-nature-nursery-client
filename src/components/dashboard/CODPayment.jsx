@@ -75,6 +75,7 @@ const CODPayment = ({ data: items, isDelete }) => {
       purchaseDate: new Date().toISOString(),
       paymentStatus: "Not Paid",
       items: items?.map((item) => ({
+        productId:item.productId,
         quantity: item.quantity,
         price: item.price,
         category: item.category,
