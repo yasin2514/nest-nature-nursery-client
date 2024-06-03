@@ -18,7 +18,7 @@ const StripePaymentHistory = () => {
     },
     {
       id: 4,
-      field: "Currency",
+      field: "Due Amount",
     },
     {
       id: 5,
@@ -32,6 +32,10 @@ const StripePaymentHistory = () => {
       id: 7,
       field: "Delivery Status",
     },
+    {
+      id: 8,
+      field: "Action",
+    }
   ];
   const [paymentInfo]= useGetPaymentInfoByUser();
   return (
