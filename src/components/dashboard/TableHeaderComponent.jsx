@@ -41,7 +41,7 @@ const TableHeaderComponent = ({
             className="custom-input "
             name="search"
             id="search"
-            placeholder="Search by name"
+            placeholder={show === "paymentInfoUser" ? "Search Payment ID" : "Search Plant Name" }
             onChange={(e) => setSearchText(e.target.value)}
           />
           <IoMdSearch className="absolute right-2 text-gray-500 top-4 " />

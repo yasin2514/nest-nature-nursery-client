@@ -5,31 +5,42 @@ import TableComponent from "./TableComponent";
 const TableWithHeader = ({ tHeadData, data, show }) => {
   const [searchText, setSearchText] = useState("");
   const [searchCategory, setSearchCategory] = useState(
-    show === "userList" ? "Select Role" : "Select Category"
+    show === "paymentInfoUser"
+      ? "Delivery Status"
+      : show === "userList"
+      ? "Select Role"
+      : "Select Category"
   );
 
   // Extract unique categories from products
   const uniqueCategories = useMemo(() => {
     const categories = data?.map(
-      (product) => product?.category || product?.role
+      (product) => product?.category || product?.role || product?.delivery
     );
     return [
-      show === "userList" ? "Select Role" : "Select Category",
+      show === "paymentInfoUser"
+      ? "Delivery Status"
+      : show === "userList"
+      ? "Select Role"
+      : "Select Category",
       ...new Set(categories),
     ];
   }, [data, show]);
 
-  // Filter products based on search text and selected category
+  // Filter products based on search text and selected category and delivery status
   const filteredProducts = useMemo(() => {
     return data?.filter((item) => {
-      const matchesSearchText = item?.name
-        ?.toLowerCase()
-        .includes(searchText.toLowerCase());
+      const matchesSearchText =
+        item?.name?.toLowerCase().includes(searchText.toLowerCase()) ||
+        item?.paymentId?.toLowerCase().includes(searchText.toLowerCase());
       const matchesCategory =
         searchCategory === "Select Category" ||
         searchCategory === "Select Role" ||
+        searchCategory === "Delivery Status" ||
         item?.category === searchCategory ||
-        item?.role === searchCategory;
+        item?.role === searchCategory ||
+        item?.delivery === searchCategory;
+
       return matchesSearchText && matchesCategory;
     });
   }, [data, searchText, searchCategory]);
