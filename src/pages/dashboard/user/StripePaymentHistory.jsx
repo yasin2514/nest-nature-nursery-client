@@ -38,11 +38,15 @@ const StripePaymentHistory = () => {
     }
   ];
   const [paymentInfo]= useGetPaymentInfoByUser();
+    const paymentInfoStripe = paymentInfo.filter(
+      (item) => item?.paymentMethod === "Stripe"
+    );
+
   return (
     <div>
       <BreadCum text1={"User Dashboard"} text2={"Stripe Payment History"} />
       <TableWithHeader
-        data={paymentInfo || []}
+        data={paymentInfoStripe || []}
         tHeadData={tHeadData}
         show={"paymentInfo"}
       />
