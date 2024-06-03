@@ -16,6 +16,8 @@ import Swal from "sweetalert2";
 import useGetCartProducts from "../../hooks/useGetCartProducts";
 import useGetCartDataByUser from "../../hooks/useGetCartDataByUser";
 import { AuthContext } from "../../providers/AuthProvider";
+import useGetPaymentInfo from "../../hooks/useGetPaymentInfo";
+import useGetPaymentInfoByUser from "../../hooks/useGetPaymentInfoByUser";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_Pk);
 
@@ -28,6 +30,8 @@ const StripePayment = ({ data: items, isDelete }) => {
   const elements = useElements();
   const [, , refetchALL] = useGetCartProducts();
   const [, , refetch] = useGetCartDataByUser();
+   const [, , refetchPaymentInfo] = useGetPaymentInfo();
+   const [, , refetchSinglePaymentInfo] = useGetPaymentInfoByUser();
   const [cardError, setCardError] = useState(null);
   const [processing, setProcessing] = useState(false);
   const [clientSecret, setClientSecret] = useState(null);
@@ -168,6 +172,8 @@ const StripePayment = ({ data: items, isDelete }) => {
                 if (res.data.result.deletedCount > 0) {
                   refetch();
                   refetchALL();
+                  refetchPaymentInfo();
+                  refetchSinglePaymentInfo();
                 }
               });
           }

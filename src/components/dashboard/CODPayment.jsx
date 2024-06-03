@@ -9,6 +9,8 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useGetCartProducts from "../../hooks/useGetCartProducts";
 import useGetCartDataByUser from "../../hooks/useGetCartDataByUser";
+import useGetPaymentInfo from "../../hooks/useGetPaymentInfo";
+import useGetPaymentInfoByUser from "../../hooks/useGetPaymentInfoByUser";
 
 const CODPayment = ({ data: items, isDelete }) => {
   const { user } = useContext(AuthContext);
@@ -16,6 +18,8 @@ const CODPayment = ({ data: items, isDelete }) => {
   const formatNumber = useNumberFormatter();
   const [, , refetchALL] = useGetCartProducts();
   const [, , refetch] = useGetCartDataByUser();
+  const [, , refetchPaymentInfo] = useGetPaymentInfo();
+  const [, , refetchSinglePaymentInfo] = useGetPaymentInfoByUser();
   const navigate = useNavigate();
   const totalPlants = items?.length;
   const totalQuantity = items?.reduce((acc, curr) => acc + curr?.quantity, 0);
@@ -111,6 +115,8 @@ const CODPayment = ({ data: items, isDelete }) => {
             if (res.data.result.deletedCount > 0) {
               refetch();
               refetchALL();
+              refetchPaymentInfo();
+              refetchSinglePaymentInfo();
             }
           });
       }
