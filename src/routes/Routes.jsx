@@ -34,6 +34,7 @@ import CartItems from "../pages/dashboard/user/CartItems";
 import SSLPaymentHistory from "../pages/dashboard/user/SSLPaymentHistory";
 import CODPaymentHistory from "../pages/dashboard/user/CODPaymentHistory";
 import StripePaymentHistory from "../pages/dashboard/user/StripePaymentHistory";
+import PaymentsDetails from "../components/dashboard/PaymentsDetails";
 
 const router = createBrowserRouter([
   {
@@ -190,6 +191,12 @@ const router = createBrowserRouter([
         element: <SslSinglePayment />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/cartItem/${params?.id}`),
+      },
+      {
+        path: "payment-details/:id",
+        element: <PaymentsDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/singlePaymentInfo/${params?.id}`),
       },
     ],
   },

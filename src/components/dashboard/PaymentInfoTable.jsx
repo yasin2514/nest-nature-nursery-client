@@ -34,7 +34,12 @@ const PaymentInfoTable = ({ data, index }) => {
         {delivery}
       </td>
       <td className=" flex justify-center py-4">
-        <Link className="btn btn-sm btn-success text-white">See Details</Link>
+        <Link
+          to={`/dashboard/payment-details/${_id}`}
+          className="btn btn-sm btn-success text-white"
+        >
+          See Details
+        </Link>
       </td>
     </tr>
   );
