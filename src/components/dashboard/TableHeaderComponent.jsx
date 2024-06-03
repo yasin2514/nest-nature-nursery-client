@@ -23,7 +23,7 @@ const TableHeaderComponent = ({
         </select>
       </div>
       <div className="text-xl text-green-500 font-semibold">
-        {show === "userList" ? " Total Users: " : " Total Plants: "}
+        {show === "userList" ? " Total Users: " : show==="paymentInfo"? "Total Payments: ": " Total Plants: "}
         {data?.length}
       </div>
       <div className="flex items-center gap-5">

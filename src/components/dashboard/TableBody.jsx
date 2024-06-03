@@ -20,7 +20,7 @@ const TableBody = ({ data, index, show }) => {
         <UserPurchaseItemsTable data={data} index={index} />
       )}
       {
-        show === "paymentInfoUser" && (
+        show === "paymentInfo" && (
           <PaymentInfoTable data={data} index={index} />
         )
       }

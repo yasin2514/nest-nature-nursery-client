@@ -5,7 +5,7 @@ import TableComponent from "./TableComponent";
 const TableWithHeader = ({ tHeadData, data, show }) => {
   const [searchText, setSearchText] = useState("");
   const [searchCategory, setSearchCategory] = useState(
-    show === "paymentInfoUser"
+    show === "paymentInfo"
       ? "Delivery Status"
       : show === "userList"
       ? "Select Role"
@@ -18,7 +18,7 @@ const TableWithHeader = ({ tHeadData, data, show }) => {
       (product) => product?.category || product?.role || product?.delivery
     );
     return [
-      show === "paymentInfoUser"
+      show === "paymentInfo"
       ? "Delivery Status"
       : show === "userList"
       ? "Select Role"

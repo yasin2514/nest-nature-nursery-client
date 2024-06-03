@@ -44,7 +44,7 @@ const StripePaymentHistory = () => {
       <TableWithHeader
         data={paymentInfo || []}
         tHeadData={tHeadData}
-        show={"paymentInfoUser"}
+        show={"paymentInfo"}
       />
     </div>
   );

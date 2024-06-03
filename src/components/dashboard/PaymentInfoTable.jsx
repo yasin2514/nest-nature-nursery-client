@@ -9,7 +9,6 @@ const PaymentInfoTable = ({ data, index }) => {
     paymentId,
     totalAmount,
     delivery,
-    paymentMethod,
     paymentStatus,
     purchaseDate,
     totalDue,
@@ -27,7 +26,7 @@ const PaymentInfoTable = ({ data, index }) => {
       >
         {paymentStatus || null}
       </td>
-      <td className="text-center">{purchaseDate.slice(0,10)}</td>
+      <td className="text-center">{purchaseDate.slice(0, 10)}</td>
       <td
         className={`text-center font-semibold ${
           delivery === "Pending" ? "text-red-600" : "text-green-600"
@@ -35,8 +34,8 @@ const PaymentInfoTable = ({ data, index }) => {
       >
         {delivery}
       </td>
-      <td className=" flex justify-center py-3">
-        <Link className="btn btn-sm">See Details</Link>
+      <td className=" flex justify-center py-4">
+        <Link className="btn btn-sm btn-success text-white">See Details</Link>
       </td>
     </tr>
   );
