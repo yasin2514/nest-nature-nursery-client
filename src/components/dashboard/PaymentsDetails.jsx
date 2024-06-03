@@ -1,8 +1,39 @@
 import { useLoaderData } from "react-router-dom";
 import BreadCum from "./BreadCum";
 import useNumberFormatter from "../../hooks/useNumberFormatter";
+import TableComponent from "./TableComponent";
 
 const PaymentsDetails = () => {
+      const tHeadData = [
+        {
+          id: 1,
+          field: "SL",
+        },
+        {
+          id: 2,
+          field: "Image",
+        },
+        {
+          id: 3,
+          field: "Name",
+        },
+        {
+          id: 4,
+          field: "Price",
+        },
+        {
+          id: 5,
+          field: "Quantity",
+        },
+        {
+          id: 6,
+          field: "Total Amount",
+        },
+        {
+          id: 7,
+          field: "Category",
+        }
+      ];
   const data = useLoaderData();
   const formatNumber = useNumberFormatter();
 
@@ -32,10 +63,10 @@ const PaymentsDetails = () => {
         {/* payment Details */}
         <div className=" grid grid-cols-12  gap-20">
           <div className="col-span-6 ">
-            <h1 className="text-lg font-semibold text-center">
+            <h1 className="text-green-700 font-semibold text-center">
               Payment Details
             </h1>
-            <div className="flex flex-col mt-5 gap-2 px-5 text-[#5e5e5e]">
+            <div className="flex flex-col mt-3 gap-2 px-5 text-[#5e5e5e]">
               <div className="flex justify-between">
                 <p className="font-semibold">Payment Date :</p>
                 <p>{purchaseDate.slice(0, 10) || null}</p>
@@ -70,7 +101,7 @@ const PaymentsDetails = () => {
               <div className="flex justify-between">
                 <p className="font-semibold">Delivery Status :</p>
                 <p
-                  className={`text-center font-semibold ${
+                  className={` ${
                     delivery === "Pending" ? "text-red-600" : "text-green-600"
                   }`}
                 >
@@ -81,8 +112,8 @@ const PaymentsDetails = () => {
           </div>
           {/* Delivery Details */}
           <div className="col-span-6 ">
-            <h1 className="text-lg font-semibold text-center">Order Details</h1>
-            <div className="flex flex-col mt-5 gap-1 px-5 text-[#5e5e5e]">
+            <h1 className="text-green-700 font-semibold text-center">Order Details</h1>
+            <div className="flex flex-col mt-3 gap-1 px-5 text-[#5e5e5e]">
               <div className="flex justify-between">
                 <p className="font-semibold">Customer Name:</p>
                 <p>{userName || null}</p>
@@ -115,12 +146,18 @@ const PaymentsDetails = () => {
               </div>
               <div className="flex justify-between">
                 <p className="font-semibold">Total Amount :</p>
-                <p>{formatNumber(totalAmount)}</p>
+                <p>${formatNumber(totalAmount)}</p>
               </div>
             </div>
           </div>
         </div>
-        <div className="col-span-12 mt-5 p-5"></div>
+        <div className="col-span-12 mx-5  my-10  border rounded-md">
+          <TableComponent
+            tHeadData={tHeadData}
+            data={items}
+            show={"paymentDetails"}
+          />
+        </div>
       </div>
     </div>
   );
