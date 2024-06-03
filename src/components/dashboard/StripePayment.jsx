@@ -155,7 +155,7 @@ const StripePayment = ({ data: items, isDelete }) => {
           reset();
           Swal.fire({
             icon: "success",
-            title: "Product added successfully",
+            title: "Payment successfully completed",
             showConfirmButton: false,
             timer: 1000,
           });

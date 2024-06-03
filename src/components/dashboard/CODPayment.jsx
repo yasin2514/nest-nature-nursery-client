@@ -92,7 +92,7 @@ const CODPayment = ({ data: items, isDelete }) => {
         reset();
         Swal.fire({
           icon: "success",
-          title: "Product added successfully",
+          title: "Order successfully placed",
           showConfirmButton: false,
           timer: 1000,
         });
