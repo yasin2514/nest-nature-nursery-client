@@ -107,7 +107,6 @@ const StripePayment = ({ data: items, isDelete }) => {
         },
       });
 
-    console.log({ paymentIntent });
     setProcessing(false);
 
     if (confirmError) {

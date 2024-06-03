@@ -11,7 +11,7 @@ const UserPurchaseItemsTable = ({ data, index }) => {
     totalAmount,
     delivery,
     paymentMethod,
-    payment,
+    paymentStatus,
   } = data || {};
   return (
     <tr>
@@ -30,13 +30,13 @@ const UserPurchaseItemsTable = ({ data, index }) => {
       >
         {delivery}
       </td>
-      <td className="text-center">{paymentMethod}</td>
+      <td className="text-center">{paymentMethod || null}</td>
       <td
         className={`text-center font-semibold ${
-          payment === "Paid" ? "text-green-600" : "text-red-600"
+          paymentStatus === "Paid" ? "text-green-600" : "text-red-600"
         }`}
       >
-        {payment || "Not Paid"}
+        {paymentStatus || null}
       </td>
     </tr>
   );
