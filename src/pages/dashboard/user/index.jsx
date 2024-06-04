@@ -21,7 +21,7 @@ const UserDashboard = () => {
     0
   );
   const totalPaidAmount = paymentUserData?.reduce(
-    (acc, item) => acc + item?.totalAmount,
+    (acc, item) => acc + item?.paidAmount,
     0
   );
   const totalDueAmount = paymentUserData?.reduce(

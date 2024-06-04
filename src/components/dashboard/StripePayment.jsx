@@ -32,8 +32,8 @@ const StripePayment = ({ data: items, isDelete }) => {
   const [, , refetchProducts] = useGetProducts();
   const [, , refetchCartALL] = useGetCartProducts();
   const [, , refetchCartUser] = useGetCartDataByUser();
-   const [, , refetchPaymentInfo] = useGetPaymentInfo();
-   const [, , refetchSinglePaymentInfo] = useGetPaymentInfoByUser();
+  const [, , refetchPaymentInfo] = useGetPaymentInfo();
+  const [, , refetchSinglePaymentInfo] = useGetPaymentInfoByUser();
   const [cardError, setCardError] = useState(null);
   const [processing, setProcessing] = useState(false);
   const [clientSecret, setClientSecret] = useState(null);
@@ -139,6 +139,7 @@ const StripePayment = ({ data: items, isDelete }) => {
         paymentId: paymentIntent.id,
         purchaseDate: new Date().toISOString(),
         paymentStatus: "Paid",
+        paidAmount: totalAmountWithDelivery,
         items: items?.map((item) => ({
           productId: item.productId,
           quantity: item.quantity,
