@@ -28,12 +28,25 @@ const AdminSidebar = () => {
       name: "Orders",
       child: [
         {
-          name: "Pending Orders",
+          name: "Unprocessed Orders",
           to: "/dashboard/orders/pending",
         },
         {
           name: "Completed Orders",
           to: "/dashboard/orders/completed",
+        },
+      ],
+    },
+    {
+      name: "Delivery",
+      child: [
+        {
+          name: "Pending Delivery",
+          to: "/dashboard/delivery/pending",
+        },
+        {
+          name: "Completed Delivery",
+          to: "/dashboard/delivery/completed",
         },
       ],
     },
