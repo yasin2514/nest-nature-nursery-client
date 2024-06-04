@@ -45,6 +45,7 @@ const PendingDelivery = () => {
         data={PendingDeliveryData || []}
         tHeadData={tHeadData}
         show={"paymentInfoAdmin"}
+        others={true}
       />
     </div>
   );

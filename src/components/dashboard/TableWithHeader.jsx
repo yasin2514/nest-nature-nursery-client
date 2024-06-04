@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import TableHeaderComponent from "./TableHeaderComponent";
 import TableComponent from "./TableComponent";
 
-const TableWithHeader = ({ tHeadData, data, show }) => {
+const TableWithHeader = ({ tHeadData, data, show, others }) => {
   const [searchText, setSearchText] = useState("");
   const [searchCategory, setSearchCategory] = useState(
     show === "paymentInfo"
@@ -71,6 +71,7 @@ const TableWithHeader = ({ tHeadData, data, show }) => {
           tHeadData={tHeadData}
           data={filteredProducts}
           show={show}
+          others={others}
         />
       </div>
     </div>

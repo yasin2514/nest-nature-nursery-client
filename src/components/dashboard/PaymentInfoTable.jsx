@@ -1,17 +1,11 @@
 import { Link } from "react-router-dom";
 import useNumberFormatter from "../../hooks/useNumberFormatter";
 
-const PaymentInfoTable = ({ data, index }) => {
+const PaymentInfoTable = ({ data, index, others }) => {
   const formatNumber = useNumberFormatter();
 
-  const {
-    _id,
-    paymentId,
-    totalAmount,
-    delivery,
-    paymentStatus,
-    purchaseDate,
-  } = data || {};
+  const { _id, paymentId, totalAmount, delivery, paymentStatus, purchaseDate } =
+    data || {};
   return (
     <tr>
       <td className="text-center">{index + 1}</td>
@@ -33,7 +27,8 @@ const PaymentInfoTable = ({ data, index }) => {
       >
         {delivery}
       </td>
-      <td className=" flex justify-center py-4">
+      <td className=" text-center  space-x-3 py-4  max-w-[190px]  w-auto ">
+        {others && <button className="btn btn-sm">Delivery Done</button>}
         <Link
           to={`/dashboard/payment-details/${_id}`}
           className="btn btn-sm btn-success text-white"

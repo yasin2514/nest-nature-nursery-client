@@ -4,7 +4,7 @@ import AdminProductListTable from "./AdminProductListTable";
 import UserPurchaseItemsTable from "./UserPurchaseItemsTable";
 import PaymentInfoTable from "./PaymentInfoTable";
 import PaymentDetailsTable from "./PaymentDetailsTable";
-const TableBody = ({ data, index, show }) => {
+const TableBody = ({ data, index, show, others }) => {
   return (
     <>
       {(show === "adminList" ||
@@ -20,7 +20,7 @@ const TableBody = ({ data, index, show }) => {
         <UserPurchaseItemsTable data={data} index={index} />
       )}
       {(show === "paymentInfo" || show === "paymentInfoAdmin") && (
-        <PaymentInfoTable data={data} index={index} />
+        <PaymentInfoTable data={data} index={index} others={others} />
       )}
       {show === "paymentDetails" && (
         <PaymentDetailsTable data={data} index={index} />

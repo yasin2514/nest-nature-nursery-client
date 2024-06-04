@@ -1,6 +1,6 @@
 import TableBody from "./TableBody";
 
-const TableComponent = ({ tHeadData, data, show }) => {
+const TableComponent = ({ tHeadData, data, show, others }) => {
   return (
     <table className="table table-sm">
       <thead>
@@ -20,7 +20,13 @@ const TableComponent = ({ tHeadData, data, show }) => {
             .slice()
             .reverse()
             .map((item, index) => (
-              <TableBody key={index} data={item} index={index} show={show} />
+              <TableBody
+                key={index}
+                data={item}
+                index={index}
+                show={show}
+                others={others}
+              />
             ))
         ) : (
           <tr>
