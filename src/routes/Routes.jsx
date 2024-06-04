@@ -35,6 +35,8 @@ import SSLPaymentHistory from "../pages/dashboard/user/SSLPaymentHistory";
 import CODPaymentHistory from "../pages/dashboard/user/CODPaymentHistory";
 import StripePaymentHistory from "../pages/dashboard/user/StripePaymentHistory";
 import PaymentsDetails from "../components/dashboard/PaymentsDetails";
+import PendingDelivery from "../pages/dashboard/admin/PendingDelivery";
+import CompletedDelivery from "../pages/dashboard/admin/CompletedDelivery";
 
 const router = createBrowserRouter([
   {
@@ -118,6 +120,14 @@ const router = createBrowserRouter([
       {
         path: "admin-settings",
         element: <AdminSettings />,
+      },
+      {
+        path: "delivery/pending",
+        element: <PendingDelivery />,
+      },
+      {
+        path: "delivery/completed",
+        element: <CompletedDelivery />,
       },
 
       {
