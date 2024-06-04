@@ -9,6 +9,8 @@ const TableWithHeader = ({ tHeadData, data, show }) => {
       ? "Delivery Status"
       : show === "userList"
       ? "Select Role"
+      : show === "paymentInfoAdmin"
+      ? "Payment Method"
       : "Select Category"
   );
 
@@ -18,8 +20,8 @@ const TableWithHeader = ({ tHeadData, data, show }) => {
       (product) =>
         product?.category ||
         product?.role ||
-        product?.delivery ||
-        product?.paymentMethod
+        (show === "paymentInfo" && product?.delivery) ||
+        (show === "paymentInfoAdmin" && product?.paymentMethod)
     );
     return [
       show === "paymentInfo"
