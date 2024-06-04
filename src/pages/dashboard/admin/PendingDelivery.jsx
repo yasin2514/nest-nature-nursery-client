@@ -34,11 +34,15 @@ const PendingDelivery = () => {
              },
            ];
            const [paymentData] = useGetPaymentInfo();
+            const PendingDeliveryData = paymentData?.filter(
+              (item) => item?.delivery === "Pending"
+            );
+
            return (
              <div>
                <BreadCum text1={"User Dashboard"} text2={"Pending Delivery"} />
                <TableWithHeader
-                 data={paymentData || []}
+                 data={PendingDeliveryData || []}
                  tHeadData={tHeadData}
                  show={"paymentInfoAdmin"}
                />
