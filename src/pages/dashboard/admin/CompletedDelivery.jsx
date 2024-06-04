@@ -34,13 +34,14 @@ const CompletedDelivery = () => {
          },
        ];
     const [paymentData] = useGetPaymentInfo();
+    console.log(paymentData)
     return (
       <div>
         <BreadCum text1={"User Dashboard"} text2={"Completed Delivery"} />
         <TableWithHeader
           data={paymentData || []}
           tHeadData={tHeadData}
-          show={"paymentInfo"}
+          show={"paymentInfoAdmin"}
         />
       </div>
     );

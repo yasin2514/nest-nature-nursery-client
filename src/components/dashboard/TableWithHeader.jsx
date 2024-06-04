@@ -15,14 +15,20 @@ const TableWithHeader = ({ tHeadData, data, show }) => {
   // Extract unique categories from products
   const uniqueCategories = useMemo(() => {
     const categories = data?.map(
-      (product) => product?.category || product?.role || product?.delivery
+      (product) =>
+        product?.category ||
+        product?.role ||
+        product?.delivery ||
+        product?.paymentMethod
     );
     return [
       show === "paymentInfo"
-      ? "Delivery Status"
-      : show === "userList"
-      ? "Select Role"
-      : "Select Category",
+        ? "Delivery Status"
+        : show === "userList"
+        ? "Select Role"
+        : show === "paymentInfoAdmin"
+        ? "Payment Method"
+        : "Select Category",
       ...new Set(categories),
     ];
   }, [data, show]);
@@ -37,7 +43,9 @@ const TableWithHeader = ({ tHeadData, data, show }) => {
         searchCategory === "Select Category" ||
         searchCategory === "Select Role" ||
         searchCategory === "Delivery Status" ||
+        searchCategory === "Payment Method" ||
         item?.category === searchCategory ||
+        item?.paymentMethod === searchCategory ||
         item?.role === searchCategory ||
         item?.delivery === searchCategory;
 

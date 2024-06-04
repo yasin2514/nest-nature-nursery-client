@@ -23,7 +23,13 @@ const TableHeaderComponent = ({
         </select>
       </div>
       <div className="text-xl text-green-500 font-semibold">
-        {show === "userList" ? " Total Users: " : show==="paymentInfo"? "Total Payments: ": " Total Plants: "}
+        {show === "userList"
+          ? " Total Users: "
+          : show === "paymentInfo"
+          ? "Total Payments: "
+          : show === "paymentInfoAdmin"
+          ? "Total Delivery List: "
+          : " Total Plants: "}
         {data?.length}
       </div>
       <div className="flex items-center gap-5">
@@ -41,7 +47,11 @@ const TableHeaderComponent = ({
             className="custom-input "
             name="search"
             id="search"
-            placeholder={show === "paymentInfoUser" ? "Search Payment ID" : "Search Plant Name" }
+            placeholder={
+              show === "paymentInfoUser" || show === "paymentInfoAdmin"
+                ? "Search Payment ID"
+                : "Search Plant Name"
+            }
             onChange={(e) => setSearchText(e.target.value)}
           />
           <IoMdSearch className="absolute right-2 text-gray-500 top-4 " />

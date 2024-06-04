@@ -40,7 +40,7 @@ const PendingDelivery = () => {
                <TableWithHeader
                  data={paymentData || []}
                  tHeadData={tHeadData}
-                 show={"paymentInfo"}
+                 show={"paymentInfoAdmin"}
                />
              </div>
            );

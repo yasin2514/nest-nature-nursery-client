@@ -25,7 +25,7 @@ const PaymentInfoTable = ({ data, index }) => {
       >
         {paymentStatus || null}
       </td>
-      <td className="text-center">{purchaseDate.slice(0, 10)}</td>
+      <td className="text-center">{purchaseDate?.slice(0, 10)}</td>
       <td
         className={`text-center font-semibold ${
           delivery === "Pending" ? "text-red-600" : "text-green-600"

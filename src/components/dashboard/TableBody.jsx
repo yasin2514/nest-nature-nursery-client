@@ -4,7 +4,6 @@ import AdminProductListTable from "./AdminProductListTable";
 import UserPurchaseItemsTable from "./UserPurchaseItemsTable";
 import PaymentInfoTable from "./PaymentInfoTable";
 import PaymentDetailsTable from "./PaymentDetailsTable";
-
 const TableBody = ({ data, index, show }) => {
   return (
     <>
@@ -20,16 +19,12 @@ const TableBody = ({ data, index, show }) => {
       {show === "userPurchaseItems" && (
         <UserPurchaseItemsTable data={data} index={index} />
       )}
-      {
-        show === "paymentInfo" && (
-          <PaymentInfoTable data={data} index={index} />
-        )
-      }
-      {
-        show === "paymentDetails" && (
-          <PaymentDetailsTable data={data} index={index} />
-        )
-      }
+      {(show === "paymentInfo" || show === "paymentInfoAdmin") && (
+        <PaymentInfoTable data={data} index={index} />
+      )}
+      {show === "paymentDetails" && (
+        <PaymentDetailsTable data={data} index={index} />
+      )}
     </>
   );
 };
