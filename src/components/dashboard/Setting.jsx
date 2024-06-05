@@ -27,6 +27,7 @@ const Setting = () => {
     handleSubmit,
     register,
     formState: { errors },
+    reset,
   } = useForm({ defaultValues });
 
   const onSubmit = async (data) => {
@@ -40,6 +41,7 @@ const Setting = () => {
     };
     axiosSecure.patch(`updateUser/${email}`, updateUserData).then((res) => {
       if (res.data.modifiedCount > 0) {
+        reset();
         refetchAll();
         refetch();
         Swal.fire({
