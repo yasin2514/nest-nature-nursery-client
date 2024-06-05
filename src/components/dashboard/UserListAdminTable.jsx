@@ -1,5 +1,5 @@
 const UserListAdminTable = ({ data, index }) => {
-  const { name, photo, email, role } = data || {};
+  const { name, photo, email, role, phone } = data || {};
   return (
     <tr>
       <td className="text-center">{index + 1}</td>
@@ -12,6 +12,7 @@ const UserListAdminTable = ({ data, index }) => {
       </td>
       <td className="text-center">{name}</td>
       <td className="text-center">{email}</td>
+      <td className="text-center">{phone || "-"}</td>
       <td
         className={`text-center uppercase font-semibold ${
           role === "user" ? "text-green-600" : "text-blue-600 "

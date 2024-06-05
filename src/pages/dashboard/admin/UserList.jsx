@@ -22,10 +22,14 @@ const UserList = () => {
     },
     {
       id: 5,
-      field: "Role",
+      field: "Phone Number",
     },
     {
       id: 6,
+      field: "Role",
+    },
+    {
+      id: 7,
       field: "Actions",
     },
   ];
