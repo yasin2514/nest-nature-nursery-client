@@ -45,7 +45,6 @@ const PaymentsDetails = () => {
     userDistrict,
     userCountry,
     totalPlants,
-    userAdditionalInfo,
     totalQuantity,
     totalAmount,
     totalDue,
