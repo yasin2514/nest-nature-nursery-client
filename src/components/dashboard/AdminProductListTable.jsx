@@ -47,7 +47,7 @@ const AdminProductListTable = ({ data, index, show }) => {
   };
 
   return (
-    <tr>
+    <tr title={quantity <= 10 && "Warning: Please Update Quantity"}>
       <td className="text-center">{index + 1}</td>
       <td className="flex items-center justify-center">
         <img src={photos?.[0]} alt="plant image" className="size-16 rounded" />
@@ -57,7 +57,9 @@ const AdminProductListTable = ({ data, index, show }) => {
       </td>
       <td className="text-center">{category}</td>
       <td className="text-center">{formatNumber(price)}</td>
-      <td className="text-center">{formatNumber(quantity)}</td>
+      <td className={`text-center ${quantity <= 10 && "text-red-700 "}`}>
+        {formatNumber(quantity)}
+      </td>
       {show === "adminList" && (
         <td className="text-center max-w-[17ch]">{uploadByEmail}</td>
       )}

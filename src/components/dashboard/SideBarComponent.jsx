@@ -13,7 +13,7 @@ const SideBarComponent = ({ data, settingPath }) => {
 
   return (
     <div className="flex flex-col justify-between mt-10 px-7 h-[calc(100vh-110px)]">
-      <div className="flex flex-col items-start gap-4">
+      <div className="flex flex-col items-start gap-2">
         {data?.map((link, index) => (
           <div key={index} className="w-full">
             <div

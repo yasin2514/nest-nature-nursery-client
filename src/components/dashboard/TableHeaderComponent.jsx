@@ -50,6 +50,8 @@ const TableHeaderComponent = ({
             placeholder={
               show === "paymentInfoUser" || show === "paymentInfoAdmin"
                 ? "Search Payment ID"
+                : show === "userList"
+                ? "Search User Name"
                 : "Search Plant Name"
             }
             onChange={(e) => setSearchText(e.target.value)}
