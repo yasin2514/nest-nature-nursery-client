@@ -4,11 +4,13 @@ import FormElement, { Input } from "../ui/FormComponent";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useGetUser from "../../hooks/useGetUser";
+import { useNavigate } from "react-router-dom";
 
 const Setting = () => {
   const axiosSecure = useAxiosSecure();
   const [userData, , refetch] = useGetSingleUser();
   const [, , refetchAll] = useGetUser();
+  const navigate = useNavigate();
   const {
     name,
     photo,
@@ -44,6 +46,7 @@ const Setting = () => {
         reset();
         refetchAll();
         refetch();
+        navigate("/dashboard")
         Swal.fire({
           icon: "success",
           title: "Updated successfully",
@@ -58,7 +61,7 @@ const Setting = () => {
     <div className="bg-white flex flex-col items-center justify-center  p-5 mt-5 rounded-lg h-[calc(100vh-177px)] overflow-auto gap-10 ">
       <div className="w-10/12">
         {/* user info */}
-        <div className=" w-1/2 mx-auto flex gap-10 items-center  justify-evenly p-5 rounded-md">
+        <div className=" w-3/5  justify-center mx-auto flex gap-10 items-center  p-5 ">
           <div className="size-24 rounded-full overflow-hidden outline outline-green-900">
             <img src={photo} alt={name} className="object-contain" />
           </div>
