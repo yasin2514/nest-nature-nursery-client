@@ -1,26 +1,56 @@
 import { useForm } from "react-hook-form";
 import useGetSingleUser from "../../hooks/useGetSingleUser";
 import FormElement, { Input } from "../ui/FormComponent";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import useGetUser from "../../hooks/useGetUser";
 
 const Setting = () => {
-  const [userData] = useGetSingleUser();
+  const axiosSecure = useAxiosSecure();
+  const [userData, , refetch] = useGetSingleUser();
+  const [, , refetchAll] = useGetUser();
   const {
     name,
     photo,
     role,
     phone,
     email,
-    address: { city, district, country },
+    address: { city, district, country } = {},
   } = userData || {};
-
+  const defaultValues = {
+    phone: phone || "",
+    city: city || "",
+    district: district || "",
+    country: country || "",
+  };
   const {
     handleSubmit,
     register,
     formState: { errors },
-    reset,
-  } = useForm();
+  } = useForm({ defaultValues });
 
-  const onSubmit = async (data) => {};
+  const onSubmit = async (data) => {
+    const updateUserData = {
+      phone: data.phone,
+      address: {
+        city: data.city,
+        district: data.district,
+        country: data.country,
+      },
+    };
+    axiosSecure.patch(`updateUser/${email}`, updateUserData).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetchAll();
+        refetch();
+        Swal.fire({
+          icon: "success",
+          title: "Updated successfully",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+    });
+  };
 
   return (
     <div className="bg-white flex flex-col items-center justify-center  p-5 mt-5 rounded-lg h-[calc(100vh-177px)] overflow-auto gap-10 ">
