@@ -47,7 +47,6 @@ const Login = () => {
             });
           }
         });
-        console.log({ loggedUser });
       })
       .catch((error) => {
         alert(error.message);
