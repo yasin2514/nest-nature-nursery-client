@@ -45,6 +45,7 @@ const PaymentsDetails = () => {
     userDistrict,
     userCountry,
     totalPlants,
+    userAdditionalInfo,
     totalQuantity,
     totalAmount,
     totalDue,
@@ -63,7 +64,7 @@ const PaymentsDetails = () => {
         {/* payment Details */}
         <div className=" grid grid-cols-12  gap-20">
           <div className="col-span-6 ">
-            <h1 className="text-green-700 font-semibold text-center">
+            <h1 className="text-green-700 font-semibold text-lg px-5 underline">
               Payment Details
             </h1>
             <div className="flex flex-col mt-3 gap-2 px-5 text-[#5e5e5e]">
@@ -112,7 +113,9 @@ const PaymentsDetails = () => {
           </div>
           {/* Delivery Details */}
           <div className="col-span-6 ">
-            <h1 className="text-green-700 font-semibold text-center">Order Details</h1>
+            <h1 className="text-green-700 font-semibold text-lg px-5 underline">
+              Order Details
+            </h1>
             <div className="flex flex-col mt-3 gap-1 px-5 text-[#5e5e5e]">
               <div className="flex justify-between">
                 <p className="font-semibold">Customer Name:</p>
