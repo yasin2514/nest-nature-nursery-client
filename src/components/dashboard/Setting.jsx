@@ -65,16 +65,16 @@ const Setting = () => {
           <div className="size-24 rounded-full overflow-hidden outline outline-green-900">
             <img src={photo} alt={name} className="object-contain" />
           </div>
-          <div className="space-y-">
+          <div className="space-y-1 uppercase">
             <h1 className="font-semibold text-lg text-green-800">
               {" "}
               Name: <span>{name}</span>
             </h1>
             <p className="font-semibold text-lg text-green-800">
-              Email: <span>{email}</span>
+              Email: <span className="lowercase">{email}</span>
             </p>
-            <p className="font-semibold text-lg text-green-800">
-              Role: <span>{role}</span>
+            <p className="font-semibold text-lg text-green-800 ">
+              Role: <span >{role}</span>
             </p>
           </div>
         </div>

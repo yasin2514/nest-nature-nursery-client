@@ -1,4 +1,7 @@
+import useSuperAdmin from "../../hooks/useSuperAdmin";
+
 const UserListAdminTable = ({ data, index }) => {
+  const [isSuperAdmin] = useSuperAdmin();
   const { name, photo, email, role, phone } = data || {};
   return (
     <tr>
@@ -22,13 +25,25 @@ const UserListAdminTable = ({ data, index }) => {
       </td>
       <td className="text-center space-x-3">
         <button
-          disabled={role === "admin" || role === "user" ? true : false}
+          disabled={
+            isSuperAdmin
+              ? role === "admin" || role === "superAdmin"
+                ? true
+                : false
+              : true
+          }
           className="btn btn-ghost  btn-sm hover:text-blue-700"
         >
           Make Admin
         </button>
         <button
-          disabled={role === "admin" || role === "user" ? true : false}
+          disabled={
+            isSuperAdmin
+              ? role === "user" || role === "superAdmin"
+                ? true
+                : false
+              : true
+          }
           className="btn btn-ghost btn-sm hover:text-green-700"
         >
           Make User
