@@ -76,7 +76,9 @@ const router = createBrowserRouter([
         path: "plant-details/:id",
         element: <ProductDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/product/${params.id}`),
+          fetch(
+            `https://nest-nature-nursery-server.vercel.app/product/${params.id}`
+          ),
       },
     ],
   },
@@ -100,7 +102,9 @@ const router = createBrowserRouter([
         path: "products/update/:id",
         element: <UpdateProducts />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/product/${params.id}`),
+          fetch(
+            `https://nest-nature-nursery-server.vercel.app/product/${params.id}`
+          ),
       },
       {
         path: "products/admin-products",
@@ -171,7 +175,9 @@ const router = createBrowserRouter([
         path: "make-single-payment/:id",
         element: <MakeSinglePayment />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/cartItem/${params?.id}`),
+          fetch(
+            `https://nest-nature-nursery-server.vercel.app/cartItem/${params?.id}`
+          ),
       },
       {
         path: "make-all-payment",
@@ -193,25 +199,33 @@ const router = createBrowserRouter([
         path: "payment-gateway/stripe/:id",
         element: <StripePaymentSingle />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/cartItem/${params?.id}`),
+          fetch(
+            `https://nest-nature-nursery-server.vercel.app/cartItem/${params?.id}`
+          ),
       },
       {
         path: "payment-gateway/cod/:id",
         element: <CODSinglePayment />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/cartItem/${params?.id}`),
+          fetch(
+            `https://nest-nature-nursery-server.vercel.app/cartItem/${params?.id}`
+          ),
       },
       {
         path: "payment-gateway/ssl/:id",
         element: <SslSinglePayment />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/cartItem/${params?.id}`),
+          fetch(
+            `https://nest-nature-nursery-server.vercel.app/cartItem/${params?.id}`
+          ),
       },
       {
         path: "payment-details/:id",
         element: <PaymentsDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/singlePaymentInfo/${params?.id}`),
+          fetch(
+            `https://nest-nature-nursery-server.vercel.app/singlePaymentInfo/${params?.id}`
+          ),
       },
     ],
   },

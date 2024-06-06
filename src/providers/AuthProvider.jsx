@@ -23,19 +23,19 @@ const AuthProvider = ({ children }) => {
   // google login
   const googleLogin = () => {
     setLoading(false);
-    return signInWithPopup(auth, googleProvider)
+    return signInWithPopup(auth, googleProvider);
   };
 
   // create user using email and password
   const createUser = (email, password) => {
     setLoading(false);
-    return createUserWithEmailAndPassword(auth, email, password)
+    return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // sign In
   const signIn = (email, password) => {
     setLoading(false);
-    return signInWithEmailAndPassword(auth, email, password)
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
   // sign Out
@@ -61,7 +61,9 @@ const AuthProvider = ({ children }) => {
       // get and set token
       if (currentUser) {
         axios
-          .post("http://localhost:5000/jwt", { email: currentUser.email })
+          .post("https://nest-nature-nursery-server.vercel.app/jwt", {
+            email: currentUser.email,
+          })
           .then((res) => {
             localStorage.setItem("token", res.data.token);
             setLoading(false);

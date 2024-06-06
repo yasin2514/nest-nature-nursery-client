@@ -33,18 +33,23 @@ const Register = () => {
             photo: data?.photoUrl,
             role: "user",
           };
-          axios.post("http://localhost:5000/addUser", saveUser).then((res) => {
-            if (res.data.insertedId) {
-              reset();
-              Swal.fire({
-                icon: "success",
-                title: "User Created Successfully",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-              navigate("/");
-            }
-          });
+          axios
+            .post(
+              "https://nest-nature-nursery-server.vercel.app/addUser",
+              saveUser
+            )
+            .then((res) => {
+              if (res.data.insertedId) {
+                reset();
+                Swal.fire({
+                  icon: "success",
+                  title: "User Created Successfully",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate("/");
+              }
+            });
         })
         .catch((error) => {
           setError(error.message);
