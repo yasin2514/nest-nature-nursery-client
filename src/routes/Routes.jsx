@@ -37,6 +37,7 @@ import StripePaymentHistory from "../pages/dashboard/user/StripePaymentHistory";
 import PaymentsDetails from "../components/dashboard/PaymentsDetails";
 import PendingDelivery from "../pages/dashboard/admin/PendingDelivery";
 import CompletedDelivery from "../pages/dashboard/admin/CompletedDelivery";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -81,7 +82,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         index: true,
