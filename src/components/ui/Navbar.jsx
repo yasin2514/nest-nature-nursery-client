@@ -3,11 +3,13 @@ import { NavLink, useLocation } from "react-router-dom";
 import { RiCloseLine, RiMenu4Line } from "react-icons/ri";
 import logo from "../../assets/logo.png";
 import LoginAndLogout from "./LoginAndLogout";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
   const location = useLocation();
+  const { user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,7 +45,9 @@ const Navbar = () => {
     { to: "/contact-us", name: "ContactUs" },
   ];
 
-
+  const filteredNav = user
+    ? navLinks
+    : navLinks.filter((link) => link.to !== "/dashboard");
 
   return (
     <nav
@@ -59,7 +63,7 @@ const Navbar = () => {
             </NavLink>
           </div>
           <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-9">
-            {navLinks?.map((link, index) => (
+            {filteredNav?.map((link, index) => (
               <NavLink
                 key={index}
                 to={link.to}
@@ -91,7 +95,7 @@ const Navbar = () => {
       {isOpen && (
         <div className="sm:hidden" id="mobile-menu">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            {navLinks?.map((link, index) => (
+            {filteredNav?.map((link, index) => (
               <NavLink
                 key={index}
                 to={link.to}
