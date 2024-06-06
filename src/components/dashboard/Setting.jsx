@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 const Setting = () => {
   const axiosSecure = useAxiosSecure();
   const [userData, , refetch] = useGetSingleUser();
-  const [, , refetchAll] = useGetUser();
   const navigate = useNavigate();
   const {
     name,
@@ -44,7 +43,6 @@ const Setting = () => {
     axiosSecure.patch(`updateUser/${email}`, updateUserData).then((res) => {
       if (res.data.modifiedCount > 0) {
         reset();
-        refetchAll();
         refetch();
         navigate("/dashboard")
         Swal.fire({
