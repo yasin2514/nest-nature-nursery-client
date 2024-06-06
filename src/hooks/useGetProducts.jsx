@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "./useAxiosSecure";
+import useAxiosNormal from "./useAxiosNormal";
 
 const useGetProducts = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosNormal = useAxiosNormal();
   const {
     data: products = [],
     isLoading,
@@ -10,7 +10,7 @@ const useGetProducts = () => {
   } = useQuery({
     queryKey: ["all-products"],
     queryFn: async () => {
-      const res = await axiosSecure.get("products");
+      const res = await axiosNormal.get("products");
       return res.data;
     },
   });
