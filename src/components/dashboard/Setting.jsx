@@ -3,7 +3,6 @@ import useGetSingleUser from "../../hooks/useGetSingleUser";
 import FormElement, { Input } from "../ui/FormComponent";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import useGetUser from "../../hooks/useGetUser";
 import { useNavigate } from "react-router-dom";
 
 const Setting = () => {
