@@ -70,11 +70,11 @@ const AuthProvider = ({ children }) => {
           .post("http://localhost:5000/jwt", { email: currentUser.email })
           .then((res) => {
             localStorage.setItem("token", res.data.token);
+            setLoading(false);
           });
       } else {
         localStorage.removeItem("token");
       }
-      setLoading(false);
     });
     return () => unsubscribe();
   }, []);
