@@ -11,7 +11,7 @@ const useSuperAdmin = () => {
      enabled:!loading,
      queryFn: async () => {
        const res = await axiosSecure.get(`users/superAdmin/${user?.email}`);
-       return res.data;
+       return res.data.superAdmin;
      },
    });
 
