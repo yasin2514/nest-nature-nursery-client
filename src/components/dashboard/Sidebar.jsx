@@ -1,13 +1,17 @@
+import useAdmin from "../../hooks/useAdmin";
+import useSuperAdmin from "../../hooks/useSuperAdmin";
+import useUser from "../../hooks/useUser";
 import AdminSidebar from "../../pages/dashboard/admin/AdminSidebar";
 import UserSidebar from "../../pages/dashboard/user/UserSidebar";
 
 const Sidebar = () => {
-  const admin = false;
-  const user = true;
+  const [isSuperAdmin] = useSuperAdmin();
+  const [isAdmin] = useAdmin();
+  const [isUser] = useUser();
   return (
     <>
-      {admin && <AdminSidebar />}
-      {user && <UserSidebar />}
+      {(isSuperAdmin || isAdmin) && <AdminSidebar />}
+      {isUser && <UserSidebar />}
     </>
   );
 };

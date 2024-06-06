@@ -8,7 +8,7 @@ const useSuperAdmin = () => {
 
    const { data: isSuperAdmin, isLoading } = useQuery({
      queryKey: ["isSuperAdmin", user?.email],
-     enabled: user && !loading,
+     enabled:!loading,
      queryFn: async () => {
        const res = await axiosSecure.get(`users/superAdmin/${user?.email}`);
        return res.data;
