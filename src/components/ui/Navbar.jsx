@@ -1,14 +1,12 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { RiCloseLine, RiMenu4Line } from "react-icons/ri";
 import logo from "../../assets/logo.png";
-import { AuthContext } from "../../providers/AuthProvider";
 import LoginAndLogout from "./LoginAndLogout";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
-  const { user } = useContext(AuthContext);
   const location = useLocation();
 
   useEffect(() => {
@@ -45,9 +43,7 @@ const Navbar = () => {
     { to: "/contact-us", name: "ContactUs" },
   ];
 
-  const filterNavLinks = user
-    ? navLinks
-    : navLinks.filter((link) => link.name !== "Dashboard");
+
 
   return (
     <nav
@@ -63,7 +59,7 @@ const Navbar = () => {
             </NavLink>
           </div>
           <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-9">
-            {filterNavLinks.map((link, index) => (
+            {navLinks?.map((link, index) => (
               <NavLink
                 key={index}
                 to={link.to}
@@ -95,7 +91,7 @@ const Navbar = () => {
       {isOpen && (
         <div className="sm:hidden" id="mobile-menu">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            {filterNavLinks.map((link, index) => (
+            {navLinks?.map((link, index) => (
               <NavLink
                 key={index}
                 to={link.to}
