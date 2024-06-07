@@ -1,23 +1,34 @@
-import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import useNumberFormatter from "../../hooks/useNumberFormatter";
 import useRating from "../../hooks/useRating";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import { AuthContext } from "../../providers/AuthProvider";
+import useAuth from "../../hooks/useAuth";
+import useUser from "../../hooks/useUser";
 
 const ProductCard = ({ data }) => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { _id, name, price, photos, rating, previousPrice } = data || {};
 
   const [isHovered, setIsHovered] = useState(false);
   const formatNumber = useNumberFormatter();
   const renderRating = useRating();
+  const [isUser] = useUser();
+  const navigate = useNavigate();
 
   const handleAddToCart = (item) => {
+    if (!isUser) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You need to login to Add Cart!",
+      });
+      navigate("/login");
+    }
     const saveItem = {
-      productId:item._id,
+      productId: item._id,
       name: item.name,
       price: item.price,
       photos: item.photos,

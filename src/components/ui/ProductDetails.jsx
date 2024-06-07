@@ -1,12 +1,24 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ShortBanner from "./ShortBanner";
 import Container from "./Container";
 import ImageZoom from "./ImageZoom";
 import useNumberFormatter from "../../hooks/useNumberFormatter";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import useSuperAdmin from "../../hooks/useSuperAdmin";
+import useAdmin from "../../hooks/useAdmin";
 
 const ProductDetails = () => {
   const product = useLoaderData();
+  const [isAdmin] = useAdmin();
+  const [isSuperAdmin] = useSuperAdmin();
+  const formatNumber = useNumberFormatter();
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
   const {
     name,
     price,
@@ -17,10 +29,53 @@ const ProductDetails = () => {
     previousPrice,
     description,
   } = product || {};
-  console.log({ price });
 
   const [selectedImage, setSelectedImage] = useState(photos?.[0]);
-  const formatNumber = useNumberFormatter();
+
+  const handleAddToCart = (item) => {
+    if (!user) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You need to login to Add Cart!",
+      });
+      navigate("/login");
+    }
+    const saveItem = {
+      productId: item._id,
+      name: item.name,
+      price: item.price,
+      photos: item.photos,
+      category: item.category,
+      quantity: 1,
+      userName: user?.displayName,
+      userEmail: user?.email,
+      uploadByEmail: item.uploadByEmail,
+    };
+    axiosSecure.post("addCart", saveItem).then((res) => {
+      if (res.data) {
+        Swal.fire({
+          icon: "success",
+          title: "Add to Cart Successfully",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+    });
+  };
+
+  // Buy product
+  const handleBuyProduct = (item) => {
+    if (!user) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You need to login to Buy Product!",
+      });
+      navigate("/login");
+    }
+  };
+
   return (
     <div className="bg-[#fcfffa]">
       <ShortBanner
@@ -28,9 +83,7 @@ const ProductDetails = () => {
         header={`${name} Details`}
         text={`Buy ${name} at an affordable price. See the details below.`}
       />
-      <Container
-        className={"grid grid-cols-1 md:grid-cols-2 gap-8 py-20"}
-      >
+      <Container className={"grid grid-cols-1 md:grid-cols-2 gap-8 py-20"}>
         <div className="flex flex-col justify-center items-center">
           <ImageZoom src={selectedImage} alt={name} />
           <div className="flex space-x-5 mt-4">
@@ -96,9 +149,21 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="mt-8 space-x-5">
-            <button className="button-green">Add Cart</button>
+            <button
+              onClick={() => handleAddToCart(product)}
+              disabled={isAdmin || isSuperAdmin ? true : false}
+              className="button-green"
+            >
+              Add Cart
+            </button>
             <Link>
-              <button className="button-red">Buy now </button>
+              <button
+                onClick={() => handleBuyProduct(product)}
+                disabled={isAdmin || isSuperAdmin ? true : false}
+                className="button-red"
+              >
+                Buy now{" "}
+              </button>
             </Link>
           </div>
         </div>
