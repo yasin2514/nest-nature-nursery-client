@@ -155,7 +155,7 @@ const ProductDetails = () => {
           <div className="mt-8 space-x-5">
             <button
               onClick={() => handleAddToCart(product)}
-              disabled={isAdmin || isSuperAdmin ? true : false}
+              disabled={isAdmin || isSuperAdmin || quantity < 1 ? true : false}
               className="button-green"
             >
               Add Cart
@@ -163,7 +163,9 @@ const ProductDetails = () => {
             <Link>
               <button
                 onClick={() => handleBuyProduct(product)}
-                disabled={isAdmin || isSuperAdmin ? true : false}
+                disabled={
+                  isAdmin || isSuperAdmin || quantity < 1 ? true : false
+                }
                 className="button-red"
               >
                 Buy now{" "}

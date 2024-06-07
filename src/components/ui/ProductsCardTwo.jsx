@@ -9,7 +9,7 @@ import useSuperAdmin from "../../hooks/useSuperAdmin";
 import useAdmin from "../../hooks/useAdmin";
 
 const ProductsCardTwo = ({ data }) => {
-  const { name, price, photos, rating, previousPrice } = data;
+  const { name, price, photos, rating, previousPrice,quantity } = data;
 
   const formatNumber = useNumberFormatter();
   const renderRating = useRating();
@@ -79,7 +79,7 @@ const ProductsCardTwo = ({ data }) => {
           <div className="flex items-center justify-between">
             <button
               onClick={() => handleAddToCart(data)}
-              disabled={isAdmin || isSuperAdmin ? true : false}
+              disabled={isAdmin || isSuperAdmin || quantity < 1 ? true : false}
               className="btn btn-sm"
             >
               <FiShoppingCart />

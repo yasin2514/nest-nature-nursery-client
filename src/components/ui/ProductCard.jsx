@@ -11,7 +11,8 @@ import useSuperAdmin from "../../hooks/useSuperAdmin";
 const ProductCard = ({ data }) => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { _id, name, price, photos, rating, previousPrice } = data || {};
+  const { _id, name, price, photos, rating, previousPrice, quantity } =
+    data || {};
 
   const [isHovered, setIsHovered] = useState(false);
   const formatNumber = useNumberFormatter();
@@ -93,7 +94,7 @@ const ProductCard = ({ data }) => {
         {isHovered && (
           <div className="flex justify-between">
             <button
-              disabled={isAdmin || isSuperAdmin ? true : false}
+              disabled={isAdmin || isSuperAdmin || quantity < 1 ? true : false}
               onClick={() => handleAddToCart(data)}
               className="button-green rounded-full"
             >
