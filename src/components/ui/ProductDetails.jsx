@@ -55,7 +55,7 @@ const ProductDetails = () => {
     };
     axiosSecure.post("addCart", saveItem).then((res) => {
       if (res.data) {
-        navigate(`/dashboard/make-single-payment/${_id}`);
+        navigate(`/dashboard/cart/pending-items`);
       }
     });
   };
