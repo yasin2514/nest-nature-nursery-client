@@ -38,6 +38,7 @@ import PaymentsDetails from "../components/dashboard/PaymentsDetails";
 import PendingDelivery from "../pages/dashboard/admin/PendingDelivery";
 import CompletedDelivery from "../pages/dashboard/admin/CompletedDelivery";
 import PrivateRoute from "./PrivateRoute";
+import Error from "../components/ui/Error";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +82,7 @@ const router = createBrowserRouter([
           ),
       },
     ],
+    errorElement: <Error />,
   },
   {
     path: "/dashboard",
@@ -228,6 +230,7 @@ const router = createBrowserRouter([
           ),
       },
     ],
+    errorElement: <Error />,
   },
 ]);
 
