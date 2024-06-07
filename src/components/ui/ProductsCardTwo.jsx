@@ -1,12 +1,56 @@
 import { FiShoppingCart } from "react-icons/fi";
 import useNumberFormatter from "../../hooks/useNumberFormatter";
 import useRating from "../../hooks/useRating";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import useSuperAdmin from "../../hooks/useSuperAdmin";
+import useAdmin from "../../hooks/useAdmin";
 
 const ProductsCardTwo = ({ data }) => {
-  const { _id, name, price, photos, rating, previousPrice } = data;
+  const { name, price, photos, rating, previousPrice } = data;
 
   const formatNumber = useNumberFormatter();
   const renderRating = useRating();
+  const axiosSecure = useAxiosSecure();
+   const [isAdmin] = useAdmin();
+   const [isSuperAdmin] = useSuperAdmin();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+    const handleAddToCart = (item) => {
+      if (!user) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "You need to login to Add Cart!",
+        });
+        navigate("/login");
+      }
+      const saveItem = {
+        productId: item._id,
+        name: item.name,
+        price: item.price,
+        photos: item.photos,
+        category: item.category,
+        quantity: 1,
+        userName: user?.displayName,
+        userEmail: user?.email,
+        uploadByEmail: item.uploadByEmail,
+      };
+      axiosSecure.post("addCart", saveItem).then((res) => {
+        if (res.data) {
+          Swal.fire({
+            icon: "success",
+            title: "Add to Cart Successfully",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+        }
+      });
+    };
+
 
   return (
     <div className="border  overflow-hidden hover:shadow-lg shadow-green-700 h-[330px] ">
@@ -33,7 +77,11 @@ const ProductsCardTwo = ({ data }) => {
             </span>
           </div>
           <div className="flex items-center justify-between">
-            <button className="btn btn-sm">
+            <button
+              onClick={() => handleAddToCart(data)}
+              disabled={isAdmin || isSuperAdmin ? true : false}
+              className="btn btn-sm"
+            >
               <FiShoppingCart />
             </button>
           </div>

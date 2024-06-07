@@ -6,6 +6,8 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useUser from "../../hooks/useUser";
+import useAdmin from "../../hooks/useAdmin";
+import useSuperAdmin from "../../hooks/useSuperAdmin";
 
 const ProductCard = ({ data }) => {
   const { user } = useAuth();
@@ -15,11 +17,12 @@ const ProductCard = ({ data }) => {
   const [isHovered, setIsHovered] = useState(false);
   const formatNumber = useNumberFormatter();
   const renderRating = useRating();
-  const [isUser] = useUser();
+  const [isAdmin] = useAdmin();
+  const [isSuperAdmin] = useSuperAdmin();
   const navigate = useNavigate();
 
   const handleAddToCart = (item) => {
-    if (!isUser) {
+    if (!user) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -91,6 +94,7 @@ const ProductCard = ({ data }) => {
         {isHovered && (
           <div className="flex justify-between">
             <button
+              disabled={isAdmin || isSuperAdmin ? true : false}
               onClick={() => handleAddToCart(data)}
               className="button-green rounded-full"
             >
