@@ -28,7 +28,7 @@ const PaymentInfoTable = ({ data, index, others }) => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, Delivered it!",
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure
