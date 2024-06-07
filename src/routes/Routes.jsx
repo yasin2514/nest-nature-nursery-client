@@ -39,6 +39,8 @@ import PendingDelivery from "../pages/dashboard/admin/PendingDelivery";
 import CompletedDelivery from "../pages/dashboard/admin/CompletedDelivery";
 import PrivateRoute from "./PrivateRoute";
 import Error from "../components/ui/Error";
+import AdminRoute from "./AdminRoute";
+import UserRoute from "./UserRoute";
 
 const router = createBrowserRouter([
   {
@@ -98,11 +100,19 @@ const router = createBrowserRouter([
       },
       {
         path: "products/upload",
-        element: <UploadProducts />,
+        element: (
+          <AdminRoute>
+            <UploadProducts />
+          </AdminRoute>
+        ),
       },
       {
         path: "products/update/:id",
-        element: <UpdateProducts />,
+        element: (
+          <AdminRoute>
+            <UpdateProducts />
+          </AdminRoute>
+        ),
         loader: ({ params }) =>
           fetch(
             `https://nest-nature-nursery-server.vercel.app/product/${params.id}`
@@ -110,72 +120,149 @@ const router = createBrowserRouter([
       },
       {
         path: "products/admin-products",
-        element: <MyProductListAdmin />,
+        element: (
+          <AdminRoute>
+            <MyProductListAdmin />
+          </AdminRoute>
+        ),
       },
       {
         path: "products/products-list",
-        element: <AdminProductList />,
+        element: (
+          <AdminRoute>
+            <AdminProductList />
+          </AdminRoute>
+        ),
       },
       {
         path: "orders/pending",
-        element: <PendingOrders />,
+        element: (
+          <AdminRoute>
+            <PendingOrders />
+          </AdminRoute>
+        ),
       },
       {
         path: "orders/completed",
-        element: <CompletedOrders />,
+        element: (
+          <AdminRoute>
+            <CompletedOrders />
+          </AdminRoute>
+        ),
       },
       {
         path: "admin/users-list",
-        element: <UserList />,
+        element: (
+          <AdminRoute>
+            <UserList />
+          </AdminRoute>
+        ),
       },
       {
         path: "admin-settings",
-        element: <AdminSettings />,
+        element: (
+          <AdminRoute>
+            <AdminSettings />
+          </AdminRoute>
+        ),
       },
       {
         path: "delivery/pending",
-        element: <PendingDelivery />,
+        element: (
+          <AdminRoute>
+            <PendingDelivery />
+          </AdminRoute>
+        ),
       },
       {
         path: "delivery/completed",
-        element: <CompletedDelivery />,
+        element: (
+          <AdminRoute>
+            <CompletedDelivery />
+          </AdminRoute>
+        ),
       },
 
       {
         path: "user-settings",
-        element: <UserSettings />,
+        element: (
+          <UserRoute>
+            {" "}
+            <UserSettings />{" "}
+          </UserRoute>
+        ),
       },
       {
         path: "cart/pending-items",
-        element: <CartItems />,
+        element: (
+          <UserRoute>
+            {" "}
+            <CartItems />{" "}
+          </UserRoute>
+        ),
       },
       {
         path: "cart/purchased-items",
-        element: <PurchasedItems />,
+        element: (
+          <UserRoute>
+            {" "}
+            <PurchasedItems />{" "}
+          </UserRoute>
+        ),
       },
       {
         path: "cart/to-receive-items",
-        element: <ToReceiveItems />,
+        element: (
+          <UserRoute>
+            {" "}
+            <ToReceiveItems />{" "}
+          </UserRoute>
+        ),
       },
       {
         path: "cart/received-items",
-        element: <ReceiveItems />,
+        element: (
+          <UserRoute>
+            {" "}
+            <ReceiveItems />{" "}
+          </UserRoute>
+        ),
       },
       {
         path: "payment-history/stripe",
-        element: <StripePaymentHistory />,
+        element: (
+          <UserRoute>
+            {" "}
+            <StripePaymentHistory />{" "}
+          </UserRoute>
+        ),
       },
       {
         path: "payment-history/cod",
-        element: <CODPaymentHistory />,
+        element: (
+          <UserRoute>
+            {" "}
+            <CODPaymentHistory />{" "}
+          </UserRoute>
+        ),
       },
       {
         path: "payment-history/ssl",
-        element: <SSLPaymentHistory />,
+        element: (
+          <UserRoute>
+            {" "}
+            <SSLPaymentHistory />{" "}
+          </UserRoute>
+        ),
       },
       {
         path: "make-single-payment/:id",
-        element: <MakeSinglePayment />,
+        element: (
+          <UserRoute>
+            {" "}
+            <MakeSinglePayment />{" "}
+          </UserRoute>
+        ),
         loader: ({ params }) =>
           fetch(
             `https://nest-nature-nursery-server.vercel.app/cartItem/${params?.id}`
@@ -183,23 +270,48 @@ const router = createBrowserRouter([
       },
       {
         path: "make-all-payment",
-        element: <MakeAllPayment />,
+        element: (
+          <UserRoute>
+            {" "}
+            <MakeAllPayment />{" "}
+          </UserRoute>
+        ),
       },
       {
         path: "payment-gateway/stripe",
-        element: <StripeAllPayment />,
+        element: (
+          <UserRoute>
+            {" "}
+            <StripeAllPayment />{" "}
+          </UserRoute>
+        ),
       },
       {
         path: "payment-gateway/cod",
-        element: <CODAllPayment />,
+        element: (
+          <UserRoute>
+            {" "}
+            <CODAllPayment />{" "}
+          </UserRoute>
+        ),
       },
       {
         path: "payment-gateway/ssl",
-        element: <SslAllPayment />,
+        element: (
+          <UserRoute>
+            {" "}
+            <SslAllPayment />{" "}
+          </UserRoute>
+        ),
       },
       {
         path: "payment-gateway/stripe/:id",
-        element: <StripePaymentSingle />,
+        element: (
+          <UserRoute>
+            {" "}
+            <StripePaymentSingle />{" "}
+          </UserRoute>
+        ),
         loader: ({ params }) =>
           fetch(
             `https://nest-nature-nursery-server.vercel.app/cartItem/${params?.id}`
@@ -207,7 +319,12 @@ const router = createBrowserRouter([
       },
       {
         path: "payment-gateway/cod/:id",
-        element: <CODSinglePayment />,
+        element: (
+          <UserRoute>
+            {" "}
+            <CODSinglePayment />{" "}
+          </UserRoute>
+        ),
         loader: ({ params }) =>
           fetch(
             `https://nest-nature-nursery-server.vercel.app/cartItem/${params?.id}`
@@ -215,7 +332,12 @@ const router = createBrowserRouter([
       },
       {
         path: "payment-gateway/ssl/:id",
-        element: <SslSinglePayment />,
+        element: (
+          <UserRoute>
+            {" "}
+            <SslSinglePayment />{" "}
+          </UserRoute>
+        ),
         loader: ({ params }) =>
           fetch(
             `https://nest-nature-nursery-server.vercel.app/cartItem/${params?.id}`

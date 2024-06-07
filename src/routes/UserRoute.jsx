@@ -6,12 +6,12 @@ import useUser from "../hooks/useUser";
 const UserRoute = ({ children }) => {
   const location = useLocation();
   const { user, loading } = useAuth();
-  const [isAdmin, isAdminLoading] = useUser();
+  const [isUser, isUserLoading] = useUser();
 
-  if (loading || isAdminLoading) {
+  if (loading || isUserLoading) {
     return <Loading />;
   }
-  if (user && isAdmin) {
+  if (user && isUser) {
     return children;
   }
   return <Navigate to="/" state={{ from: location }} replace />;
