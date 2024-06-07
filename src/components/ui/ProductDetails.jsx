@@ -1,4 +1,4 @@
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ShortBanner from "./ShortBanner";
 import Container from "./Container";
@@ -55,27 +55,11 @@ const ProductDetails = () => {
     };
     axiosSecure.post("addCart", saveItem).then((res) => {
       if (res.data) {
-        Swal.fire({
-          icon: "success",
-          title: "Add to Cart Successfully",
-          showConfirmButton: false,
-          timer: 1000,
-        });
+        navigate(`/dashboard/make-single-payment/${_id}`);
       }
     });
   };
 
-  // Buy product
-  const handleBuyProduct = () => {
-    if (!user) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "You need to login to Buy Product!",
-      });
-      navigate("/login");
-    }
-  };
 
   return (
     <div className="bg-[#fcfffa]">
@@ -157,21 +141,10 @@ const ProductDetails = () => {
             <button
               onClick={() => handleAddToCart(product)}
               disabled={isAdmin || isSuperAdmin || quantity < 1 ? true : false}
-              className="button-green"
+              className="button-red"
             >
-              Add Cart
+              Buy now{" "}
             </button>
-            <Link to={`/dashboard/buy-product/${_id}`}>
-              <button
-                onClick={handleBuyProduct}
-                disabled={
-                  isAdmin || isSuperAdmin || quantity < 1 ? true : false
-                }
-                className="button-red"
-              >
-                Buy now{" "}
-              </button>
-            </Link>
           </div>
         </div>
       </Container>

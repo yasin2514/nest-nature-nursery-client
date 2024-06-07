@@ -38,7 +38,6 @@ import PaymentsDetails from "../components/dashboard/PaymentsDetails";
 import PendingDelivery from "../pages/dashboard/admin/PendingDelivery";
 import CompletedDelivery from "../pages/dashboard/admin/CompletedDelivery";
 import PrivateRoute from "./PrivateRoute";
-import BuyNow from "../components/dashboard/BuyNow";
 
 const router = createBrowserRouter([
   {
@@ -178,14 +177,6 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(
             `https://nest-nature-nursery-server.vercel.app/cartItem/${params?.id}`
-          ),
-      },
-      {
-        path: "buy-product/:id",
-        element: <BuyNow />,
-        loader: ({ params }) =>
-          fetch(
-            `https://nest-nature-nursery-server.vercel.app/product/${params?.id}`
           ),
       },
       {
