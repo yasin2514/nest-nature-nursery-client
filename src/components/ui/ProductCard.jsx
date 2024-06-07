@@ -5,7 +5,6 @@ import useRating from "../../hooks/useRating";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
-import useUser from "../../hooks/useUser";
 import useAdmin from "../../hooks/useAdmin";
 import useSuperAdmin from "../../hooks/useSuperAdmin";
 

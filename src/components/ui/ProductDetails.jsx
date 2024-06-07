@@ -124,7 +124,11 @@ const ProductDetails = () => {
             <div className="mt-2">
               <span className="text-lg font-medium text-gray-700">
                 Available Quantity:{" "}
-                <span className="text-green-600">{formatNumber(quantity)}</span>
+                <span
+                  className={quantity > 0 ? "text-green-600" : "text-red-600"}
+                >
+                  {quantity > 0 ? "In-Stock" : "Out-Of-Stock"}
+                </span>
               </span>
             </div>
             <div className="mt-4 flex items-center">
