@@ -20,6 +20,7 @@ const ProductDetails = () => {
   const navigate = useNavigate();
 
   const {
+    _id,
     name,
     price,
     photos,
@@ -65,7 +66,7 @@ const ProductDetails = () => {
   };
 
   // Buy product
-  const handleBuyProduct = (item) => {
+  const handleBuyProduct = () => {
     if (!user) {
       Swal.fire({
         icon: "error",
@@ -160,9 +161,9 @@ const ProductDetails = () => {
             >
               Add Cart
             </button>
-            <Link>
+            <Link to={`/dashboard/buy-product/${_id}`}>
               <button
-                onClick={() => handleBuyProduct(product)}
+                onClick={handleBuyProduct}
                 disabled={
                   isAdmin || isSuperAdmin || quantity < 1 ? true : false
                 }
