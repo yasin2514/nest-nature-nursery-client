@@ -30,7 +30,7 @@ const TrendingProductsSection = () => {
 
   return (
     <div>
-      <section className="flex justify-between items-center mb-12">
+      <section className="flex justify-between flex-wrap gap-y-2 items-center mb-12">
         <SectionHeader
           className={"text-start"}
           header="Weekly Best Deals"

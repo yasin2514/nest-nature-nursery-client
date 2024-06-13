@@ -61,7 +61,7 @@ const Footer = () => {
               <a className="link link-hover">Dhaka,Bangladesh</a>
               <a className="link link-hover">015-000-1111</a>
 
-              <span className="flex gap-4 mt-4 text-xl">
+              <span className="flex flex-wrap gap-4 mt-4 text-xl">
                 <a className="bg-white rounded-full text-blue-500" href="">
                   <FaFacebook className="text-xl "></FaFacebook>
                 </a>
