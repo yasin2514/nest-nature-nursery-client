@@ -16,7 +16,7 @@ const Home = () => {
         <OurNurserySection />
         <TrendingProductsSection />
         {/* <HowToOrderSection /> */}
-        {/* <ServiceSection /> */}
+        <ServiceSection />
       </Container>
       {/* <InformationSection /> */}
       <Container className="my-24 space-y-24">

@@ -53,7 +53,7 @@ const TrendingProductsSection = () => {
           </button>
         </div>
       </section>
-      <section className="grid grid-cols-1 md:grid-cols-12 gap-10">
+      <section className="grid grid-cols-1  lg:grid-cols-12 gap-10">
         <div className="md:col-span-3 relative overflow-hidden h-[700px]">
           <div className="absolute top-0 w-full h-[150px]">
             <div className="clip-path-one bg-opacity-50 bg-[#e4f5e0]"></div>

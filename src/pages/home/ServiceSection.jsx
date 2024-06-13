@@ -13,7 +13,7 @@ const ServiceSection = () => {
         header="Our Customer Services"
         title="We provide the best service"
       />
-      <div className="grid grid-cols-5 gap-10">
+      <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10 px-2 lg:px-0">
         <Section
           title="Free Shipping"
           text="We provide free shipping some plants."
