@@ -18,10 +18,10 @@ const Home = () => {
         {/* <HowToOrderSection /> */}
         <ServiceSection />
       </Container>
-      {/* <InformationSection /> */}
+      <InformationSection />
       <Container className="my-24 space-y-24">
-        {/* <BestProductsSection /> */}
-        {/* <ClientReviewSection /> */}
+        <BestProductsSection />
+        <ClientReviewSection />
       </Container>
     </>
   );

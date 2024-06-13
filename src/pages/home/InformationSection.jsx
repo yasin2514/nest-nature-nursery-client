@@ -4,7 +4,7 @@ import Container from "../../components/ui/Container";
 const InformationSection = () => {
   return (
     <div
-      className=" bg-fixed h-[70vh] flex items-center justify-center bg-no-repeat bg-cover "
+      className=" bg-fixed py-10 md:py-0 md:h-[70vh] flex items-center justify-center bg-no-repeat bg-cover "
       style={{
         backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0.60)),url(${bg})`,
       }}
