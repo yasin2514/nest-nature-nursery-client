@@ -15,7 +15,7 @@ const Home = () => {
       <Container className="my-24 space-y-24">
         <OurNurserySection />
         <TrendingProductsSection />
-        {/* <HowToOrderSection /> */}
+        <HowToOrderSection />
         <ServiceSection />
       </Container>
       <InformationSection />
